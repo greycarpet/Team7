@@ -1,0 +1,179 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  Team7 Week 1 landing zone network - a dedicated public network with a single
+  explicitly routed public subnet and no automatic public IPv4 assignment.
+
+Metadata:
+  AWSToolsMetrics:
+    AWSAgentToolkit: aws-cloudformation@3
+  com.aws.cloudformation.Context:
+    arch: Dedicated VPC -> one public subnet -> IGW default route
+    must:
+      - Manage only the approved SCRUM-11 network resources
+      - Keep subnet automatic public IPv4 assignment disabled
+      - Preserve the VPC local route
+    ref:
+      - at: infrastructure/cloudformation/week1/README.md
+        has: deployment, validation, handoff, and recovery guidance
+        scope: SCRUM-11
+
+Resources:
+  Team7VPC:
+    Type: AWS::EC2::VPC
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Dedicated Team7 network boundary; fixed CIDR follows approved Week 1 design.
+        must:
+          - Keep CIDR 10.7.0.0/16 unless the network design is reapproved
+        mutable: review-required
+        trust: { src: authored, conf: high }
+    Properties:
+      CidrBlock: 10.7.0.0/16
+      Tags:
+        - { Key: Name, Value: vpc-capstone-team07 }
+        - { Key: Project, Value: Team7 }
+        - { Key: Team, Value: Team7 }
+        - { Key: Environment, Value: Dev }
+        - { Key: Owner, Value: Team7 }
+        - { Key: Workload, Value: Capstone }
+        - { Key: Component, Value: Network }
+        - { Key: ManagedBy, Value: Team7 }
+        - { Key: Repository, Value: Team7 }
+        - { Key: JiraProject, Value: SCRUM }
+
+  Team7PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Single approved public subnet in us-east-2a; public addressing remains explicit at instance launch time.
+        must:
+          - Place subnet in Team7VPC with CIDR 10.7.1.0/24 and AZ us-east-2a
+          - Do not enable automatic public IPv4 assignment
+        mutable: review-required
+        trust: { src: authored, conf: high }
+    Properties:
+      VpcId: !Ref Team7VPC
+      CidrBlock: 10.7.1.0/24
+      AvailabilityZone: us-east-2a
+      Tags:
+        - { Key: Name, Value: snet-public-team07 }
+        - { Key: Project, Value: Team7 }
+        - { Key: Team, Value: Team7 }
+        - { Key: Environment, Value: Dev }
+        - { Key: Owner, Value: Team7 }
+        - { Key: Workload, Value: Capstone }
+        - { Key: Component, Value: Network }
+        - { Key: ManagedBy, Value: Team7 }
+        - { Key: Repository, Value: Team7 }
+        - { Key: JiraProject, Value: SCRUM }
+
+  Team7InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Provides the approved VPC internet route target.
+        must:
+          - Attach only to Team7VPC
+        mutable: review-required
+        trust: { src: authored, conf: high }
+    Properties:
+      Tags:
+        - { Key: Name, Value: igw-capstone-team07 }
+        - { Key: Project, Value: Team7 }
+        - { Key: Team, Value: Team7 }
+        - { Key: Environment, Value: Dev }
+        - { Key: Owner, Value: Team7 }
+        - { Key: Workload, Value: Capstone }
+        - { Key: Component, Value: Network }
+        - { Key: ManagedBy, Value: Team7 }
+        - { Key: Repository, Value: Team7 }
+        - { Key: JiraProject, Value: SCRUM }
+
+  Team7InternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Connects the dedicated internet gateway to the Team7 VPC.
+        must:
+          - Attach Team7InternetGateway to Team7VPC
+        mutable: review-required
+        trust: { src: authored, conf: high }
+    Properties:
+      VpcId: !Ref Team7VPC
+      InternetGatewayId: !Ref Team7InternetGateway
+
+  Team7PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Dedicated route table keeps the public subnet's default internet path explicit.
+        must:
+          - Remain in Team7VPC
+          - Preserve the automatically created VPC local route
+        mutable: review-required
+        trust: { src: authored, conf: high }
+    Properties:
+      VpcId: !Ref Team7VPC
+      Tags:
+        - { Key: Name, Value: rt-public-team07 }
+        - { Key: Project, Value: Team7 }
+        - { Key: Team, Value: Team7 }
+        - { Key: Environment, Value: Dev }
+        - { Key: Owner, Value: Team7 }
+        - { Key: Workload, Value: Capstone }
+        - { Key: Component, Value: Network }
+        - { Key: ManagedBy, Value: Team7 }
+        - { Key: Repository, Value: Team7 }
+        - { Key: JiraProject, Value: SCRUM }
+
+  Team7PublicRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Ensures the approved subnet uses Team7PublicRouteTable.
+        must:
+          - Associate Team7PublicSubnet with Team7PublicRouteTable
+        mutable: review-required
+        trust: { src: authored, conf: high }
+    Properties:
+      SubnetId: !Ref Team7PublicSubnet
+      RouteTableId: !Ref Team7PublicRouteTable
+
+  Team7DefaultInternetRoute:
+    Type: AWS::EC2::Route
+    DependsOn: Team7InternetGatewayAttachment
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Sends IPv4 internet-bound traffic from the associated subnet through the Team7 IGW.
+        must:
+          - Use destination 0.0.0.0/0 and target Team7InternetGateway
+          - Depend on the gateway attachment before route creation
+        mutable: review-required
+        trust: { src: authored, conf: high }
+    Properties:
+      RouteTableId: !Ref Team7PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref Team7InternetGateway
+
+Outputs:
+  VpcId:
+    Description: Team7 VPC ID.
+    Value: !Ref Team7VPC
+  VpcCidr:
+    Description: Team7 VPC IPv4 CIDR.
+    Value: !GetAtt Team7VPC.CidrBlock
+  PublicSubnetId:
+    Description: Team7 public subnet ID.
+    Value: !Ref Team7PublicSubnet
+  PublicSubnetCidr:
+    Description: Team7 public subnet IPv4 CIDR.
+    Value: !GetAtt Team7PublicSubnet.CidrBlock
+  PublicSubnetAvailabilityZone:
+    Description: Team7 public subnet Availability Zone.
+    Value: !GetAtt Team7PublicSubnet.AvailabilityZone
+  InternetGatewayId:
+    Description: Team7 Internet Gateway ID.
+    Value: !Ref Team7InternetGateway
+  PublicRouteTableId:
+    Description: Team7 public route table ID.
+    Value: !Ref Team7PublicRouteTable

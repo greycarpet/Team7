@@ -36,11 +36,15 @@ CloudFormation.
 Local validation, where tools are installed:
 
 ```sh
-cfn-lint -r us-east-2 infrastructure/cloudformation/week1/foundation.yaml
+cfn-lint --format json --regions us-east-2 -- infrastructure/cloudformation/week1/foundation.yaml
 aws cloudformation validate-template \
   --template-body file://infrastructure/cloudformation/week1/foundation.yaml \
   --region us-east-2
 ```
+
+`cfn-lint` currently reports W3010 for the hardcoded `us-east-2a` Availability
+Zone. That value is fixed by the approved SCRUM-11 design; keep it unchanged
+unless the network design is reapproved.
 
 After an approved deployment, validate read-only with CloudFormation stack
 outputs and resource inventory, plus EC2 descriptions of the VPC, subnet,

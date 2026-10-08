@@ -1,0 +1,3 @@
+# Preserve evidence JSON bytes and hashes across Windows/Linux checkouts.
+*.json -text
+*.csv -text

@@ -1,0 +1,52 @@
+# Enforce the reviewed SCRUM-13 contract locally; no AWS calls.
+let resource_count = count(Resources.*)
+let parameter_count = count(Parameters.*)
+let tag_count = count(Resources.Team7ToolsSecurityGroup.Properties.Tags[*])
+
+rule scrum13_scope {
+    %resource_count == 1
+    Resources.Team7ToolsSecurityGroup.Type == 'AWS::EC2::SecurityGroup'
+}
+
+rule scrum13_required_existing_vpc {
+    %parameter_count == 1
+    Parameters.VpcId.Type == 'AWS::EC2::VPC::Id'
+    Parameters.VpcId.Default !exists
+    Resources.Team7ToolsSecurityGroup.Properties.VpcId.Ref == 'VpcId'
+}
+
+rule scrum13_no_inbound {
+    Resources.Team7ToolsSecurityGroup.Properties.SecurityGroupIngress empty
+}
+
+rule scrum13_default_egress {
+    Resources.Team7ToolsSecurityGroup.Properties.SecurityGroupEgress !exists
+}
+
+rule scrum13_generated_name {
+    Resources.Team7ToolsSecurityGroup.Properties.GroupName !exists
+    Resources.Team7ToolsSecurityGroup.Properties.GroupDescription == 'Team7 tools security group - Week 1'
+}
+
+rule scrum13_exact_tags {
+    %tag_count == 10
+    Resources.Team7ToolsSecurityGroup.Properties {
+        some Tags[*] { Key == 'Name' Value == 'sg-tools-team07' }
+        some Tags[*] { Key == 'Project' Value == 'Team7' }
+        some Tags[*] { Key == 'Team' Value == 'Team7' }
+        some Tags[*] { Key == 'Environment' Value == 'Dev' }
+        some Tags[*] { Key == 'Owner' Value == 'Team7' }
+        some Tags[*] { Key == 'Workload' Value == 'Tools' }
+        some Tags[*] { Key == 'Component' Value == 'Security' }
+        some Tags[*] { Key == 'ManagedBy' Value == 'Team7' }
+        some Tags[*] { Key == 'Repository' Value == 'Team7' }
+        some Tags[*] { Key == 'JiraProject' Value == 'SCRUM' }
+    }
+}
+
+rule scrum13_outputs {
+    Outputs.SecurityGroupId.Value.'Fn::GetAtt' == 'Team7ToolsSecurityGroup.GroupId'
+    Outputs.VpcId.Value.Ref == 'VpcId'
+    Outputs.SecurityGroupId.Export !exists
+    Outputs.VpcId.Export !exists
+}

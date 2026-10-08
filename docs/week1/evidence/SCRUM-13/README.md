@@ -3,7 +3,9 @@
 The first account-review artifacts below are **read-only preparation evidence**.
 The subsequent deployment record contains genuine change-set, execution, stack,
 group, rule, tag, output, and attachment responses from the approved deployment.
-No console screenshot was captured in this session.
+The deployment session captured no console screenshots. Josh subsequently supplied
+19 genuine console screenshots; review and hash verification are recorded in
+[SCREENSHOT_REVIEW.md](SCREENSHOT_REVIEW.md).
 
 The account-review original contains the actual detailed AWS MCP discovery/policy
 responses and their executed `api_calls` records. It is preserved privately under
@@ -92,7 +94,14 @@ original/redacted API evidence. It must be reviewed before sharing because it
 contains private originals. Repository copies link earlier screenshots as
 historical package references, without republishing those images.
 
-Console evidence remains pending. Use [the exact screenshot checklist and
-acceptance handoff](../../SCRUM-13-handoff.md). Capture filenames using the actual
-UTC date; preserve originals, hash them, and create separately identified
-redacted copies for public publication. Do not invent capture or transfer times.
+## Supplied console evidence — 2026-10-08
+
+The reviewed 19-image `Week01(1).zip` now supplies the security stack overview,
+resource and outputs views, group details/rules/tags, IAM users/roles, and the
+limited root-access-menu view. It also contains the eight prior landing-zone
+images and the budget image. The security-group captures are complete.
+[SCREENSHOT_REVIEW.md](SCREENSHOT_REVIEW.md) records each result and SHA256;
+both custody logs append the archive and per-image verification records.
+Original pixels remain private and unchanged. No public redacted image or
+Cloud Architect transfer is claimed. Team-access/individual-MFA owner review
+and the handoff remain open.

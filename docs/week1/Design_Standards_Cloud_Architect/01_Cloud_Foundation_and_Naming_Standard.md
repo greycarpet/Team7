@@ -145,7 +145,7 @@ Week 1 supplies an unattached group with zero ingress. The later tools-instance/
 
 **Root-MFA exception:** Josh explicitly accepted the exception at 2026-10-08T23:34:18Z and elected not to remediate root MFA for this Week 1 task. The observed MFA flag remains 0; centralized-root management remains unverified. This does not establish individual MFA, accept team-access limitations, or assert instructor approval. See [the decision record](../SCRUM-13-root-MFA-exception.md).
 
-Deployment evidence is actual API JSON, not screenshots. Console screenshots and owner acceptance are pending.
+Deployment API evidence is supplemented by Josh's 19-image `Week01(1).zip`, reviewed and hashed in [the screenshot review](../evidence/SCRUM-13/SCREENSHOT_REVIEW.md). Security-group screenshots are complete. Original images remain private; team-access/individual-MFA owner review and the Cloud Architect handoff remain open.
 Repository review: [draft PR #3](https://github.com/greycarpet/Team7/pull/3), [security evidence manifest](../evidence/SCRUM-13/README.md), and [handoff/checklists](../SCRUM-13-handoff.md).
 In the private handoff package, new evidence is under `../Evidence/SCRUM-13/`; previous landing-zone links still resolve there. This repository copy preserves the earlier screenshot references as historical package references; those private originals are not republished here.
 
@@ -180,7 +180,7 @@ This working copy comes from the reviewed Week 1 ZIP, source document SHA256 `6b
 | [20261007_Team7_aws_w1-route-association.png](../Evidence/20261007_Team7_aws_w1-route-association.png) | Explicit subnet association for snet-public-team07 | Confirmed |
 | [20261007_Team7_aws_w1-no-nat.png](../Evidence/20261007_Team7_aws_w1-no-nat.png) | No NAT gateways found | Corroborates the earlier live check; region is not visible in this image |
 
-All eight screenshot SHA-256 hashes match both supplied chain-of-custody logs. Original screenshots and logs have been preserved byte-for-byte. Resource tags are not visible in these screenshots; their validation is recorded in the previously reviewed AWS deployment evidence. The existing budget screenshot reference below is retained, but that image was not included in this ZIP.
+All eight screenshot SHA-256 hashes match both supplied chain-of-custody logs. Original screenshots and logs have been preserved byte-for-byte. Resource tags are not visible in these screenshots; their validation is recorded in the previously reviewed AWS deployment evidence. The budget image was absent from the original reviewed ZIP and is now supplied in `Week01(1).zip`. It shows the budget list, not the 80% alert configuration or recipients.
 
 **Deployment screenshot:** 20260930_Team7_aws_w1-budget.png
 

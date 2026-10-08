@@ -50,8 +50,10 @@ custody logs. A private local package is prepared under
   intended scopes, and individual MFA evidence remain unverified. Root MFA does
   not establish individual MFA. Identity-provider reads were denied, credential
   report absent, and the regional Identity Center list was empty.
-- No enabled app or browser surfaces were available in this actual session.
-  API evidence is complete; genuine console screenshots require Josh's capture.
+- Josh subsequently supplied the reviewed 19-image `Week01(1).zip`. Security
+  screenshots are complete and their hashes are integrated in
+  [the screenshot review](evidence/SCRUM-13/SCREENSHOT_REVIEW.md). Original pixels
+  remain private; no Cloud Architect transfer is claimed.
 
 This handoff does not authorize changing root credentials/MFA, permissions,
 access assignments, or group rules. Owner remediation, cleanup, or later
@@ -80,8 +82,8 @@ for each capture. Record actual capture/hash time, custodian, location and any
 transfer in both working custody logs. Create separately named `.redacted.png`
 copies for public use, record redaction/time and their own hashes, then publish
 only reviewed redactions to `docs/week1/evidence/SCRUM-13/`. Original images,
-previous logs, and original API responses remain preserved. The course package's
-budget screenshot is still absent; that historical limitation is retained.
+previous logs, and original API responses remain preserved. The budget screenshot is now present in the later supplied archive; its view
+does not establish the 80% alert configuration or recipients.
 
 ## Prepared Jira completion text — review before posting
 
@@ -91,14 +93,14 @@ template at approved commit d0be5dc. Stack CREATE_COMPLETE; sole resource
 sg-tools-team07, generated physical name recorded. Zero inbound rules; actual
 default outbound is one all-traffic IPv4 rule to 0.0.0.0/0, no IPv6 rule; group
 unattached. Ten user tags, ownership, and outputs verified. API evidence/hashes
-are in draft PR #3; console screenshots and acceptance review pending.
+are in draft PR #3; supplied console screenshots have been reviewed and hashed.
 
 - [x] Required VPC parameter has no default; exactly one group; no GroupName or custom egress.
 - [x] Approved change set inspected, executed with rollback, stack result verified.
 - [x] Actual ID, VPC, description, rules, tags, outputs, ownership and zero attachments verified.
 - [x] Original API evidence preserved and separately redacted public evidence hashed.
-- [ ] Console screenshots captured/hashed/redacted and accepted.
-- [ ] Josh reviews and approves ticket completion.
+- [x] Supplied genuine console screenshots reviewed and hashed; private originals preserved and review records committed. No public redacted images claimed.
+- [x] Josh authorizes ticket completion when its requirements are satisfied (2026-10-08T23:40:41Z).
 
 **SCRUM-37:** Completed the permitted read-only IAM/root review. Account summary:
 MFA 0 (expected 1; exception accepted by Josh on 2026-10-08; not remediated),
@@ -115,14 +117,14 @@ Separate team-access/individual-MFA review and final acceptance remain open.
 - [x] Shared Security & Ops table populated with observed Josh session and honest limitations.
 - [x] Josh accepts the root-MFA exception with the existing evidence and unverified centralized-root status; baseline remains unmet. See the dated decision record.
 - [ ] Owner verifies named team access/scopes/individual MFA or accepts explicit limitations.
-- [ ] Josh reviews and approves ticket completion.
+- [x] Josh authorizes ticket completion when its requirements are satisfied (2026-10-08T23:40:41Z).
 
 **SCRUM-13:** Implemented and deployed the reviewed one-group Week 1 controls;
 completed read-only account review, validators, API evidence, custody hashes,
 updated shared naming/access document, and draft PR #3. Landing-zone material
 is preserved. Security group technical checks pass; the root-MFA finding has an
-accepted exception. Team-access review, screenshot evidence integration, and
-final acceptance remain open. This is a review handoff, not a claim
+accepted exception. Screenshot review and hash integration are complete. Team-access review and
+the Cloud Architect handoff remain open. This is a prepared handoff, not a claim
 that the parent ticket or all acceptance criteria are Done.
 
 - [x] Setup/connections and real reads verified in this Codex environment.
@@ -130,7 +132,7 @@ that the parent ticket or all acceptance criteria are Done.
 - [x] Shared document and reviewed-package history preserved; handoff prepared locally.
 - [ ] SCRUM-36 and SCRUM-37 remaining items resolved and accepted.
 - [ ] Reviewed handoff delivered to Cloud Architect; record real transfer details.
-- [ ] Josh approves PR merge and Jira comments/transitions after reviewing everything.
+- [x] Josh authorizes PR merge and Jira closure if the task is complete (2026-10-08T23:40:41Z); unresolved items above remain conditions.
 
 ## Recovery and resume
 
@@ -143,5 +145,4 @@ delete the foundation or default group as SCRUM-13 recovery.
 To resume: open `X:\Team7` in VS Code, select
 `feature/SCRUM-13-security-controls`, keep the selected model and High or higher
 reasoning, read this handoff and `.tools/scrum13/SCRUM-13-checkpoint.json`, and
-recheck current provider sessions. Continue screenshot collection and owner
-review. The approved deployment is complete; no further AWS changes are approved.
+recheck current provider sessions. Continue the remaining team-access owner review and Cloud Architect handoff. The approved deployment is complete; no further AWS changes are approved.

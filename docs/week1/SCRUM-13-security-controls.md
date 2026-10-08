@@ -4,8 +4,9 @@ Prepared by Josh Escobar on `feature/SCRUM-13-security-controls` for a draft PR
 to `main`. Discovery and validation were performed on **2026-10-08 UTC**.
 The approved template was deployed successfully on **2026-10-08 UTC**. Josh accepted
 the [root-MFA exception](SCRUM-13-root-MFA-exception.md) at 23:34:18Z on that date;
-the observed flag remains 0 and the baseline is not passed. Team-access review,
-screenshot evidence integration, and final acceptance remain open. No AWS changes
+the observed flag remains 0 and the baseline is not passed. Supplied screenshots
+have now been reviewed and hashed. Team-access owner review and the Cloud
+Architect handoff remain open. Josh has authorized merge/closure once complete. No AWS changes
 were performed during the earlier preparation stage.
 
 ## Sources and precedence
@@ -263,8 +264,9 @@ and Security Group summary** are now populated with verified values in
 Its completed landing-zone section is preserved verbatim. The original reviewed
 package remains unchanged; the older loose Markdown was not substituted. Only
 Josh's observed session is documented, with individual MFA and the broader team
-roster explicitly unverified. Screenshots remain pending because the actual
-session reports no enabled browser or app surfaces.
+roster explicitly unverified. Josh subsequently supplied the reviewed 19-image
+`Week01(1).zip`; [screenshot review and hashes](evidence/SCRUM-13/SCREENSHOT_REVIEW.md)
+are now recorded. Security-group screenshots are complete; originals stay private.
 
 ## Authorized deployment result
 
@@ -329,10 +331,11 @@ other rules. Never delete the foundation as part of SCRUM-13.
 
 | Work item | Verified state | Remaining completion requirements |
 | --- | --- | --- |
-| SCRUM-36 | Approved one-group deployment and actual group/VPC/rules/tags/outputs verified | Console screenshots and Josh's acceptance review |
+| SCRUM-36 | Approved one-group deployment and actual group/VPC/rules/tags/outputs verified; genuine screenshots reviewed and hashed | Technical and screenshot requirements satisfied |
 | SCRUM-37 | Root/IAM review recorded; root-MFA exception accepted by Josh on 2026-10-08 | Separate team-assignment and individual-MFA review/evidence or explicit acceptance of those limitations; final acceptance |
-| SCRUM-13 | Design, deployment, API evidence/hashes, shared deliverable, and draft PR ready for review | Both subtasks' remaining items; reviewed handoff to Cloud Architect; Josh's review |
+| SCRUM-13 | Design, deployment, API evidence/hashes, shared deliverable, and draft PR ready for review | Remaining SCRUM-37 owner review; actual handoff to Cloud Architect |
 
-Completion text and checklists are prepared in the handoff document. Final
-evidence/docs are published to the same branch and draft PR. Josh must review
-before merging, posting Jira comments, or moving any ticket to Done.
+Completion text and checklists are prepared in the handoff document. Evidence
+and documentation are published to the same branch and draft PR. Josh authorized
+merge and Jira closure on 2026-10-08T23:40:41Z if the task is complete. The remaining
+owner review and actual handoff must be resolved before claiming completion.

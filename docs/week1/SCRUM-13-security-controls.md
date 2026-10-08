@@ -2,9 +2,9 @@
 
 Prepared by Josh Escobar on `feature/SCRUM-13-security-controls` for a draft PR
 to `main`. Discovery and validation were performed on **2026-10-08 UTC**.
-SCRUM-13 and subtasks SCRUM-36/SCRUM-37 are preparation work until deployment,
-evidence, handoff, and owner review are complete. No AWS changes or change set
-creation were authorized or performed during preparation.
+The approved template was deployed successfully on **2026-10-08 UTC**. Root-MFA,
+individual team-access review, console screenshots, and final acceptance remain
+open. No AWS changes were performed during the earlier preparation stage.
 
 ## Sources and precedence
 
@@ -58,8 +58,8 @@ only into the project virtual environment to read/render the supplied PDFs.
 Git author name is set locally to **Josh Escobar**. His existing linked GitHub
 noreply address `250448628+greycarpet@users.noreply.github.com` was retained.
 GitHub CLI was not required because the working official connector and existing
-Git Credential Manager cover PR creation and Git authentication. Successful push
-will be verified when publishing this branch. No credentials were printed or
+Git Credential Manager cover PR creation and Git authentication. Normal branch
+push and draft PR #3 were verified. No credentials were printed or
 copied into source, no long-lived keys were created, and no permissions widened.
 The prior SCRUM-11 setup stash was not applied to this branch.
 
@@ -91,8 +91,8 @@ higher effort, and recheck connections. Do not assume another session's access.
 | Caller | Assumed `AccountFullAccessRole`, not root | Console-based temporary CLI/MCP access; trust principal is `account-access.amazonaws.com` |
 | Foundation | `cfn-foundation-team07`, `CREATE_COMPLETE` | Existing dependency |
 | Resolved VPC | `vpc-05ac92d29e000c0ce`, Name `vpc-capstone-team07`, `10.7.0.0/16`, available, non-default | Matches the comparison ID and approved design |
-| Security stack | DescribeStacks returned explicit does-not-exist ValidationError | No existing `cfn-security-team07` found |
-| Tools group | Regional Name-tag lookup returned zero; target VPC inventory contains only its default group | No tools-group ownership conflict found |
+| Security stack before creation | DescribeStacks returned explicit does-not-exist ValidationError | No existing `cfn-security-team07` found before the approved deployment |
+| Tools group before creation | Regional Name-tag lookup returned zero; target VPC inventory contained only its default group | No tools-group ownership conflict found before creation |
 | Existing default group | `sg-06e08b526126cc50c`; default self-reference ingress and IPv4 allow-all egress | Observed only; must remain unchanged |
 | AccountMFAEnabled | **0**, expected baseline **1** | **Owner review required; baseline not passed** |
 | AccountAccessKeysPresent | **0**, expected **0** | Root no-access-key baseline passed |
@@ -173,9 +173,9 @@ Exact user tags (CloudFormation may add its reserved `aws:` ownership tags):
   are required before the preparation commit; their final results are recorded
   in the draft PR.
 
-These checks do not prove deployment permissions, SCP allowance, quotas, or the
-future live group's behavior. Account-aware change-set validation is deferred
-until approved creation of a change set; no such check was run during preparation.
+These preparation checks did not prove deployment permissions, SCP allowance,
+quotas, or live behavior. The subsequently approved change set and actual
+deployment checks are recorded below; neither was performed during preparation.
 
 ## Approval and deployment procedure
 
@@ -252,14 +252,62 @@ to the existing evidence log. The current preparation API evidence is explicitly
 identified in [the evidence manifest](evidence/SCRUM-13/README.md), with a private
 original and a separate redacted JSON; it is not deployment evidence.
 
-After creation, update the reviewed shared document's **Team access - Security &
-Ops** with verified people, sign-in method, scope, and MFA findings. Add **Access
-and Security Group summary** if absent, using actual stack/group identifiers,
-generated GroupName, Name tag, VPC, ingress count, exact egress, tags, root flags,
-timestamp, findings, limitations, and evidence links. Preserve the completed
-landing-zone section verbatim. Do not substitute the older loose Markdown copy
-or invent a team roster/MFA status. Shared-document population and screenshots
-are intentionally deferred until actual approved deployment.
+The reviewed shared document's **Team access - Security & Ops** and new **Access
+and Security Group summary** are now populated with verified values in
+[01_Cloud_Foundation_and_Naming_Standard.md](Design_Standards_Cloud_Architect/01_Cloud_Foundation_and_Naming_Standard.md).
+Its completed landing-zone section is preserved verbatim. The original reviewed
+package remains unchanged; the older loose Markdown was not substituted. Only
+Josh's observed session is documented, with individual MFA and the broader team
+roster explicitly unverified. Screenshots remain pending because the actual
+session reports no enabled browser or app surfaces.
+
+## Authorized deployment result
+
+Josh explicitly approved commit `d0be5dce16b2ad7b7915bf882ccc8f6755e7b913`,
+account `123109186025`, `us-east-2`, `cfn-security-team07`, and
+`vpc-05ac92d29e000c0ce`. The approved template SHA256 is
+`7c6b00d2e66f1b73237787ce21cb5f9993a79d95c7420b34bdb3a70f7e55317e`.
+The local branch/commit/hash, STS account, foundation output, VPC Name/CIDR/state,
+and absent stack/group were rechecked before creation.
+
+Change set `cfn-security-team07-scrum13-20261008-reviewed-d0be5dc` was created at
+`2026-10-08T01:17:58.324Z`. It reached `CREATE_COMPLETE`/`AVAILABLE`, proposed
+exactly one **Add AWS::EC2::SecurityGroup**, and contained no modifications,
+replacements, removals, IAM capabilities, nested stacks, or execution role.
+Resolved properties matched the approved VPC, description, empty ingress,
+omitted GroupName/egress, and ten tags. Retrieved original template matched the
+approved text (CloudFormation omits the terminal newline). `DescribeEvents`
+reported the change-set operation `SUCCEEDED`, with no validation errors.
+
+Execution was submitted at `2026-10-08T01:18:39.773Z` with
+`DisableRollback=false`, standard mode. The stack reached **CREATE_COMPLETE**
+at `2026-10-08T01:18:50.251Z`; the operation reported `SUCCEEDED`.
+Read-only verification at `2026-10-08T01:19:09.227Z` confirmed:
+
+| Check | Actual result |
+| --- | --- |
+| Managed resource | Only `Team7ToolsSecurityGroup`, `AWS::EC2::SecurityGroup`, `CREATE_COMPLETE` |
+| Group ID / SecurityGroupId output | `sg-0d4b70aeec5581403` |
+| Generated physical GroupName | `cfn-security-team07-Team7ToolsSecurityGroup-zyMccvqygh0Z` |
+| Name tag | `sg-tools-team07` |
+| Description | `Team7 tools security group - Week 1` |
+| VPC / VpcId output | `vpc-05ac92d29e000c0ce`; `vpc-capstone-team07`; `10.7.0.0/16` |
+| Ingress | Zero permission entries and zero inbound rule records; no SSH or self-reference |
+| Egress | Exactly one rule, `sgr-0c5218ce1138a563f`: protocol `-1` (all), all ports, IPv4 `0.0.0.0/0`; API FromPort/ToPort `-1/-1` |
+| Other outbound destinations | No IPv6 rule, group reference, or prefix-list destination present |
+| Attachments | `DescribeNetworkInterfaces` filtered by group ID returned zero |
+| Tags / ownership | Exact ten user tags plus three reserved CloudFormation ownership tags; logical ID and stack match |
+| Duplicate check | Regional Name-tag lookup returned exactly this one group |
+| Deployed template | Retrieved Original text matches the approved template |
+| Foundation/default group | Foundation remains `CREATE_COMPLETE` with unchanged last-update time/outputs; default group rules match earlier reads |
+| Root account review refresh | MFA `0`, root keys `0`, password `0`, signing certificates `0`, users/groups/roles `0/0/12`; findings remain open |
+
+Actual default egress is IPv4 allow-all only. No IPv6 rule was observed, so none
+is claimed or added. No other AWS resources were created, changed, replaced, or
+deleted. No rollback was needed. Post-deployment checks passed; stack/resource
+drift status is `NOT_CHECKED`, and no drift-detection operation is claimed.
+See [deployment API evidence and hashes](evidence/SCRUM-13/README.md) and
+[review handoff](SCRUM-13-handoff.md).
 
 ## Failure, rollback, and recovery
 
@@ -274,12 +322,12 @@ other rules. Never delete the foundation as part of SCRUM-13.
 
 ## Acceptance and completion review
 
-| Work item | Preparation state | Remaining completion requirements |
+| Work item | Verified state | Remaining completion requirements |
 | --- | --- | --- |
-| SCRUM-36 | One-group template prepared and validated | Approved deployment; actual group/VPC/rules/tags/outputs verified; screenshots |
+| SCRUM-36 | Approved one-group deployment and actual group/VPC/rules/tags/outputs verified | Console screenshots and Josh's acceptance review |
 | SCRUM-37 | Root/IAM review performed and findings recorded | Owner decision on MFA=0/centralized-root baseline; permitted team-assignment and individual-MFA evidence or explicit limitations |
-| SCRUM-13 | Design, preparation evidence, and draft PR ready for review | Both subtasks' remaining items; shared deliverable; genuine evidence hashes; handoff to Cloud Architect; Josh's review |
+| SCRUM-13 | Design, deployment, API evidence/hashes, shared deliverable, and draft PR ready for review | Both subtasks' remaining items; reviewed handoff to Cloud Architect; Josh's review |
 
-Prepare final completion text with actual deployed values and these checklists,
-then commit final evidence/docs to this same branch and update the PR. Josh must
-review before merging, posting Jira comments, or moving any ticket to Done.
+Completion text and checklists are prepared in the handoff document. Final
+evidence/docs are published to the same branch and draft PR. Josh must review
+before merging, posting Jira comments, or moving any ticket to Done.

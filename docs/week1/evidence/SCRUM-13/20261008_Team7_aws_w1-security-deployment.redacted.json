@@ -1,0 +1,1248 @@
+{
+  "evidence_type": "Separately redacted actual AWS API deployment evidence; no screenshots",
+  "approved_commit": "d0be5dce16b2ad7b7915bf882ccc8f6755e7b913",
+  "approved_template_sha256": "7c6b00d2e66f1b73237787ce21cb5f9993a79d95c7420b34bdb3a70f7e55317e",
+  "account": "123*****6025",
+  "region": "us-east-2",
+  "create": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "captured_at_utc": "2026-10-08T01:17:58.475310+00:00",
+      "identity": {
+        "Account": "123*****6025",
+        "Arn": "arn:aws:sts::123*****6025:assumed-role/AccountFullAccessRole/[session-redacted]"
+      },
+      "foundation": {
+        "Stacks": [
+          {
+            "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-foundation-team07/6b86cf40-c2a7-11f1-88b1-026fb63872ff",
+            "StackName": "cfn-foundation-team07",
+            "ChangeSetId": "arn:aws:cloudformation:us-east-2:123*****6025:changeSet/cfn-foundation-team07-scrum11-20261007/f904db58-9873-49ba-a8a1-f813d6a5f0d0",
+            "Description": "Team7 Week 1 landing zone network - a dedicated public network with a single explicitly routed public subnet and no automatic public IPv4 assignment.",
+            "CreationTime": "2026-10-07T23:32:54.502000+00:00",
+            "LastUpdatedTime": "2026-10-07T23:33:01.664000+00:00",
+            "RollbackConfiguration": {},
+            "StackStatus": "CREATE_COMPLETE",
+            "DisableRollback": false,
+            "DeploymentConfig": {
+              "Mode": "STANDARD",
+              "DisableRollback": false
+            },
+            "NotificationARNs": [],
+            "Outputs": [
+              {
+                "OutputKey": "InternetGatewayId",
+                "OutputValue": "igw-08399ea7488b80534",
+                "Description": "Team7 Internet Gateway ID."
+              },
+              {
+                "OutputKey": "PublicSubnetCidr",
+                "OutputValue": "10.7.1.0/24",
+                "Description": "Team7 public subnet IPv4 CIDR."
+              },
+              {
+                "OutputKey": "VpcId",
+                "OutputValue": "vpc-05ac92d29e000c0ce",
+                "Description": "Team7 VPC ID."
+              },
+              {
+                "OutputKey": "VpcCidr",
+                "OutputValue": "10.7.0.0/16",
+                "Description": "Team7 VPC IPv4 CIDR."
+              },
+              {
+                "OutputKey": "PublicSubnetId",
+                "OutputValue": "subnet-015dee27e366615f0",
+                "Description": "Team7 public subnet ID."
+              },
+              {
+                "OutputKey": "PublicSubnetAvailabilityZone",
+                "OutputValue": "us-east-2a",
+                "Description": "Team7 public subnet Availability Zone."
+              },
+              {
+                "OutputKey": "PublicRouteTableId",
+                "OutputValue": "rtb-02b7d4064159c1d42",
+                "Description": "Team7 public route table ID."
+              }
+            ],
+            "Tags": [],
+            "EnableTerminationProtection": false,
+            "DriftInformation": {
+              "StackDriftStatus": "NOT_CHECKED"
+            },
+            "LastOperations": [
+              {
+                "OperationType": "CREATE_STACK",
+                "OperationId": "679b3a97-a000-40cd-b397-ccebbb8613c0"
+              }
+            ]
+          }
+        ]
+      },
+      "vpc": {
+        "Vpcs": [
+          {
+            "OwnerId": "123*****6025",
+            "InstanceTenancy": "default",
+            "CidrBlockAssociationSet": [
+              {
+                "AssociationId": "vpc-cidr-assoc-0c48da51ec0993a7b",
+                "CidrBlock": "10.7.0.0/16",
+                "CidrBlockState": {
+                  "State": "associated"
+                }
+              }
+            ],
+            "IsDefault": false,
+            "Tags": [
+              {
+                "Key": "aws:cloudformation:stack-name",
+                "Value": "cfn-foundation-team07"
+              },
+              {
+                "Key": "Owner",
+                "Value": "Team7"
+              },
+              {
+                "Key": "Project",
+                "Value": "Team7"
+              },
+              {
+                "Key": "ManagedBy",
+                "Value": "Team7"
+              },
+              {
+                "Key": "Team",
+                "Value": "Team7"
+              },
+              {
+                "Key": "aws:cloudformation:stack-id",
+                "Value": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-foundation-team07/6b86cf40-c2a7-11f1-88b1-026fb63872ff"
+              },
+              {
+                "Key": "Workload",
+                "Value": "Capstone"
+              },
+              {
+                "Key": "Repository",
+                "Value": "Team7"
+              },
+              {
+                "Key": "Name",
+                "Value": "vpc-capstone-team07"
+              },
+              {
+                "Key": "JiraProject",
+                "Value": "SCRUM"
+              },
+              {
+                "Key": "Component",
+                "Value": "Network"
+              },
+              {
+                "Key": "Environment",
+                "Value": "Dev"
+              },
+              {
+                "Key": "aws:cloudformation:logical-id",
+                "Value": "Team7VPC"
+              }
+            ],
+            "BlockPublicAccessStates": {
+              "InternetGatewayBlockMode": "off"
+            },
+            "VpcId": "vpc-05ac92d29e000c0ce",
+            "State": "available",
+            "CidrBlock": "10.7.0.0/16",
+            "DhcpOptionsId": "dopt-06dbaa44599f98942"
+          }
+        ]
+      },
+      "pre_creation_inventory": [
+        {
+          "StackSummaries": [
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-foundation-team07/6b86cf40-c2a7-11f1-88b1-026fb63872ff",
+              "StackName": "cfn-foundation-team07",
+              "TemplateDescription": "Team7 Week 1 landing zone network - a dedicated public network with a single explicitly routed public subnet and no automatic public IPv4 assignment.",
+              "CreationTime": "2026-10-07T23:32:54.502000+00:00",
+              "LastUpdatedTime": "2026-10-07T23:33:01.664000+00:00",
+              "StackStatus": "CREATE_COMPLETE",
+              "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+              },
+              "LastOperations": [
+                {
+                  "OperationType": "CREATE_STACK",
+                  "OperationId": "679b3a97-a000-40cd-b397-ccebbb8613c0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SecurityGroups": []
+        }
+      ],
+      "created_change_set": {
+        "Id": "arn:aws:cloudformation:us-east-2:123*****6025:changeSet/cfn-security-team07-scrum13-20261008-reviewed-d0be5dc/44ca0e33-9da1-4c39-b1e5-a3b5dfa7104f",
+        "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225"
+      }
+    },
+    "api_calls": [
+      {
+        "service": "sts",
+        "operation": "GetCallerIdentity",
+        "status": "success"
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeStacks",
+        "status": "success",
+        "n_items": {
+          "Stacks": 1
+        }
+      },
+      {
+        "service": "ec2",
+        "operation": "DescribeVpcs",
+        "status": "success",
+        "n_items": {
+          "Vpcs": 1
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "ListStacks",
+        "status": "success",
+        "n_items": {
+          "StackSummaries": 1
+        }
+      },
+      {
+        "service": "ec2",
+        "operation": "DescribeSecurityGroups",
+        "status": "success",
+        "n_items": {
+          "SecurityGroups": 0
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "CreateChangeSet",
+        "status": "success"
+      }
+    ]
+  },
+  "inspection": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "captured_at_utc": "2026-10-08T01:18:08.572483+00:00",
+      "change_set": {
+        "ChangeSetName": "cfn-security-team07-scrum13-20261008-reviewed-d0be5dc",
+        "ChangeSetId": "arn:aws:cloudformation:us-east-2:123*****6025:changeSet/cfn-security-team07-scrum13-20261008-reviewed-d0be5dc/44ca0e33-9da1-4c39-b1e5-a3b5dfa7104f",
+        "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+        "StackName": "cfn-security-team07",
+        "Description": "SCRUM-13 approved commit d0be5dce16b2ad7b7915bf882ccc8f6755e7b913; one unattached tools security group",
+        "Parameters": [
+          {
+            "ParameterKey": "VpcId",
+            "ParameterValue": "vpc-05ac92d29e000c0ce"
+          }
+        ],
+        "CreationTime": "2026-10-08T01:17:58.324000+00:00",
+        "ExecutionStatus": "AVAILABLE",
+        "Status": "CREATE_COMPLETE",
+        "NotificationARNs": [],
+        "RollbackConfiguration": {},
+        "Capabilities": [],
+        "Changes": [
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Scope": [],
+              "Details": [],
+              "AfterContext": "{\"Properties\":{\"GroupDescription\":\"Team7 tools security group - Week 1\",\"VpcId\":\"vpc-05ac92d29e000c0ce\",\"SecurityGroupIngress\":[],\"Tags\":[{\"Value\":\"sg-tools-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Tools\",\"Key\":\"Workload\"},{\"Value\":\"Security\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]},\"Metadata\":{\"com.aws.cloudformation.Context\":{\"mutable\":\"review-required\",\"why\":\"Establish the Week 1 tools boundary without granting inbound access or attaching workloads.\",\"must\":[\"Keep ingress empty, including SSH and self-reference rules\",\"Omit physical GroupName; the approved name is a Name tag\",\"Omit custom egress to retain the AWS default for this new group\",\"Never alter the existing VPC or its default security group\"]}}}"
+            }
+          }
+        ],
+        "IncludeNestedStacks": false,
+        "DeploymentConfig": {
+          "Mode": "STANDARD",
+          "DisableRollback": false
+        }
+      }
+    },
+    "api_calls": [
+      {
+        "service": "cloudformation",
+        "operation": "DescribeChangeSet",
+        "status": "success",
+        "n_items": {
+          "Parameters": 1,
+          "NotificationARNs": 0,
+          "Capabilities": 0,
+          "Changes": 1
+        }
+      }
+    ]
+  },
+  "validation": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "captured_at_utc": "2026-10-08T01:18:17.192630+00:00",
+      "validation_events": {
+        "OperationEvents": [
+          {
+            "EventId": "bd25676e-2745-4004-b487-113beb1e4647",
+            "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+            "OperationId": "44ca0e33-9da1-4c39-b1e5-a3b5dfa7104f",
+            "OperationType": "CREATE_CHANGESET",
+            "OperationStatus": "SUCCEEDED",
+            "EventType": "STACK_EVENT",
+            "Timestamp": "2026-10-08T01:18:01.333000+00:00",
+            "StartTime": "2026-10-08T01:17:58.388000+00:00",
+            "EndTime": "2026-10-08T01:18:01.333000+00:00"
+          },
+          {
+            "EventId": "f5ed7375-1c54-427a-ab5b-6a44a6464aaf",
+            "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+            "OperationId": "44ca0e33-9da1-4c39-b1e5-a3b5dfa7104f",
+            "OperationType": "CREATE_CHANGESET",
+            "OperationStatus": "IN_PROGRESS",
+            "EventType": "STACK_EVENT",
+            "Timestamp": "2026-10-08T01:17:58.388000+00:00",
+            "StartTime": "2026-10-08T01:17:58.388000+00:00"
+          }
+        ]
+      },
+      "change_set_template": {
+        "TemplateBody": "AWSTemplateFormatVersion: '2010-09-09'\nDescription: >-\n  Team7 Week 1 tools security group in the existing landing-zone VPC, with no\n  inbound rules and the default outbound behavior of a newly created group.\n\nMetadata:\n  AWSToolsMetrics:\n    AWSAgentToolkit: aws-cloudformation@3\n  com.aws.cloudformation.Context:\n    arch: Existing foundation VPC -> unattached tools security group\n    must:\n      - Manage only the SCRUM-13 tools security group\n      - Resolve the VPC from the foundation stack before deployment\n    ref:\n      - at: docs/week1/SCRUM-13-security-controls.md\n        has: design, account review, approval, validation, evidence, and recovery\n        scope: SCRUM-13\n\nParameters:\n  VpcId:\n    Type: AWS::EC2::VPC::Id\n    Description: Existing Team7 VPC ID resolved from cfn-foundation-team07 outputs.\n\nResources:\n  Team7ToolsSecurityGroup:\n    Type: AWS::EC2::SecurityGroup\n    Metadata:\n      com.aws.cloudformation.Context:\n        why: Establish the Week 1 tools boundary without granting inbound access or attaching workloads.\n        must:\n          - Keep ingress empty, including SSH and self-reference rules\n          - Omit physical GroupName; the approved name is a Name tag\n          - Omit custom egress to retain the AWS default for this new group\n          - Never alter the existing VPC or its default security group\n        mutable: review-required\n    Properties:\n      GroupDescription: Team7 tools security group - Week 1\n      VpcId: !Ref VpcId\n      SecurityGroupIngress: []\n      # GroupName is generated by CloudFormation; AWS prohibits the sg- prefix.\n      # No SecurityGroupEgress property: preserve the new group's default egress.\n      Tags:\n        - { Key: Name, Value: sg-tools-team07 }\n        - { Key: Project, Value: Team7 }\n        - { Key: Team, Value: Team7 }\n        - { Key: Environment, Value: Dev }\n        - { Key: Owner, Value: Team7 }\n        - { Key: Workload, Value: Tools }\n        - { Key: Component, Value: Security }\n        - { Key: ManagedBy, Value: Team7 }\n        - { Key: Repository, Value: Team7 }\n        - { Key: JiraProject, Value: SCRUM }\n\nOutputs:\n  SecurityGroupId:\n    Description: Generated ID of the Team7 tools security group.\n    Value: !GetAtt Team7ToolsSecurityGroup.GroupId\n  VpcId:\n    Description: Existing VPC containing the Team7 tools security group.\n    Value: !Ref VpcId",
+        "StagesAvailable": [
+          "Original",
+          "Processed"
+        ]
+      }
+    },
+    "api_calls": [
+      {
+        "service": "cloudformation",
+        "operation": "DescribeEvents",
+        "status": "success",
+        "n_items": {
+          "OperationEvents": 2
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "GetTemplate",
+        "status": "success",
+        "n_items": {
+          "StagesAvailable": 2
+        }
+      }
+    ]
+  },
+  "execution": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "captured_at_utc": "2026-10-08T01:18:39.772977+00:00",
+      "identity": {
+        "Account": "123*****6025",
+        "Arn": "arn:aws:sts::123*****6025:assumed-role/AccountFullAccessRole/[session-redacted]"
+      },
+      "inspected_change_set": {
+        "ChangeSetName": "cfn-security-team07-scrum13-20261008-reviewed-d0be5dc",
+        "ChangeSetId": "arn:aws:cloudformation:us-east-2:123*****6025:changeSet/cfn-security-team07-scrum13-20261008-reviewed-d0be5dc/44ca0e33-9da1-4c39-b1e5-a3b5dfa7104f",
+        "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+        "StackName": "cfn-security-team07",
+        "Description": "SCRUM-13 approved commit d0be5dce16b2ad7b7915bf882ccc8f6755e7b913; one unattached tools security group",
+        "Parameters": [
+          {
+            "ParameterKey": "VpcId",
+            "ParameterValue": "vpc-05ac92d29e000c0ce"
+          }
+        ],
+        "CreationTime": "2026-10-08T01:17:58.324000+00:00",
+        "ExecutionStatus": "AVAILABLE",
+        "Status": "CREATE_COMPLETE",
+        "NotificationARNs": [],
+        "RollbackConfiguration": {},
+        "Capabilities": [],
+        "Changes": [
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Scope": [],
+              "Details": [],
+              "AfterContext": "{\"Properties\":{\"GroupDescription\":\"Team7 tools security group - Week 1\",\"VpcId\":\"vpc-05ac92d29e000c0ce\",\"SecurityGroupIngress\":[],\"Tags\":[{\"Value\":\"sg-tools-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Tools\",\"Key\":\"Workload\"},{\"Value\":\"Security\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]},\"Metadata\":{\"com.aws.cloudformation.Context\":{\"mutable\":\"review-required\",\"why\":\"Establish the Week 1 tools boundary without granting inbound access or attaching workloads.\",\"must\":[\"Keep ingress empty, including SSH and self-reference rules\",\"Omit physical GroupName; the approved name is a Name tag\",\"Omit custom egress to retain the AWS default for this new group\",\"Never alter the existing VPC or its default security group\"]}}}"
+            }
+          }
+        ],
+        "IncludeNestedStacks": false,
+        "DeploymentConfig": {
+          "Mode": "STANDARD",
+          "DisableRollback": false
+        }
+      },
+      "execute_response": {},
+      "normal_rollback_enabled": true
+    },
+    "api_calls": [
+      {
+        "service": "sts",
+        "operation": "GetCallerIdentity",
+        "status": "success"
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeChangeSet",
+        "status": "success",
+        "n_items": {
+          "Parameters": 1,
+          "NotificationARNs": 0,
+          "Capabilities": 0,
+          "Changes": 1
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "ExecuteChangeSet",
+        "status": "success"
+      }
+    ]
+  },
+  "verification": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "captured_at_utc": "2026-10-08T01:19:09.227187+00:00",
+      "identity": {
+        "Account": "123*****6025",
+        "Arn": "arn:aws:sts::123*****6025:assumed-role/AccountFullAccessRole/[session-redacted]"
+      },
+      "stack": {
+        "Stacks": [
+          {
+            "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+            "StackName": "cfn-security-team07",
+            "ChangeSetId": "arn:aws:cloudformation:us-east-2:123*****6025:changeSet/cfn-security-team07-scrum13-20261008-reviewed-d0be5dc/44ca0e33-9da1-4c39-b1e5-a3b5dfa7104f",
+            "Description": "Team7 Week 1 tools security group in the existing landing-zone VPC, with no inbound rules and the default outbound behavior of a newly created group.",
+            "Parameters": [
+              {
+                "ParameterKey": "VpcId",
+                "ParameterValue": "vpc-05ac92d29e000c0ce"
+              }
+            ],
+            "CreationTime": "2026-10-08T01:17:58.324000+00:00",
+            "LastUpdatedTime": "2026-10-08T01:18:39.620000+00:00",
+            "RollbackConfiguration": {},
+            "StackStatus": "CREATE_COMPLETE",
+            "DisableRollback": false,
+            "DeploymentConfig": {
+              "Mode": "STANDARD",
+              "DisableRollback": false
+            },
+            "NotificationARNs": [],
+            "Outputs": [
+              {
+                "OutputKey": "VpcId",
+                "OutputValue": "vpc-05ac92d29e000c0ce",
+                "Description": "Existing VPC containing the Team7 tools security group."
+              },
+              {
+                "OutputKey": "SecurityGroupId",
+                "OutputValue": "sg-0d4b70aeec5581403",
+                "Description": "Generated ID of the Team7 tools security group."
+              }
+            ],
+            "Tags": [],
+            "EnableTerminationProtection": false,
+            "DriftInformation": {
+              "StackDriftStatus": "NOT_CHECKED"
+            },
+            "LastOperations": [
+              {
+                "OperationType": "CREATE_STACK",
+                "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904"
+              }
+            ]
+          }
+        ]
+      },
+      "discovered_group_id": "sg-0d4b70aeec5581403",
+      "checks": {
+        "resources": {
+          "StackResourceSummaries": [
+            {
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "PhysicalResourceId": "sg-0d4b70aeec5581403",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "LastUpdatedTimestamp": "2026-10-08T01:18:49.331000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "DriftInformation": {
+                "StackResourceDriftStatus": "NOT_CHECKED"
+              }
+            }
+          ]
+        },
+        "events": {
+          "OperationEvents": [
+            {
+              "EventId": "1762e76f-7c7b-40ec-8a28-ab636b669d21",
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "OperationType": "CREATE_STACK",
+              "OperationStatus": "SUCCEEDED",
+              "EventType": "STACK_EVENT",
+              "Timestamp": "2026-10-08T01:18:50.252000+00:00",
+              "StartTime": "2026-10-08T01:18:39.611000+00:00",
+              "EndTime": "2026-10-08T01:18:50.252000+00:00"
+            },
+            {
+              "EventId": "861740c6-ff4b-48c1-bc41-579ba64ef325",
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "cfn-security-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-08T01:18:50.251000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "EventId": "9d9a9a06-d5da-4970-a7f9-3507c6391231",
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "PhysicalResourceId": "sg-0d4b70aeec5581403",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Timestamp": "2026-10-08T01:18:49.331000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ResourceProperties": "{\"GroupDescription\":\"Team7 tools security group - Week 1\",\"VpcId\":\"vpc-05ac92d29e000c0ce\",\"SecurityGroupIngress\":[],\"Tags\":[{\"Value\":\"sg-tools-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Tools\",\"Key\":\"Workload\"},{\"Value\":\"Security\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]}",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "EventId": "d027ea6f-fd8e-4b07-843a-543f8f1c0030",
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "cfn-security-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-08T01:18:44.209000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Eventual consistency check initiated",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008",
+              "DetailedStatus": "CONFIGURATION_COMPLETE"
+            },
+            {
+              "EventId": "cbbf43cc-67d4-48f2-9773-0c074db04501",
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "PhysicalResourceId": "sg-0d4b70aeec5581403",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Timestamp": "2026-10-08T01:18:44.169000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Eventual consistency check initiated",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008",
+              "DetailedStatus": "CONFIGURATION_COMPLETE"
+            },
+            {
+              "EventId": "685e7385-9c59-46c7-b128-8714a8ae4368",
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "PhysicalResourceId": "sg-0d4b70aeec5581403",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Timestamp": "2026-10-08T01:18:43.584000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ResourceProperties": "{\"GroupDescription\":\"Team7 tools security group - Week 1\",\"VpcId\":\"vpc-05ac92d29e000c0ce\",\"SecurityGroupIngress\":[],\"Tags\":[{\"Value\":\"sg-tools-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Tools\",\"Key\":\"Workload\"},{\"Value\":\"Security\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]}",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "EventId": "91fbc9b9-a5aa-42fd-b7c9-4006bb766417",
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Timestamp": "2026-10-08T01:18:41.433000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceProperties": "{\"GroupDescription\":\"Team7 tools security group - Week 1\",\"VpcId\":\"vpc-05ac92d29e000c0ce\",\"SecurityGroupIngress\":[],\"Tags\":[{\"Value\":\"sg-tools-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Tools\",\"Key\":\"Workload\"},{\"Value\":\"Security\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]}",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "EventId": "c90f975e-c2eb-48a4-b67c-728c08057350",
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "cfn-security-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-08T01:18:39.620000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "User Initiated",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "EventId": "94e2e2ea-a8e0-4725-a54d-a5d3c269f16f",
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "OperationType": "CREATE_STACK",
+              "OperationStatus": "IN_PROGRESS",
+              "EventType": "STACK_EVENT",
+              "Timestamp": "2026-10-08T01:18:39.611000+00:00",
+              "StartTime": "2026-10-08T01:18:39.611000+00:00"
+            }
+          ]
+        },
+        "stack_resource_events": {
+          "StackEvents": [
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "EventId": "37e3d2f0-c2b6-11f1-8cda-0a24ee04f59b",
+              "StackName": "cfn-security-team07",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "LogicalResourceId": "cfn-security-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-08T01:18:50.251000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "EventId": "Team7ToolsSecurityGroup-CREATE_COMPLETE-2026-10-08T01:18:49.331Z",
+              "StackName": "cfn-security-team07",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "PhysicalResourceId": "sg-0d4b70aeec5581403",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Timestamp": "2026-10-08T01:18:49.331000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ResourceProperties": "{\"GroupDescription\":\"Team7 tools security group - Week 1\",\"VpcId\":\"vpc-05ac92d29e000c0ce\",\"SecurityGroupIngress\":[],\"Tags\":[{\"Value\":\"sg-tools-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Tools\",\"Key\":\"Workload\"},{\"Value\":\"Security\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]}",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "EventId": "3446d610-c2b6-11f1-8337-02dd3a1dcb99",
+              "StackName": "cfn-security-team07",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "LogicalResourceId": "cfn-security-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-08T01:18:44.209000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Eventual consistency check initiated",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008",
+              "DetailedStatus": "CONFIGURATION_COMPLETE"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "EventId": "Team7ToolsSecurityGroup-f88f0fa5-9f87-43ed-9e08-d0bea8806f9f",
+              "StackName": "cfn-security-team07",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "PhysicalResourceId": "sg-0d4b70aeec5581403",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Timestamp": "2026-10-08T01:18:44.169000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Eventual consistency check initiated",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008",
+              "DetailedStatus": "CONFIGURATION_COMPLETE"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "EventId": "Team7ToolsSecurityGroup-CREATE_IN_PROGRESS-2026-10-08T01:18:43.584Z",
+              "StackName": "cfn-security-team07",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "PhysicalResourceId": "sg-0d4b70aeec5581403",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Timestamp": "2026-10-08T01:18:43.584000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ResourceProperties": "{\"GroupDescription\":\"Team7 tools security group - Week 1\",\"VpcId\":\"vpc-05ac92d29e000c0ce\",\"SecurityGroupIngress\":[],\"Tags\":[{\"Value\":\"sg-tools-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Tools\",\"Key\":\"Workload\"},{\"Value\":\"Security\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]}",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "EventId": "Team7ToolsSecurityGroup-CREATE_IN_PROGRESS-2026-10-08T01:18:41.433Z",
+              "StackName": "cfn-security-team07",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "LogicalResourceId": "Team7ToolsSecurityGroup",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::EC2::SecurityGroup",
+              "Timestamp": "2026-10-08T01:18:41.433000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceProperties": "{\"GroupDescription\":\"Team7 tools security group - Week 1\",\"VpcId\":\"vpc-05ac92d29e000c0ce\",\"SecurityGroupIngress\":[],\"Tags\":[{\"Value\":\"sg-tools-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Tools\",\"Key\":\"Workload\"},{\"Value\":\"Security\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]}",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "EventId": "318d8270-c2b6-11f1-bc4a-0a1b45e941ff",
+              "StackName": "cfn-security-team07",
+              "OperationId": "9f2484e2-776f-457e-a0dc-a9eff47f2904",
+              "LogicalResourceId": "cfn-security-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-08T01:18:39.620000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "User Initiated",
+              "ClientRequestToken": "scrum13-d0be5dc-execute-20261008"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "EventId": "18e519e0-c2b6-11f1-a62b-065fd94ae225",
+              "StackName": "cfn-security-team07",
+              "LogicalResourceId": "cfn-security-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-08T01:17:58.324000+00:00",
+              "ResourceStatus": "REVIEW_IN_PROGRESS",
+              "ResourceStatusReason": "User Initiated"
+            }
+          ]
+        },
+        "template": {
+          "TemplateBody": "AWSTemplateFormatVersion: '2010-09-09'\nDescription: >-\n  Team7 Week 1 tools security group in the existing landing-zone VPC, with no\n  inbound rules and the default outbound behavior of a newly created group.\n\nMetadata:\n  AWSToolsMetrics:\n    AWSAgentToolkit: aws-cloudformation@3\n  com.aws.cloudformation.Context:\n    arch: Existing foundation VPC -> unattached tools security group\n    must:\n      - Manage only the SCRUM-13 tools security group\n      - Resolve the VPC from the foundation stack before deployment\n    ref:\n      - at: docs/week1/SCRUM-13-security-controls.md\n        has: design, account review, approval, validation, evidence, and recovery\n        scope: SCRUM-13\n\nParameters:\n  VpcId:\n    Type: AWS::EC2::VPC::Id\n    Description: Existing Team7 VPC ID resolved from cfn-foundation-team07 outputs.\n\nResources:\n  Team7ToolsSecurityGroup:\n    Type: AWS::EC2::SecurityGroup\n    Metadata:\n      com.aws.cloudformation.Context:\n        why: Establish the Week 1 tools boundary without granting inbound access or attaching workloads.\n        must:\n          - Keep ingress empty, including SSH and self-reference rules\n          - Omit physical GroupName; the approved name is a Name tag\n          - Omit custom egress to retain the AWS default for this new group\n          - Never alter the existing VPC or its default security group\n        mutable: review-required\n    Properties:\n      GroupDescription: Team7 tools security group - Week 1\n      VpcId: !Ref VpcId\n      SecurityGroupIngress: []\n      # GroupName is generated by CloudFormation; AWS prohibits the sg- prefix.\n      # No SecurityGroupEgress property: preserve the new group's default egress.\n      Tags:\n        - { Key: Name, Value: sg-tools-team07 }\n        - { Key: Project, Value: Team7 }\n        - { Key: Team, Value: Team7 }\n        - { Key: Environment, Value: Dev }\n        - { Key: Owner, Value: Team7 }\n        - { Key: Workload, Value: Tools }\n        - { Key: Component, Value: Security }\n        - { Key: ManagedBy, Value: Team7 }\n        - { Key: Repository, Value: Team7 }\n        - { Key: JiraProject, Value: SCRUM }\n\nOutputs:\n  SecurityGroupId:\n    Description: Generated ID of the Team7 tools security group.\n    Value: !GetAtt Team7ToolsSecurityGroup.GroupId\n  VpcId:\n    Description: Existing VPC containing the Team7 tools security group.\n    Value: !Ref VpcId",
+          "StagesAvailable": [
+            "Original",
+            "Processed"
+          ]
+        },
+        "security_group": {
+          "SecurityGroups": [
+            {
+              "GroupId": "sg-0d4b70aeec5581403",
+              "IpPermissionsEgress": [
+                {
+                  "IpProtocol": "-1",
+                  "UserIdGroupPairs": [],
+                  "IpRanges": [
+                    {
+                      "CidrIp": "0.0.0.0/0"
+                    }
+                  ],
+                  "Ipv6Ranges": [],
+                  "PrefixListIds": []
+                }
+              ],
+              "Tags": [
+                {
+                  "Key": "ManagedBy",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Name",
+                  "Value": "sg-tools-team07"
+                },
+                {
+                  "Key": "JiraProject",
+                  "Value": "SCRUM"
+                },
+                {
+                  "Key": "Owner",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Project",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Team",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Environment",
+                  "Value": "Dev"
+                },
+                {
+                  "Key": "Workload",
+                  "Value": "Tools"
+                },
+                {
+                  "Key": "Component",
+                  "Value": "Security"
+                },
+                {
+                  "Key": "Repository",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "aws:cloudformation:logical-id",
+                  "Value": "Team7ToolsSecurityGroup"
+                },
+                {
+                  "Key": "aws:cloudformation:stack-id",
+                  "Value": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225"
+                },
+                {
+                  "Key": "aws:cloudformation:stack-name",
+                  "Value": "cfn-security-team07"
+                }
+              ],
+              "VpcId": "vpc-05ac92d29e000c0ce",
+              "SecurityGroupArn": "arn:aws:ec2:us-east-2:123*****6025:security-group/sg-0d4b70aeec5581403",
+              "OwnerId": "123*****6025",
+              "GroupName": "cfn-security-team07-Team7ToolsSecurityGroup-zyMccvqygh0Z",
+              "Description": "Team7 tools security group - Week 1",
+              "IpPermissions": []
+            }
+          ]
+        },
+        "rules": {
+          "SecurityGroupRules": [
+            {
+              "SecurityGroupRuleId": "sgr-0c5218ce1138a563f",
+              "GroupId": "sg-0d4b70aeec5581403",
+              "GroupOwnerId": "123*****6025",
+              "IsEgress": true,
+              "IpProtocol": "-1",
+              "FromPort": -1,
+              "ToPort": -1,
+              "CidrIpv4": "0.0.0.0/0",
+              "Tags": [],
+              "SecurityGroupRuleArn": "arn:aws:ec2:us-east-2:123*****6025:security-group-rule/sgr-0c5218ce1138a563f"
+            }
+          ]
+        },
+        "attachments": {
+          "NetworkInterfaces": []
+        },
+        "foundation": {
+          "Stacks": [
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-foundation-team07/6b86cf40-c2a7-11f1-88b1-026fb63872ff",
+              "StackName": "cfn-foundation-team07",
+              "ChangeSetId": "arn:aws:cloudformation:us-east-2:123*****6025:changeSet/cfn-foundation-team07-scrum11-20261007/f904db58-9873-49ba-a8a1-f813d6a5f0d0",
+              "Description": "Team7 Week 1 landing zone network - a dedicated public network with a single explicitly routed public subnet and no automatic public IPv4 assignment.",
+              "CreationTime": "2026-10-07T23:32:54.502000+00:00",
+              "LastUpdatedTime": "2026-10-07T23:33:01.664000+00:00",
+              "RollbackConfiguration": {},
+              "StackStatus": "CREATE_COMPLETE",
+              "DisableRollback": false,
+              "DeploymentConfig": {
+                "Mode": "STANDARD",
+                "DisableRollback": false
+              },
+              "NotificationARNs": [],
+              "Outputs": [
+                {
+                  "OutputKey": "InternetGatewayId",
+                  "OutputValue": "igw-08399ea7488b80534",
+                  "Description": "Team7 Internet Gateway ID."
+                },
+                {
+                  "OutputKey": "PublicSubnetCidr",
+                  "OutputValue": "10.7.1.0/24",
+                  "Description": "Team7 public subnet IPv4 CIDR."
+                },
+                {
+                  "OutputKey": "VpcId",
+                  "OutputValue": "vpc-05ac92d29e000c0ce",
+                  "Description": "Team7 VPC ID."
+                },
+                {
+                  "OutputKey": "VpcCidr",
+                  "OutputValue": "10.7.0.0/16",
+                  "Description": "Team7 VPC IPv4 CIDR."
+                },
+                {
+                  "OutputKey": "PublicSubnetId",
+                  "OutputValue": "subnet-015dee27e366615f0",
+                  "Description": "Team7 public subnet ID."
+                },
+                {
+                  "OutputKey": "PublicSubnetAvailabilityZone",
+                  "OutputValue": "us-east-2a",
+                  "Description": "Team7 public subnet Availability Zone."
+                },
+                {
+                  "OutputKey": "PublicRouteTableId",
+                  "OutputValue": "rtb-02b7d4064159c1d42",
+                  "Description": "Team7 public route table ID."
+                }
+              ],
+              "Tags": [],
+              "EnableTerminationProtection": false,
+              "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+              },
+              "LastOperations": [
+                {
+                  "OperationType": "CREATE_STACK",
+                  "OperationId": "679b3a97-a000-40cd-b397-ccebbb8613c0"
+                }
+              ]
+            }
+          ]
+        },
+        "vpc": {
+          "Vpcs": [
+            {
+              "OwnerId": "123*****6025",
+              "InstanceTenancy": "default",
+              "CidrBlockAssociationSet": [
+                {
+                  "AssociationId": "vpc-cidr-assoc-0c48da51ec0993a7b",
+                  "CidrBlock": "10.7.0.0/16",
+                  "CidrBlockState": {
+                    "State": "associated"
+                  }
+                }
+              ],
+              "IsDefault": false,
+              "Tags": [
+                {
+                  "Key": "aws:cloudformation:stack-name",
+                  "Value": "cfn-foundation-team07"
+                },
+                {
+                  "Key": "Owner",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Project",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "ManagedBy",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Team",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "aws:cloudformation:stack-id",
+                  "Value": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-foundation-team07/6b86cf40-c2a7-11f1-88b1-026fb63872ff"
+                },
+                {
+                  "Key": "Workload",
+                  "Value": "Capstone"
+                },
+                {
+                  "Key": "Repository",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Name",
+                  "Value": "vpc-capstone-team07"
+                },
+                {
+                  "Key": "JiraProject",
+                  "Value": "SCRUM"
+                },
+                {
+                  "Key": "Component",
+                  "Value": "Network"
+                },
+                {
+                  "Key": "Environment",
+                  "Value": "Dev"
+                },
+                {
+                  "Key": "aws:cloudformation:logical-id",
+                  "Value": "Team7VPC"
+                }
+              ],
+              "BlockPublicAccessStates": {
+                "InternetGatewayBlockMode": "off"
+              },
+              "VpcId": "vpc-05ac92d29e000c0ce",
+              "State": "available",
+              "CidrBlock": "10.7.0.0/16",
+              "DhcpOptionsId": "dopt-06dbaa44599f98942"
+            }
+          ]
+        },
+        "default_group": {
+          "SecurityGroups": [
+            {
+              "GroupId": "sg-06e08b526126cc50c",
+              "IpPermissionsEgress": [
+                {
+                  "IpProtocol": "-1",
+                  "UserIdGroupPairs": [],
+                  "IpRanges": [
+                    {
+                      "CidrIp": "0.0.0.0/0"
+                    }
+                  ],
+                  "Ipv6Ranges": [],
+                  "PrefixListIds": []
+                }
+              ],
+              "VpcId": "vpc-05ac92d29e000c0ce",
+              "SecurityGroupArn": "arn:aws:ec2:us-east-2:123*****6025:security-group/sg-06e08b526126cc50c",
+              "OwnerId": "123*****6025",
+              "GroupName": "default",
+              "Description": "default VPC security group",
+              "IpPermissions": [
+                {
+                  "IpProtocol": "-1",
+                  "UserIdGroupPairs": [
+                    {
+                      "UserId": "123*****6025",
+                      "GroupId": "sg-06e08b526126cc50c"
+                    }
+                  ],
+                  "IpRanges": [],
+                  "Ipv6Ranges": [],
+                  "PrefixListIds": []
+                }
+              ]
+            }
+          ]
+        },
+        "matching_tools_groups": {
+          "SecurityGroups": [
+            {
+              "GroupId": "sg-0d4b70aeec5581403",
+              "IpPermissionsEgress": [
+                {
+                  "IpProtocol": "-1",
+                  "UserIdGroupPairs": [],
+                  "IpRanges": [
+                    {
+                      "CidrIp": "0.0.0.0/0"
+                    }
+                  ],
+                  "Ipv6Ranges": [],
+                  "PrefixListIds": []
+                }
+              ],
+              "Tags": [
+                {
+                  "Key": "ManagedBy",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Name",
+                  "Value": "sg-tools-team07"
+                },
+                {
+                  "Key": "JiraProject",
+                  "Value": "SCRUM"
+                },
+                {
+                  "Key": "Owner",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Project",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Team",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "Environment",
+                  "Value": "Dev"
+                },
+                {
+                  "Key": "Workload",
+                  "Value": "Tools"
+                },
+                {
+                  "Key": "Component",
+                  "Value": "Security"
+                },
+                {
+                  "Key": "Repository",
+                  "Value": "Team7"
+                },
+                {
+                  "Key": "aws:cloudformation:logical-id",
+                  "Value": "Team7ToolsSecurityGroup"
+                },
+                {
+                  "Key": "aws:cloudformation:stack-id",
+                  "Value": "arn:aws:cloudformation:us-east-2:123*****6025:stack/cfn-security-team07/18e540f0-c2b6-11f1-a62b-065fd94ae225"
+                },
+                {
+                  "Key": "aws:cloudformation:stack-name",
+                  "Value": "cfn-security-team07"
+                }
+              ],
+              "VpcId": "vpc-05ac92d29e000c0ce",
+              "SecurityGroupArn": "arn:aws:ec2:us-east-2:123*****6025:security-group/sg-0d4b70aeec5581403",
+              "OwnerId": "123*****6025",
+              "GroupName": "cfn-security-team07-Team7ToolsSecurityGroup-zyMccvqygh0Z",
+              "Description": "Team7 tools security group - Week 1",
+              "IpPermissions": []
+            }
+          ]
+        },
+        "account_summary": {
+          "SummaryMap": {
+            "GroupPolicySizeQuota": 5120,
+            "InstanceProfilesQuota": 1000,
+            "Policies": 0,
+            "GroupsPerUserQuota": 10,
+            "InstanceProfiles": 0,
+            "AttachedPoliciesPerUserQuota": 10,
+            "Users": 0,
+            "PoliciesQuota": 1500,
+            "Providers": 0,
+            "AccountMFAEnabled": 0,
+            "AccessKeysPerUserQuota": 2,
+            "AssumeRolePolicySizeQuota": 2048,
+            "PolicyVersionsInUseQuota": 10000,
+            "GlobalEndpointTokenVersion": 1,
+            "VersionsPerPolicyQuota": 5,
+            "AttachedPoliciesPerGroupQuota": 10,
+            "PolicySizeQuota": 6144,
+            "Groups": 0,
+            "AccountSigningCertificatesPresent": 0,
+            "UsersQuota": 5000,
+            "ServerCertificatesQuota": 20,
+            "MFADevices": 0,
+            "UserPolicySizeQuota": 2048,
+            "PolicyVersionsInUse": 12,
+            "ServerCertificates": 0,
+            "Roles": 12,
+            "RolesQuota": 1000,
+            "SigningCertificatesPerUserQuota": 2,
+            "MFADevicesInUse": 0,
+            "RolePolicySizeQuota": 10240,
+            "AttachedPoliciesPerRoleQuota": 20,
+            "AccountAccessKeysPresent": 0,
+            "AccountPasswordPresent": 0,
+            "GroupsQuota": 300
+          }
+        }
+      }
+    },
+    "api_calls": [
+      {
+        "service": "sts",
+        "operation": "GetCallerIdentity",
+        "status": "success"
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeStacks",
+        "status": "success",
+        "n_items": {
+          "Stacks": 1
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "ListStackResources",
+        "status": "success",
+        "n_items": {
+          "StackResourceSummaries": 1
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeEvents",
+        "status": "success",
+        "n_items": {
+          "OperationEvents": 9
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeStackEvents",
+        "status": "success",
+        "n_items": {
+          "StackEvents": 8
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "GetTemplate",
+        "status": "success",
+        "n_items": {
+          "StagesAvailable": 2
+        }
+      },
+      {
+        "service": "ec2",
+        "operation": "DescribeSecurityGroups",
+        "status": "success",
+        "n_items": {
+          "SecurityGroups": 1
+        }
+      },
+      {
+        "service": "ec2",
+        "operation": "DescribeSecurityGroupRules",
+        "status": "success",
+        "n_items": {
+          "SecurityGroupRules": 1
+        }
+      },
+      {
+        "service": "ec2",
+        "operation": "DescribeNetworkInterfaces",
+        "status": "success",
+        "n_items": {
+          "NetworkInterfaces": 0
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeStacks",
+        "status": "success",
+        "n_items": {
+          "Stacks": 1
+        }
+      },
+      {
+        "service": "ec2",
+        "operation": "DescribeVpcs",
+        "status": "success",
+        "n_items": {
+          "Vpcs": 1
+        }
+      },
+      {
+        "service": "ec2",
+        "operation": "DescribeSecurityGroups",
+        "status": "success",
+        "n_items": {
+          "SecurityGroups": 1
+        }
+      },
+      {
+        "service": "ec2",
+        "operation": "DescribeSecurityGroups",
+        "status": "success",
+        "n_items": {
+          "SecurityGroups": 1
+        }
+      },
+      {
+        "service": "iam",
+        "operation": "GetAccountSummary",
+        "status": "success"
+      }
+    ]
+  },
+  "redaction": "Account IDs masked throughout; STS UserId and private session name removed. Original retained privately."
+}

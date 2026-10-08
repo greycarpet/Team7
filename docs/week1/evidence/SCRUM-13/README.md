@@ -1,8 +1,9 @@
-# SCRUM-13 preparation evidence manifest
+# SCRUM-13 evidence manifest
 
-This is **read-only preparation evidence**, not proof that the tools security
-group has been deployed. No screenshot, change set, security stack, or tools
-group was created during preparation.
+The first account-review artifacts below are **read-only preparation evidence**.
+The subsequent deployment record contains genuine change-set, execution, stack,
+group, rule, tag, output, and attachment responses from the approved deployment.
+No console screenshot was captured in this session.
 
 The account-review original contains the actual detailed AWS MCP discovery/policy
 responses and their executed `api_calls` records. It is preserved privately under
@@ -44,7 +45,50 @@ passes that baseline. IAM user/group counts **0/0** and role count **12** do not
 establish individual MFA or a team roster. SCP-denied reads and unavailable
 credential-report data remain explicit limitations.
 
-After approved deployment, append real stack/group responses, original screenshot
-hashes, separately named public redactions, UTC capture times, and actual transfer
-details. Retain existing entries and the reviewed Week 1 package's original logs.
-See [the deployment and screenshot plan](../../SCRUM-13-security-controls.md).
+## Approved deployment evidence
+
+Approved template commit: `d0be5dce16b2ad7b7915bf882ccc8f6755e7b913`.
+Template SHA256: `7c6b00d2e66f1b73237787ce21cb5f9993a79d95c7420b34bdb3a70f7e55317e`.
+Account target was verified as `123*****6025`, with every regional API in
+`us-east-2`. Change-set creation was captured at `2026-10-08T01:17:58.475Z`,
+inspection at `01:18:08.572Z`, validation/template retrieval at `01:18:17.193Z`,
+execution at `01:18:39.773Z`, and final read-only checks at `01:19:09.227Z`.
+Stack `cfn-security-team07` reached `CREATE_COMPLETE` at `01:18:50.251Z`.
+
+| Artifact | SHA256 |
+| --- | --- |
+| Private `.tools/scrum13/20261008_Team7_aws_w1-security-deployment-original.json` | `ab4e1f92ff5397e97a24f1c5a8bdede7180d39f2282d60115ed8c20388bdaabe` |
+| Public [20261008_Team7_aws_w1-security-deployment.redacted.json](20261008_Team7_aws_w1-security-deployment.redacted.json) | `d9ff270c0b471b917ae8768bb4c2ff9c6a80707efb5ca43abf9553e8268a902b` |
+
+The complete original was saved before redaction. The public copy masks account
+IDs throughout and removes STS user/session identifiers. It retains executed
+`api_calls`, resolved change-set properties, CloudFormation events, and actual
+EC2 records; it is **API evidence, not screenshots**. Hashes were computed after
+the original/redaction writes. Local handling/package preparation was recorded at
+`2026-10-08T01:21:30.412Z`. Prior evidence hashes remain unchanged.
+
+Verified result: one unattached group `sg-0d4b70aeec5581403`; Name tag
+`sg-tools-team07`; generated GroupName
+`cfn-security-team07-Team7ToolsSecurityGroup-zyMccvqygh0Z`; zero ingress; one
+IPv4 allow-all egress rule `sgr-0c5218ce1138a563f` to `0.0.0.0/0`; no IPv6 rule.
+All ten user tags and three reserved ownership tags match. Both outputs match.
+Normal rollback was enabled. Root/account flags refreshed and remain unchanged.
+
+[CHAIN_OF_CUSTODY.md](CHAIN_OF_CUSTODY.md) and
+[CHAIN_OF_CUSTODY.csv](CHAIN_OF_CUSTODY.csv) preserve all historical reviewed
+package entries and append the genuine SCRUM-13 collection/hashing records.
+Earlier screenshot locations are historical paths within the reviewed package.
+The original ZIP and its logs are unchanged. All eight prior screenshot hashes
+were verified. Publication uses the requested branch/draft PR; no external
+handoff message, Jira comment, transition, or merge is claimed.
+
+The private working handoff package in `.tools/scrum13/handoff/` retains the eight
+previous screenshot originals, updated shared document, appended logs, and new
+original/redacted API evidence. It must be reviewed before sharing because it
+contains private originals. Repository copies link earlier screenshots as
+historical package references, without republishing those images.
+
+Console evidence remains pending. Use [the exact screenshot checklist and
+acceptance handoff](../../SCRUM-13-handoff.md). Capture filenames using the actual
+UTC date; preserve originals, hash them, and create separately identified
+redacted copies for public publication. Do not invent capture or transfer times.

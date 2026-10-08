@@ -12,6 +12,9 @@ flags/counts/rules and check limitations while masking account IDs and omitting
   personal/organization/session details. The final stack/group/VPC refresh is
   preserved separately in the private security-discovery original below.
 
+Evidence JSON is marked `-text` in this directory's `.gitattributes`, preventing
+Git's Windows/Linux line-ending conversion from changing its recorded byte hash.
+
 | Artifact | SHA256 |
 | --- | --- |
 | Private `20261008_Team7_aws_w1-account-review-original.json` | `8240df77f0b8ea15537a45be3366e9d7f9dcbe48c8911d337e5a5af08d831ffc` |

@@ -2,9 +2,11 @@
 
 Prepared by Josh Escobar on `feature/SCRUM-13-security-controls` for a draft PR
 to `main`. Discovery and validation were performed on **2026-10-08 UTC**.
-The approved template was deployed successfully on **2026-10-08 UTC**. Root-MFA,
-individual team-access review, console screenshots, and final acceptance remain
-open. No AWS changes were performed during the earlier preparation stage.
+The approved template was deployed successfully on **2026-10-08 UTC**. Josh accepted
+the [root-MFA exception](SCRUM-13-root-MFA-exception.md) at 23:34:18Z on that date;
+the observed flag remains 0 and the baseline is not passed. Team-access review,
+screenshot evidence integration, and final acceptance remain open. No AWS changes
+were performed during the earlier preparation stage.
 
 ## Sources and precedence
 
@@ -94,7 +96,7 @@ higher effort, and recheck connections. Do not assume another session's access.
 | Security stack before creation | DescribeStacks returned explicit does-not-exist ValidationError | No existing `cfn-security-team07` found before the approved deployment |
 | Tools group before creation | Regional Name-tag lookup returned zero; target VPC inventory contained only its default group | No tools-group ownership conflict found before creation |
 | Existing default group | `sg-06e08b526126cc50c`; default self-reference ingress and IPv4 allow-all egress | Observed only; must remain unchanged |
-| AccountMFAEnabled | **0**, expected baseline **1** | **Owner review required; baseline not passed** |
+| AccountMFAEnabled | **0**, expected baseline **1** | **Accepted exception by Josh, 2026-10-08; not remediated; baseline not passed** |
 | AccountAccessKeysPresent | **0**, expected **0** | Root no-access-key baseline passed |
 | AccountPasswordPresent / signing certificates | **0 / 0** | Consistent with credential-free root; does not prove centralized root management is enabled |
 | IAM users / groups / roles | **0 / 0 / 12**; user/group lists empty | Zero IAM users can be valid for federated access |
@@ -110,8 +112,10 @@ stack, and zero matching tools groups. The account is an active AWS Organization
 with all features and SCPs enabled. Centralized root management may explain the
 credential-free root observations, but `iam:ListOrganizationsFeatures` was
 explicitly denied by an SCP. It is **not confirmed** and does not turn MFA=0 into
-a passing result. Obtain permitted management/delegated-admin evidence and an
-owner/instructor decision. Do not sign in as root or create/enroll credentials.
+a passing result. Josh accepted this unresolved root-MFA finding for the Week 1
+task on 2026-10-08; see the [decision record](SCRUM-13-root-MFA-exception.md).
+Centralized-root verification remains unavailable; no instructor approval is
+claimed. Do not sign in as root or create/enroll credentials.
 [AWS centralized-root documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-enable-root-access.html)
 explains that managed member accounts can have root credentials removed.
 
@@ -121,8 +125,9 @@ were explicitly denied by an SCP; `iam:GetCredentialReport` returned
 in `us-east-2` returned empty, which does not establish other home regions or
 external identity inventories. Named team access assignments and individual MFA
 remain unverified. None of these unavailable checks is recorded as a pass.
-Owner review is a completion blocker for SCRUM-37 and SCRUM-13, not authority
-for an agent to remediate root or broaden policies.
+The root-MFA owner decision is recorded as an accepted exception, not a passing
+control. The separate team-assignment and individual-MFA review remains open.
+No review or exception authorizes an agent to remediate root or broaden policies.
 
 ## Template design and concrete change scope
 
@@ -325,7 +330,7 @@ other rules. Never delete the foundation as part of SCRUM-13.
 | Work item | Verified state | Remaining completion requirements |
 | --- | --- | --- |
 | SCRUM-36 | Approved one-group deployment and actual group/VPC/rules/tags/outputs verified | Console screenshots and Josh's acceptance review |
-| SCRUM-37 | Root/IAM review performed and findings recorded | Owner decision on MFA=0/centralized-root baseline; permitted team-assignment and individual-MFA evidence or explicit limitations |
+| SCRUM-37 | Root/IAM review recorded; root-MFA exception accepted by Josh on 2026-10-08 | Separate team-assignment and individual-MFA review/evidence or explicit acceptance of those limitations; final acceptance |
 | SCRUM-13 | Design, deployment, API evidence/hashes, shared deliverable, and draft PR ready for review | Both subtasks' remaining items; reviewed handoff to Cloud Architect; Josh's review |
 
 Completion text and checklists are prepared in the handoff document. Final

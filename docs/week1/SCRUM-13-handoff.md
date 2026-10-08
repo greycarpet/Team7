@@ -5,7 +5,9 @@ Deployment and live read-only checks passed; completion review remains open.
 Draft [PR #3](https://github.com/greycarpet/Team7/pull/3) targets `main` from
 `feature/SCRUM-13-security-controls`. The deployed template is exactly approved
 commit `d0be5dce16b2ad7b7915bf882ccc8f6755e7b913`; later commits contain evidence
-and documentation only. No merge, Jira comment, or Done transition was performed.
+and documentation only. No merge, Jira comment, or Done transition was performed
+during deployment. Subsequent root-MFA exception documentation was explicitly
+authorized by Josh on 2026-10-08.
 
 ## Deployment and verification
 
@@ -34,12 +36,15 @@ unchanged, and all eight earlier screenshot hashes still match both supplied
 custody logs. A private local package is prepared under
 `.tools/scrum13/handoff/Capstone_Team7_Week1`; it has not been sent to anyone.
 
-## Open owner decisions
+## Owner decisions and remaining review
 
-- Root `AccountMFAEnabled=0` differs from baseline 1. Root keys/password/signing
-  certificates are all 0. Centralized root management is plausible but **not
-  confirmed**; `iam:ListOrganizationsFeatures` is denied by SCP. Obtain permitted
-  management/delegated-admin evidence and an owner/instructor baseline decision.
+- **Accepted root-MFA exception:** Josh explicitly accepted the finding on
+  2026-10-08 at 18:34:18 America/Chicago (23:34:18Z) and elected not to remediate
+  it for this task. `AccountMFAEnabled=0` still differs from baseline 1; root
+  keys/password/signing certificates are all 0. Centralized root management
+  remains **unconfirmed** because `iam:ListOrganizationsFeatures` was SCP-denied.
+  This is an accepted exception, not a passing MFA control or instructor approval.
+  See the [decision record](SCRUM-13-root-MFA-exception.md).
 - IAM users/groups/roles are `0/0/12`. Josh's observed assumed role has attached
   `AdministratorAccess`, constrained by SCPs. A complete named team-access roster,
   intended scopes, and individual MFA evidence remain unverified. Root MFA does
@@ -96,25 +101,28 @@ are in draft PR #3; console screenshots and acceptance review pending.
 - [ ] Josh reviews and approves ticket completion.
 
 **SCRUM-37:** Completed the permitted read-only IAM/root review. Account summary:
-MFA 0 (expected 1, open), root keys 0 (passed), root password/signing certificates
+MFA 0 (expected 1; exception accepted by Josh on 2026-10-08; not remediated),
+root keys 0 (passed), root password/signing certificates
 0/0, IAM users/groups/roles 0/0/12. Caller is an assumed AccountFullAccessRole
 with AdministratorAccess and SCP restrictions. Centralized-root configuration,
 named team assignments and individual MFA remain unverified; denied/unavailable
 checks are explicitly documented. No root sign-in or credential/IAM changes.
-Owner decision and permitted supporting evidence are required before closing.
+The root-MFA owner decision is recorded in [the accepted exception](SCRUM-13-root-MFA-exception.md).
+Separate team-access/individual-MFA review and final acceptance remain open.
 
 - [x] Caller/sign-in method, account summary, inventory and permitted policy scope recorded.
 - [x] Root and individual MFA findings distinguished; AccessDenied is a limitation.
 - [x] Shared Security & Ops table populated with observed Josh session and honest limitations.
-- [ ] Owner resolves or accepts the root-MFA/centralized-root baseline with evidence.
+- [x] Josh accepts the root-MFA exception with the existing evidence and unverified centralized-root status; baseline remains unmet. See the dated decision record.
 - [ ] Owner verifies named team access/scopes/individual MFA or accepts explicit limitations.
 - [ ] Josh reviews and approves ticket completion.
 
 **SCRUM-13:** Implemented and deployed the reviewed one-group Week 1 controls;
 completed read-only account review, validators, API evidence, custody hashes,
 updated shared naming/access document, and draft PR #3. Landing-zone material
-is preserved. Security group technical checks pass; root-MFA, team-access,
-screenshots, and final acceptance are open. This is a review handoff, not a claim
+is preserved. Security group technical checks pass; the root-MFA finding has an
+accepted exception. Team-access review, screenshot evidence integration, and
+final acceptance remain open. This is a review handoff, not a claim
 that the parent ticket or all acceptance criteria are Done.
 
 - [x] Setup/connections and real reads verified in this Codex environment.

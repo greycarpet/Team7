@@ -137,11 +137,13 @@ CloudFormation completed at `2026-10-08T01:18:50.251Z`; read-only checks at `202
 | Attachments | Zero network interfaces attached; this task creates no workload |
 | Outputs | `SecurityGroupId=sg-0d4b70aeec5581403`; `VpcId=vpc-05ac92d29e000c0ce` |
 | Tags | `Name=sg-tools-team07`, `Project=Team7`, `Team=Team7`, `Environment=Dev`, `Owner=Team7`, `Workload=Tools`, `Component=Security`, `ManagedBy=Team7`, `Repository=Team7`, `JiraProject=SCRUM`; plus reserved CloudFormation ownership tags |
-| Root baseline | `AccountMFAEnabled=0` (expected 1, owner review open); `AccountAccessKeysPresent=0` (baseline passed); password/signing certificates `0/0` |
+| Root baseline | `AccountMFAEnabled=0` (expected 1; exception accepted by Josh on 2026-10-08; not remediated and not passed); `AccountAccessKeysPresent=0` (baseline passed); password/signing certificates `0/0` |
 | IAM inventory | Users/groups/roles `0/0/12`; zero users may be valid for federation |
 | Limitations | Centralized-root features and SAML/OIDC provider reads denied by SCP; credential report absent. Centralized root not confirmed. Individual MFA and named team assignments unverified. No denied check counted as passed. |
 
-Week 1 supplies an unattached group with zero ingress. The later tools-instance/SSH description in the original component notes is future context; no SSH was added here. Root/MFA and access findings remain open; no credentials, policies, or assignments were altered.
+Week 1 supplies an unattached group with zero ingress. The later tools-instance/SSH description in the original component notes is future context; no SSH was added here. The root-MFA finding is an accepted exception; separate team-access and individual-MFA findings remain open. No credentials, policies, or assignments were altered.
+
+**Root-MFA exception:** Josh explicitly accepted the exception at 2026-10-08T23:34:18Z and elected not to remediate root MFA for this Week 1 task. The observed MFA flag remains 0; centralized-root management remains unverified. This does not establish individual MFA, accept team-access limitations, or assert instructor approval. See [the decision record](../SCRUM-13-root-MFA-exception.md).
 
 Deployment evidence is actual API JSON, not screenshots. Console screenshots and owner acceptance are pending.
 Repository review: [draft PR #3](https://github.com/greycarpet/Team7/pull/3), [security evidence manifest](../evidence/SCRUM-13/README.md), and [handoff/checklists](../SCRUM-13-handoff.md).

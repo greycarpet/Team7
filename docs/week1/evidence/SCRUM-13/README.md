@@ -40,7 +40,11 @@ Git's Windows/Linux line-ending conversion from changing its recorded byte hash.
 - Preparation publication is through the requested SCRUM-13 draft PR. No Jira
   comments, ticket transitions, or external handoff messages were posted.
 
-Root MFA flag **0** remains an owner-review finding. Root access keys flag **0**
+Root MFA flag **0** was an owner-review finding when the evidence was collected.
+Josh accepted it as an exception on 2026-10-08T23:34:18Z without remediation;
+the root-MFA baseline remains unmet. See the
+[decision record](../../SCRUM-13-root-MFA-exception.md). Historical API evidence
+and hashes remain unchanged. Root access keys flag **0**
 passes that baseline. IAM user/group counts **0/0** and role count **12** do not
 establish individual MFA or a team roster. SCP-denied reads and unavailable
 credential-report data remain explicit limitations.

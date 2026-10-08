@@ -1,0 +1,2 @@
+# Required CloudFormation validator; no optional extras.
+cfn-lint==1.57.2

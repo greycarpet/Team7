@@ -21,6 +21,9 @@ __pycache__/
 .venv/
 venv/
 
+# Project-local tool downloads, PDF review, and private evidence originals
+.tools/
+
 # VS Code local settings
 .vscode/settings.local.json
 

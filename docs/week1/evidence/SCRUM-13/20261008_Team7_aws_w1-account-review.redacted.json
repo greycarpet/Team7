@@ -1,0 +1,135 @@
+{
+  "captured_utc": "2026-10-08T00:54:31.453239+00:00",
+  "account": "123*****6025",
+  "region": "us-east-2",
+  "foundation_stack_status": "CREATE_COMPLETE",
+  "resolved_vpc_id": "vpc-05ac92d29e000c0ce",
+  "summary": {
+    "GroupPolicySizeQuota": 5120,
+    "InstanceProfilesQuota": 1000,
+    "Policies": 0,
+    "GroupsPerUserQuota": 10,
+    "InstanceProfiles": 0,
+    "AttachedPoliciesPerUserQuota": 10,
+    "Users": 0,
+    "PoliciesQuota": 1500,
+    "Providers": 0,
+    "AccountMFAEnabled": 0,
+    "AccessKeysPerUserQuota": 2,
+    "AssumeRolePolicySizeQuota": 2048,
+    "PolicyVersionsInUseQuota": 10000,
+    "GlobalEndpointTokenVersion": 1,
+    "VersionsPerPolicyQuota": 5,
+    "AttachedPoliciesPerGroupQuota": 10,
+    "PolicySizeQuota": 6144,
+    "Groups": 0,
+    "AccountSigningCertificatesPresent": 0,
+    "UsersQuota": 5000,
+    "ServerCertificatesQuota": 20,
+    "MFADevices": 0,
+    "UserPolicySizeQuota": 2048,
+    "PolicyVersionsInUse": 12,
+    "ServerCertificates": 0,
+    "Roles": 12,
+    "RolesQuota": 1000,
+    "SigningCertificatesPerUserQuota": 2,
+    "MFADevicesInUse": 0,
+    "RolePolicySizeQuota": 10240,
+    "AttachedPoliciesPerRoleQuota": 20,
+    "AccountAccessKeysPresent": 0,
+    "AccountPasswordPresent": 0,
+    "GroupsQuota": 300
+  },
+  "security_groups": [
+    {
+      "GroupId": "sg-06e08b526126cc50c",
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [],
+          "IpRanges": [
+            {
+              "CidrIp": "0.0.0.0/0"
+            }
+          ],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ],
+      "VpcId": "vpc-05ac92d29e000c0ce",
+      "SecurityGroupArn": "arn:aws:ec2:us-east-2:123*****6025:security-group/sg-06e08b526126cc50c",
+      "OwnerId": "123*****6025",
+      "GroupName": "default",
+      "Description": "default VPC security group",
+      "IpPermissions": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "123*****6025",
+              "GroupId": "sg-06e08b526126cc50c"
+            }
+          ],
+          "IpRanges": [],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ]
+    }
+  ],
+  "caller_role": "AccountFullAccessRole",
+  "attached_policy_names": [
+    "AdministratorAccess"
+  ],
+  "inline_policy_names": [],
+  "root_management_check": "unavailable",
+  "root_management_limitation": "AccessDenied: explicit service control policy deny",
+  "credential_report": "unavailable",
+  "credential_report_limitation": "ReportNotPresent; generation not performed",
+  "identity_center_instances": [],
+  "inventory": {
+    "iam_users": 0,
+    "iam_groups": 0,
+    "iam_roles": 12,
+    "captured_utc": "2026-10-08T01:05:06.093952+00:00",
+    "matching_tools_groups": 0,
+    "security_stack_lookup": {
+      "status": "unavailable",
+      "error": "An error occurred (ValidationError) when calling the DescribeStacks operation: Stack with id cfn-security-team07 does not exist"
+    },
+    "resolved_vpc_id": "vpc-05ac92d29e000c0ce",
+    "foundation_stack_status": "CREATE_COMPLETE"
+  },
+  "root_assessment": {
+    "mfa_baseline": 1,
+    "observed_mfa_flag": 0,
+    "status": "OWNER REVIEW REQUIRED",
+    "root_keys_baseline": 0,
+    "root_keys_present": 0,
+    "root_password_present": 0,
+    "root_signing_certificates_present": 0,
+    "central_root_features": "unverified: ListOrganizationsFeatures denied by SCP",
+    "individual_mfa": "unverified; root flag is not individual MFA evidence"
+  },
+  "review_limitations": [
+    "ListSAMLProviders: explicit SCP deny",
+    "ListOpenIDConnectProviders: explicit SCP deny",
+    "ListOrganizationsFeatures: explicit SCP deny",
+    "GetCredentialReport: ReportNotPresent; no report generated",
+    "Identity Center ListInstances in us-east-2 returned empty; other home regions and external identities not established",
+    "Named team access assignments and individual MFA not independently verified"
+  ],
+  "policy_scope": {
+    "caller_role": "AccountFullAccessRole",
+    "trust_service": "account-access.amazonaws.com",
+    "attached_managed_policy": "AdministratorAccess",
+    "version": "v1",
+    "statement": {
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    },
+    "inline_role_policies": [],
+    "effective_access": "subject to SCP explicit denies; broad policy is not proof every action is permitted"
+  }
+}

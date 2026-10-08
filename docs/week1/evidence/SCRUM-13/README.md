@@ -102,6 +102,8 @@ limited root-access-menu view. It also contains the eight prior landing-zone
 images and the budget image. The security-group captures are complete.
 [SCREENSHOT_REVIEW.md](SCREENSHOT_REVIEW.md) records each result and SHA256;
 both custody logs append the archive and per-image verification records.
-Original pixels remain private and unchanged. No public redacted image or
-Cloud Architect transfer is claimed. Team-access/individual-MFA owner review
-and the handoff remain open.
+Original pixels remain private and unchanged; no public redacted images are
+claimed. Josh accepted the separate team-access/individual-MFA limitations at
+2026-10-08T23:47:17Z. The findings and document links were handed off to SCRUM-14
+in [comment 10017](https://joshescobarx.atlassian.net/browse/SCRUM-14?focusedCommentId=10017), without transferring private original-image custody.
+See [completion acceptance](../../SCRUM-13-completion-acceptance.md).

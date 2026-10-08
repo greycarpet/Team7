@@ -54,3 +54,12 @@ preserved. See [account/deployment evidence](evidence/SCRUM-13/README.md),
 
 Related tickets: [SCRUM-13](https://joshescobarx.atlassian.net/browse/SCRUM-13)
 and [SCRUM-37](https://joshescobarx.atlassian.net/browse/SCRUM-37).
+
+## Subsequent completion decision
+
+At 2026-10-08T23:47:17Z, Josh separately accepted the unverified team-access /
+access-scope and individual-MFA limitations and authorized the SCRUM-14 handoff.
+That handoff was posted as comment 10017. See
+[completion acceptance](SCRUM-13-completion-acceptance.md).
+This later decision resolves the separate owner-review item without changing
+the original root exception, measured evidence, or any control's verified state.

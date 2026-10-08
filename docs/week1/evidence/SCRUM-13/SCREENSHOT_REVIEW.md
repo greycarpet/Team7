@@ -71,10 +71,12 @@ The budget screenshot is now supplied, but it does not prove alert settings.
 | `20261008_Team7_aws_w1-sg-outbound.png` | `eff65a08d037624390d8279fd3925c51fa8adc0efdc1e80ecdda457261863d33` |
 | `20261008_Team7_aws_w1-sg-tags.png` | `ef4863d4a6a3e955290c6ce8477ca14abded80ba78f40b3b517171365b134294` |
 
-## Completion boundary
+## Completion acceptance
 
-Screenshot review and hash integration are complete. The named team-access /
-individual-MFA owner review and actual Cloud Architect handoff remain open.
-Josh authorized merging PR #3 and closing SCRUM-13 **if the task is complete**
-on 2026-10-08 at 18:40:41 America/Chicago (23:40:41Z). That conditional instruction
-does not claim those remaining items are complete or expand the root exception.
+Screenshot review and hash integration are complete. Josh explicitly accepted
+the separate named team-access / individual-MFA limitations at
+2026-10-08T23:47:17Z. The prepared findings were delivered to SCRUM-14 in
+[comment 10017](https://joshescobarx.atlassian.net/browse/SCRUM-14?focusedCommentId=10017).
+See [completion acceptance](../../SCRUM-13-completion-acceptance.md).
+Underlying unverified findings and the root-MFA exception remain explicit;
+no private original-image custody transfer is claimed.

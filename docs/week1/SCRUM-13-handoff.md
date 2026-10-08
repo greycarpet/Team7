@@ -1,7 +1,9 @@
 # SCRUM-13 review handoff
 
 Prepared for Josh Escobar and the Cloud Architect on **2026-10-08 UTC**.
-Deployment and live read-only checks passed; completion review remains open.
+Deployment checks passed; Josh accepted the documented exceptions and remaining
+review limitations. The findings handoff was posted on SCRUM-14. See
+[completion acceptance](SCRUM-13-completion-acceptance.md).
 Draft [PR #3](https://github.com/greycarpet/Team7/pull/3) targets `main` from
 `feature/SCRUM-13-security-controls`. The deployed template is exactly approved
 commit `d0be5dce16b2ad7b7915bf882ccc8f6755e7b913`; later commits contain evidence
@@ -34,9 +36,11 @@ and [updated shared standard](Design_Standards_Cloud_Architect/01_Cloud_Foundati
 The original reviewed ZIP is preserved; the completed landing-zone section is
 unchanged, and all eight earlier screenshot hashes still match both supplied
 custody logs. A private local package is prepared under
-`.tools/scrum13/handoff/Capstone_Team7_Week1`; it has not been sent to anyone.
+`.tools/scrum13/handoff/Capstone_Team7_Week1`; the private package itself has not
+been sent. The findings/shared-document handoff was delivered through
+[SCRUM-14 comment 10017](https://joshescobarx.atlassian.net/browse/SCRUM-14?focusedCommentId=10017).
 
-## Owner decisions and remaining review
+## Accepted owner decisions and review limitations
 
 - **Accepted root-MFA exception:** Josh explicitly accepted the finding on
   2026-10-08 at 18:34:18 America/Chicago (23:34:18Z) and elected not to remediate
@@ -53,7 +57,11 @@ custody logs. A private local package is prepared under
 - Josh subsequently supplied the reviewed 19-image `Week01(1).zip`. Security
   screenshots are complete and their hashes are integrated in
   [the screenshot review](evidence/SCRUM-13/SCREENSHOT_REVIEW.md). Original pixels
-  remain private; no Cloud Architect transfer is claimed.
+  remain private. The findings and document links were handed off via SCRUM-14;
+  no private original-image custody transfer is claimed.
+- Josh explicitly accepted the separate unverified team roster/access-scope and
+  individual-MFA limitations at 2026-10-08T23:47:17Z. These remain unverified,
+  accepted limitations; no passing access/MFA control or instructor approval is implied.
 
 This handoff does not authorize changing root credentials/MFA, permissions,
 access assignments, or group rules. Owner remediation, cleanup, or later
@@ -85,7 +93,7 @@ only reviewed redactions to `docs/week1/evidence/SCRUM-13/`. Original images,
 previous logs, and original API responses remain preserved. The budget screenshot is now present in the later supplied archive; its view
 does not establish the 80% alert configuration or recipients.
 
-## Prepared Jira completion text — review before posting
+## Completion evidence and acceptance checklist
 
 **SCRUM-36:** Deployed `cfn-security-team07` through the reviewed CloudFormation
 template at approved commit d0be5dc. Stack CREATE_COMPLETE; sole resource
@@ -110,29 +118,31 @@ with AdministratorAccess and SCP restrictions. Centralized-root configuration,
 named team assignments and individual MFA remain unverified; denied/unavailable
 checks are explicitly documented. No root sign-in or credential/IAM changes.
 The root-MFA owner decision is recorded in [the accepted exception](SCRUM-13-root-MFA-exception.md).
-Separate team-access/individual-MFA review and final acceptance remain open.
+Josh accepted the separate unverified team-access/individual-MFA limitations
+at 2026-10-08T23:47:17Z; the review may close with those explicit limitations.
 
 - [x] Caller/sign-in method, account summary, inventory and permitted policy scope recorded.
 - [x] Root and individual MFA findings distinguished; AccessDenied is a limitation.
 - [x] Shared Security & Ops table populated with observed Josh session and honest limitations.
 - [x] Josh accepts the root-MFA exception with the existing evidence and unverified centralized-root status; baseline remains unmet. See the dated decision record.
-- [ ] Owner verifies named team access/scopes/individual MFA or accepts explicit limitations.
+- [x] Josh accepts the unverified named team access/scopes/individual-MFA limitations; see the dated completion-acceptance record.
 - [x] Josh authorizes ticket completion when its requirements are satisfied (2026-10-08T23:40:41Z).
 
 **SCRUM-13:** Implemented and deployed the reviewed one-group Week 1 controls;
 completed read-only account review, validators, API evidence, custody hashes,
 updated shared naming/access document, and draft PR #3. Landing-zone material
 is preserved. Security group technical checks pass; the root-MFA finding has an
-accepted exception. Screenshot review and hash integration are complete. Team-access review and
-the Cloud Architect handoff remain open. This is a prepared handoff, not a claim
-that the parent ticket or all acceptance criteria are Done.
+accepted exception. Screenshot review and hash integration are complete. Josh accepted the remaining
+access-review limitations, and the findings handoff was posted to SCRUM-14.
+The parent task is accepted for completion with documented exceptions; actual
+merge and Jira transition results are recorded in PR #3 and the Jira issues.
 
 - [x] Setup/connections and real reads verified in this Codex environment.
 - [x] SCRUM-13 feature branch, template, validators, deployment and API evidence prepared.
 - [x] Shared document and reviewed-package history preserved; handoff prepared locally.
-- [ ] SCRUM-36 and SCRUM-37 remaining items resolved and accepted.
-- [ ] Reviewed handoff delivered to Cloud Architect; record real transfer details.
-- [x] Josh authorizes PR merge and Jira closure if the task is complete (2026-10-08T23:40:41Z); unresolved items above remain conditions.
+- [x] SCRUM-36 evidence complete; SCRUM-37 findings and limitations accepted.
+- [x] Findings/shared-document handoff posted to SCRUM-14 as comment 10017; private originals were not transferred.
+- [x] Josh authorizes PR merge and Jira closure; remaining owner decisions accepted at 2026-10-08T23:47:17Z and required findings handoff delivered.
 
 ## Recovery and resume
 
@@ -145,4 +155,4 @@ delete the foundation or default group as SCRUM-13 recovery.
 To resume: open `X:\Team7` in VS Code, select
 `feature/SCRUM-13-security-controls`, keep the selected model and High or higher
 reasoning, read this handoff and `.tools/scrum13/SCRUM-13-checkpoint.json`, and
-recheck current provider sessions. Continue the remaining team-access owner review and Cloud Architect handoff. The approved deployment is complete; no further AWS changes are approved.
+recheck current provider sessions. The Week 1 owner decisions and findings handoff are complete; consult PR #3 and Jira for the merge/closure results. The approved deployment is complete; no further AWS changes are approved.

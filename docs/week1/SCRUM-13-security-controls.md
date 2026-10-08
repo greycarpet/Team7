@@ -5,8 +5,10 @@ to `main`. Discovery and validation were performed on **2026-10-08 UTC**.
 The approved template was deployed successfully on **2026-10-08 UTC**. Josh accepted
 the [root-MFA exception](SCRUM-13-root-MFA-exception.md) at 23:34:18Z on that date;
 the observed flag remains 0 and the baseline is not passed. Supplied screenshots
-have now been reviewed and hashed. Team-access owner review and the Cloud
-Architect handoff remain open. Josh has authorized merge/closure once complete. No AWS changes
+have now been reviewed and hashed. Josh accepted the remaining access-review
+limitations at 2026-10-08T23:47:17Z, and the findings handoff was posted to
+SCRUM-14. See [completion acceptance](SCRUM-13-completion-acceptance.md).
+Josh has authorized merge/closure with these recorded exceptions. No AWS changes
 were performed during the earlier preparation stage.
 
 ## Sources and precedence
@@ -127,7 +129,8 @@ in `us-east-2` returned empty, which does not establish other home regions or
 external identity inventories. Named team access assignments and individual MFA
 remain unverified. None of these unavailable checks is recorded as a pass.
 The root-MFA owner decision is recorded as an accepted exception, not a passing
-control. The separate team-assignment and individual-MFA review remains open.
+control. Josh separately accepted the unverified team-assignment/access-scope
+and individual-MFA limitations at 2026-10-08T23:47:17Z. No verification is implied.
 No review or exception authorizes an agent to remediate root or broaden policies.
 
 ## Template design and concrete change scope
@@ -307,7 +310,7 @@ Read-only verification at `2026-10-08T01:19:09.227Z` confirmed:
 | Duplicate check | Regional Name-tag lookup returned exactly this one group |
 | Deployed template | Retrieved Original text matches the approved template |
 | Foundation/default group | Foundation remains `CREATE_COMPLETE` with unchanged last-update time/outputs; default group rules match earlier reads |
-| Root account review refresh | MFA `0`, root keys `0`, password `0`, signing certificates `0`, users/groups/roles `0/0/12`; findings remain open |
+| Root account review refresh | MFA `0`, root keys `0`, password `0`, signing certificates `0`, users/groups/roles `0/0/12`; findings retained under the recorded owner acceptances |
 
 Actual default egress is IPv4 allow-all only. No IPv6 rule was observed, so none
 is claimed or added. No other AWS resources were created, changed, replaced, or
@@ -329,13 +332,15 @@ other rules. Never delete the foundation as part of SCRUM-13.
 
 ## Acceptance and completion review
 
-| Work item | Verified state | Remaining completion requirements |
+| Work item | Verified state | Completion acceptance |
 | --- | --- | --- |
 | SCRUM-36 | Approved one-group deployment and actual group/VPC/rules/tags/outputs verified; genuine screenshots reviewed and hashed | Technical and screenshot requirements satisfied |
-| SCRUM-37 | Root/IAM review recorded; root-MFA exception accepted by Josh on 2026-10-08 | Separate team-assignment and individual-MFA review/evidence or explicit acceptance of those limitations; final acceptance |
-| SCRUM-13 | Design, deployment, API evidence/hashes, shared deliverable, and draft PR ready for review | Remaining SCRUM-37 owner review; actual handoff to Cloud Architect |
+| SCRUM-37 | Root/IAM review recorded; root-MFA exception retained | Separate unverified team-assignment/access-scope and individual-MFA limitations explicitly accepted by Josh at 2026-10-08T23:47:17Z |
+| SCRUM-13 | Design, deployment, API evidence/hashes, screenshots, and shared deliverable complete | Owner decisions accepted; findings handoff posted to SCRUM-14 comment 10017; merge/closure authorized |
 
 Completion text and checklists are prepared in the handoff document. Evidence
 and documentation are published to the same branch and draft PR. Josh authorized
-merge and Jira closure on 2026-10-08T23:40:41Z if the task is complete. The remaining
-owner review and actual handoff must be resolved before claiming completion.
+merge and Jira closure on 2026-10-08T23:40:41Z if the task is complete, then
+explicitly accepted the remaining limitations and authorized the handoff at
+2026-10-08T23:47:17Z. The handoff has been posted. PR #3 and the Jira issues
+record the subsequent merge/transition outcomes.

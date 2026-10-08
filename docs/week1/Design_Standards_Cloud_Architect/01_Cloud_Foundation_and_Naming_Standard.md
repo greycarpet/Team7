@@ -116,7 +116,7 @@ Values were reconciled against the supplied screenshots and the previously revie
 
 | Person | Sign-in | Group, role and scope | MFA |
 | --- | --- | --- | --- |
-| Josh Escobar (observed task session; full assignment roster unverified) | Console-based temporary CLI/MCP session; assumed AccountFullAccessRole; managed trust principal account-access.amazonaws.com | AdministratorAccess v1 permits Action=* / Resource=*; no inline policy; effective access restricted by SCP denies. No team group/assignment mapping independently verified. | Individual MFA unverified; root AccountMFAEnabled=0 does not establish individual MFA. Owner review open. |
+| Josh Escobar (observed task session; full assignment roster unverified) | Console-based temporary CLI/MCP session; assumed AccountFullAccessRole; managed trust principal account-access.amazonaws.com | AdministratorAccess v1 permits Action=* / Resource=*; no inline policy; effective access restricted by SCP denies. No team group/assignment mapping independently verified. | Individual MFA unverified; root AccountMFAEnabled=0 does not establish individual MFA. Josh accepted this verification limitation on 2026-10-08T23:47:17Z. |
 
 ## Access and Security Group summary · Security & Ops
 
@@ -141,12 +141,12 @@ CloudFormation completed at `2026-10-08T01:18:50.251Z`; read-only checks at `202
 | IAM inventory | Users/groups/roles `0/0/12`; zero users may be valid for federation |
 | Limitations | Centralized-root features and SAML/OIDC provider reads denied by SCP; credential report absent. Centralized root not confirmed. Individual MFA and named team assignments unverified. No denied check counted as passed. |
 
-Week 1 supplies an unattached group with zero ingress. The later tools-instance/SSH description in the original component notes is future context; no SSH was added here. The root-MFA finding is an accepted exception; separate team-access and individual-MFA findings remain open. No credentials, policies, or assignments were altered.
+Week 1 supplies an unattached group with zero ingress. The later tools-instance/SSH description in the original component notes is future context; no SSH was added here. The root-MFA finding is an accepted exception; separate unverified team-access and individual-MFA findings were explicitly accepted by Josh on 2026-10-08T23:47:17Z. No credentials, policies, or assignments were altered.
 
 **Root-MFA exception:** Josh explicitly accepted the exception at 2026-10-08T23:34:18Z and elected not to remediate root MFA for this Week 1 task. The observed MFA flag remains 0; centralized-root management remains unverified. This does not establish individual MFA, accept team-access limitations, or assert instructor approval. See [the decision record](../SCRUM-13-root-MFA-exception.md).
 
-Deployment API evidence is supplemented by Josh's 19-image `Week01(1).zip`, reviewed and hashed in [the screenshot review](../evidence/SCRUM-13/SCREENSHOT_REVIEW.md). Security-group screenshots are complete. Original images remain private; team-access/individual-MFA owner review and the Cloud Architect handoff remain open.
-Repository review: [draft PR #3](https://github.com/greycarpet/Team7/pull/3), [security evidence manifest](../evidence/SCRUM-13/README.md), and [handoff/checklists](../SCRUM-13-handoff.md).
+Deployment API evidence is supplemented by Josh's 19-image `Week01(1).zip`, reviewed and hashed in [the screenshot review](../evidence/SCRUM-13/SCREENSHOT_REVIEW.md). Security-group screenshots are complete. Original images remain private. Josh accepted the unverified team-access/individual-MFA limitations, and the findings/shared-document handoff was posted to [SCRUM-14 comment 10017](https://joshescobarx.atlassian.net/browse/SCRUM-14?focusedCommentId=10017). See [completion acceptance](../SCRUM-13-completion-acceptance.md).
+Repository review: [PR #3](https://github.com/greycarpet/Team7/pull/3), [security evidence manifest](../evidence/SCRUM-13/README.md), and [handoff/checklists](../SCRUM-13-handoff.md).
 In the private handoff package, new evidence is under `../Evidence/SCRUM-13/`; previous landing-zone links still resolve there. This repository copy preserves the earlier screenshot references as historical package references; those private originals are not republished here.
 
 This working copy comes from the reviewed Week 1 ZIP, source document SHA256 `6b2f495a23fd9c142d493db9e5daea030a41d11bf2acedeaad217fe9476c081e`. The original package and completed landing-zone section are preserved unchanged. No new Architect approval or document-status change is asserted.

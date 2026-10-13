@@ -18,6 +18,7 @@ These are planning values, not deployed settings. Read-only checks on October 13
 | Continuous comparison | Same design and traffic, 730 compute and IPv4 hours |
 | EBS | 8 GiB gp3 retained all month, 3,000 IOPS and 125 MiB/s; no additional provisioned performance |
 | Public IPv4 | One auto-assigned address only while running; no Elastic IP retained |
+| S3 bucket name | `s3-site-team07-a7f391`, selected from the approved naming standard; planned, availability pending creation |
 | S3 storage | 1 GB-month total across current objects, noncurrent versions and any template staging; one month retention modeled |
 | S3 requests | 1,000 PUT/COPY/POST/LIST and 10,000 GET/other requests, including deployment and staging requests |
 | CloudFront | Pay-as-you-go; 1 GB to North American viewers; 10,000 HTTPS requests; 10 invalidation paths; no WAF |

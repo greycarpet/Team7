@@ -14,6 +14,7 @@ These entries are ready to transfer into the official form. The official Week 2 
 | --- | --- |
 | Document owner and scope | Josh Escobar; Team7 Week 2 architecture and cost inputs; draft dated October 13, 2026 |
 | Architecture | Private S3 REST origin served through CloudFront OAC and HTTPS; separate Amazon Linux t3.micro tools VM in existing Ohio public subnet |
+| Planned S3 bucket name | `s3-site-team07-a7f391`; follows `s3-{workload}-{team}-{suffix}` and adopts the approved standard's example. Availability pending creation. |
 | Region | us-east-2; tools subnet in us-east-2a; CloudFront global with North American viewer assumption |
 | Cost model | 20 compute/IPv4 hours, 8 GiB gp3 all month, 1 GB total S3 current/noncurrent/staging storage, 1,000 PUT/LIST and 10,000 GET, 1 GB CloudFront delivery, 10,000 HTTPS requests, 10 invalidation paths |
 | Monthly estimate | $0.98 before account credits with shared allowances; $11.91 at 730 hours; tax excluded |

@@ -1,0 +1,100 @@
+{
+  "checked_at": "2026-10-13 23:25:56 UTC",
+  "account_identity": "Matched the existing Team7 target account; private identity details omitted.",
+  "workload_region": "us-east-2",
+  "cloudfront_api_region": "us-east-1",
+  "own_buckets_returned": [],
+  "distribution_list_response": {},
+  "oac_list_response": {},
+  "limitation": "Empty CloudFront response objects do not establish a complete zero-resource inventory. Bucket name availability is not reserved or proven by ListBuckets.",
+  "selected_cache_policy": {
+    "Id": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+    "LastModifiedTime": "1970-01-01T00:00:00+00:00",
+    "CachePolicyConfig": {
+      "Comment": "Policy with caching enabled. Supports Gzip and Brotli compression.",
+      "Name": "Managed-CachingOptimized",
+      "DefaultTTL": 86400,
+      "MaxTTL": 31536000,
+      "MinTTL": 1,
+      "ParametersInCacheKeyAndForwardedToOrigin": {
+        "EnableAcceptEncodingGzip": true,
+        "EnableAcceptEncodingBrotli": true,
+        "HeadersConfig": {
+          "HeaderBehavior": "none"
+        },
+        "CookiesConfig": {
+          "CookieBehavior": "none"
+        },
+        "QueryStringsConfig": {
+          "QueryStringBehavior": "none"
+        }
+      }
+    }
+  },
+  "selected_response_headers_policy": {
+    "Id": "67f7725c-6f97-4210-82d7-5512b31e9d03",
+    "LastModifiedTime": "1970-01-01T00:00:00+00:00",
+    "ResponseHeadersPolicyConfig": {
+      "Comment": "Adds a set of security headers to every response",
+      "Name": "Managed-SecurityHeadersPolicy",
+      "SecurityHeadersConfig": {
+        "XSSProtection": {
+          "Override": false,
+          "Protection": true,
+          "ModeBlock": true
+        },
+        "FrameOptions": {
+          "Override": false,
+          "FrameOption": "SAMEORIGIN"
+        },
+        "ReferrerPolicy": {
+          "Override": false,
+          "ReferrerPolicy": "strict-origin-when-cross-origin"
+        },
+        "ContentSecurityPolicy": {},
+        "ContentTypeOptions": {
+          "Override": true
+        },
+        "StrictTransportSecurity": {
+          "Override": false,
+          "AccessControlMaxAgeSec": 31536000
+        }
+      }
+    }
+  },
+  "api_calls": [
+    {
+      "service": "sts",
+      "operation": "GetCallerIdentity",
+      "status": "success"
+    },
+    {
+      "service": "s3",
+      "operation": "ListBuckets",
+      "status": "success",
+      "n_items": {
+        "Buckets": 0
+      }
+    },
+    {
+      "service": "cloudfront",
+      "operation": "ListDistributions",
+      "status": "success"
+    },
+    {
+      "service": "cloudfront",
+      "operation": "ListOriginAccessControls",
+      "status": "success"
+    },
+    {
+      "service": "cloudfront",
+      "operation": "ListCachePolicies",
+      "status": "success"
+    },
+    {
+      "service": "cloudfront",
+      "operation": "ListResponseHeadersPolicies",
+      "status": "success"
+    }
+  ]
+}

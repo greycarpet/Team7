@@ -1,0 +1,201 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  Team7 static website delivered through CloudFront HTTPS with a private,
+  encrypted S3 REST origin and distribution-scoped origin access control.
+
+Metadata:
+  AWSToolsMetrics:
+    AWSAgentToolkit: aws-cloudformation@3
+  com.aws.cloudformation.Context:
+    arch: Viewer -> CloudFront -> signed HTTPS -> private S3
+    must:
+      - Deploy the stack and S3 bucket in us-east-2; CloudFront is global
+      - Use pay-as-you-go; no WAF, flat-rate plan, custom domain or IAM resources
+      - Do not change Week 1 networking or the tools instance
+      - Upload only reviewed public website files after deployment approval
+    ref:
+      - at: docs/week2/SCRUM-17-deployment-plan.md
+        has: names, costs, security tradeoffs, validation and approval scope
+        scope: SCRUM-17
+
+Parameters:
+  SiteBucketName:
+    Type: String
+    Default: s3-site-team07-a7f391
+    AllowedPattern: '^s3-site-team07-[a-z0-9]{6,20}$'
+    Description: Approved bucket name; stop for review if unavailable, never silently rename.
+  OriginAccessControlName:
+    Type: String
+    Default: oac-site-team07
+    AllowedValues: [oac-site-team07]
+    Description: Approved Team7 origin access control name.
+  CachePolicyId:
+    Type: String
+    AllowedPattern: '^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$'
+    Description: Resolve Managed-CachingOptimized by name and review before deployment.
+  ResponseHeadersPolicyId:
+    Type: String
+    AllowedPattern: '^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$'
+    Description: Resolve Managed-SecurityHeadersPolicy by name and review before deployment.
+
+Resources:
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Keep website content independent of EC2 and preserve earlier uploads for reviewed recovery.
+        must:
+          - Keep all public-access blocks on and ACLs disabled
+          - Never enable S3 website hosting; OAC needs a REST origin
+          - Retained objects and noncurrent versions remain billable
+        mutable: review-required
+        mutability:
+          BucketName: must-never-change
+    Properties:
+      BucketName: !Ref SiteBucketName
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+        - { Key: Name, Value: !Ref SiteBucketName }
+        - { Key: Project, Value: Team7 }
+        - { Key: Team, Value: Team7 }
+        - { Key: Environment, Value: Dev }
+        - { Key: Workload, Value: Site }
+        - { Key: Component, Value: Storage }
+        - { Key: ManagedBy, Value: Team7 }
+        - { Key: Repository, Value: Team7 }
+        - { Key: JiraProject, Value: SCRUM }
+
+  SiteOriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Authenticate origin requests without public-read access or legacy OAI.
+        must:
+          - Always sign S3 origin requests with SigV4
+        mutable: review-required
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Ref OriginAccessControlName
+        Description: Team7 private website origin access
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  SiteDistribution:
+    Type: AWS::CloudFront::Distribution
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Serve the public static site independently of EC2 through the default HTTPS hostname.
+        must:
+          - Keep the origin private and viewers on HTTPS
+          - Keep GET/HEAD only; no WAF association or flat-rate pricing plan
+          - Managed caching has a one-second minimum TTL; invalidate changed content
+        mutable: review-required
+    Properties:
+      DistributionConfig:
+        Comment: cf-site-team07
+        Enabled: true
+        DefaultRootObject: index.html
+        HttpVersion: http2and3
+        IPV6Enabled: true
+        PriceClass: PriceClass_100
+        Origins:
+          - Id: SiteS3Origin
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt SiteOriginAccessControl.Id
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+        DefaultCacheBehavior:
+          TargetOriginId: SiteS3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+          Compress: true
+          CachePolicyId: !Ref CachePolicyId
+          ResponseHeadersPolicyId: !Ref ResponseHeadersPolicyId
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: true
+        # Deliberately omit WebACLId, aliases, access logs and paid features.
+        # See the deployment plan for the course/budget constraints and limits.
+      Tags:
+        - { Key: Name, Value: cf-site-team07 }
+        - { Key: Project, Value: Team7 }
+        - { Key: Team, Value: Team7 }
+        - { Key: Environment, Value: Dev }
+        - { Key: Workload, Value: Site }
+        - { Key: Component, Value: Delivery }
+        - { Key: ManagedBy, Value: Team7 }
+        - { Key: Repository, Value: Team7 }
+        - { Key: JiraProject, Value: SCRUM }
+
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: Permit only the selected distribution's origin reads and deny insecure transport.
+        must:
+          - No anonymous Allow; scope CloudFront to exact distribution and account
+          - Keep the policy with the retained bucket on stack deletion
+        mutable: review-required
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AllowCloudFrontReadOnly
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub '${SiteBucket.Arn}/*'
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub 'arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${SiteDistribution}'
+                AWS:SourceAccount: !Ref AWS::AccountId
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: '*'
+            Action: s3:*
+            Resource:
+              - !GetAtt SiteBucket.Arn
+              - !Sub '${SiteBucket.Arn}/*'
+            Condition:
+              Bool:
+                aws:SecureTransport: 'false'
+
+Outputs:
+  SiteBucketName:
+    Description: Private origin bucket; upload reviewed site files at its root.
+    Value: !Ref SiteBucket
+  DistributionId:
+    Description: CloudFront distribution identifier for verification and invalidation.
+    Value: !Ref SiteDistribution
+  DistributionDomainName:
+    Description: Generated CloudFront hostname; use this for Week 3 origin planning.
+    Value: !GetAtt SiteDistribution.DomainName
+  WebsiteUrl:
+    Description: Public HTTPS website URL; available after deployment and content upload.
+    Value: !Sub 'https://${SiteDistribution.DomainName}/'
+  OriginAccessControlId:
+    Description: OAC used for signed origin requests.
+    Value: !GetAtt SiteOriginAccessControl.Id
+  PricingModel:
+    Description: Intended pricing model; verify the distribution has no flat-rate plan.
+    Value: Pay-as-you-go

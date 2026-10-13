@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="Team7's cloud capstone: a simple website exploring secure delivery, clear architecture, and repeatable releases.">
+  <meta name="theme-color" content="#142d2a">
+  <title>Team7 | Cloud Capstone</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="./" aria-label="Team7 home"><span class="brand-mark" aria-hidden="true">7</span> TEAM7</a>
+    <nav aria-label="Main navigation"><a href="#architecture">Architecture</a><a href="#release">Release notes</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">CLOUD CAPSTONE / WEEK 02</p>
+        <h1 id="hero-title">Small site.<br>Strong foundations.</h1>
+        <p class="intro">A hands-on exploration of secure cloud delivery. Clear architecture, thoughtful access controls, and changes we can verify.</p>
+        <a class="button" href="#architecture">Explore the architecture <span aria-hidden="true">&#8599;</span></a>
+      </div>
+      <aside class="architecture-card" aria-label="Website delivery design">
+        <div class="card-heading"><span class="status-dot" aria-hidden="true"></span> THE DELIVERY PATH <span>01 / 03</span></div>
+        <ol class="delivery-path">
+          <li><span class="step">01</span><div><h2>Your browser</h2><p>A visitor opens the website.</p></div><span class="path-label">HTTPS</span></li>
+          <li><span class="step">02</span><div><h2>Amazon CloudFront</h2><p>Content delivered from the edge.</p></div><span class="path-label">SIGNED ACCESS</span></li>
+          <li><span class="step">03</span><div><h2>Private Amazon S3</h2><p>Website files behind controlled access.</p></div></li>
+        </ol>
+        <p class="card-footer">Public website. Private origin.</p>
+      </aside>
+    </section>
+    <section class="principles" id="architecture" aria-labelledby="architecture-title">
+      <div class="wrap">
+        <div class="section-heading"><p class="eyebrow">DESIGNED WITH PURPOSE</p><h2 id="architecture-title">Three ideas behind the build.</h2></div>
+        <div class="principle-grid">
+          <article><span class="number">01 /</span><h3>Secure delivery</h3><p>HTTPS protects the connection. Origin Access Control lets CloudFront retrieve files from the private storage bucket.</p></article>
+          <article><span class="number">02 /</span><h3>Independent hosting</h3><p>The website uses managed storage and delivery. It does not depend on keeping a tools virtual machine running.</p></article>
+          <article><span class="number">03 /</span><h3>Repeatable releases</h3><p>Website changes begin in version control. Each release has a visible marker so the published result can be checked.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="release wrap" id="release" aria-labelledby="release-title">
+      <div><p class="eyebrow">THE LATEST CHAPTER</p><h2 id="release-title">Our first release.</h2><p>A static starting point for the Team7 cloud capstone.</p></div>
+      <div class="release-tag"><span>RELEASE MARKER</span><strong>Team7 Week 2 - Release 1</strong></div>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><span>TEAM7 / CLOUD CAPSTONE</span><span>Built to learn. Designed to grow.</span></footer>
+</body>
+</html>

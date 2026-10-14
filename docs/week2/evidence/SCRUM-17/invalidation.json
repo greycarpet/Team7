@@ -1,0 +1,15 @@
+{
+  "observed_at_utc": "2026-10-14T00:03:53.068145+00:00",
+  "Id": "ICN1KYXRYPHLQQJBFAPBLB5CWP",
+  "Status": "Completed",
+  "CreateTime": "2026-10-14T00:03:12.361000+00:00",
+  "InvalidationBatch": {
+    "Paths": {
+      "Quantity": 1,
+      "Items": [
+        "/*"
+      ]
+    },
+    "CallerReference": "SCRUM17-release2-e5472eb"
+  }
+}

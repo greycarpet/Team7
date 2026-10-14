@@ -1,0 +1,111 @@
+# Project-specific contract for the four-resource SCRUM-17 website stack.
+let resource_count = count(Resources.*)
+let statements = Resources.SiteBucketPolicy.Properties.PolicyDocument.Statement
+let statement_count = count(Resources.SiteBucketPolicy.Properties.PolicyDocument.Statement[*])
+
+rule scrum17_scope {
+    %resource_count == 4
+    Resources.SiteBucket.Type == 'AWS::S3::Bucket'
+    Resources.SiteBucketPolicy.Type == 'AWS::S3::BucketPolicy'
+    Resources.SiteOriginAccessControl.Type == 'AWS::CloudFront::OriginAccessControl'
+    Resources.SiteDistribution.Type == 'AWS::CloudFront::Distribution'
+}
+
+rule scrum17_private_encrypted_bucket {
+    Resources.SiteBucket.Properties {
+        PublicAccessBlockConfiguration {
+            BlockPublicAcls == true
+            BlockPublicPolicy == true
+            IgnorePublicAcls == true
+            RestrictPublicBuckets == true
+        }
+        OwnershipControls.Rules[*].ObjectOwnership == 'BucketOwnerEnforced'
+        BucketEncryption.ServerSideEncryptionConfiguration[*].ServerSideEncryptionByDefault.SSEAlgorithm == 'AES256'
+        VersioningConfiguration.Status == 'Enabled'
+        WebsiteConfiguration !exists
+        AccessControl !exists
+        LifecycleConfiguration !exists
+        BucketName.Ref == 'SiteBucketName'
+    }
+    Resources.SiteBucket.DeletionPolicy == 'Retain'
+    Resources.SiteBucket.UpdateReplacePolicy == 'Retain'
+    Resources.SiteBucketPolicy.DeletionPolicy == 'Retain'
+    Resources.SiteBucketPolicy.UpdateReplacePolicy == 'Retain'
+}
+
+rule scrum17_signed_origin {
+    Resources.SiteOriginAccessControl.Properties.OriginAccessControlConfig {
+        Name.Ref == 'OriginAccessControlName'
+        OriginAccessControlOriginType == 's3'
+        SigningBehavior == 'always'
+        SigningProtocol == 'sigv4'
+    }
+    Resources.SiteDistribution.Properties.DistributionConfig.Origins[*] {
+        DomainName.'Fn::GetAtt' == 'SiteBucket.RegionalDomainName'
+        OriginAccessControlId.'Fn::GetAtt' == 'SiteOriginAccessControl.Id'
+        S3OriginConfig.OriginAccessIdentity == ''
+        CustomOriginConfig !exists
+        OriginPath !exists
+    }
+}
+
+rule scrum17_https_static_delivery {
+    Resources.SiteDistribution.Properties.DistributionConfig {
+        Enabled == true
+        DefaultRootObject == 'index.html'
+        PriceClass == 'PriceClass_100'
+        ViewerCertificate.CloudFrontDefaultCertificate == true
+        WebACLId !exists
+        Aliases !exists
+        Logging !exists
+        DefaultCacheBehavior {
+            TargetOriginId == 'SiteS3Origin'
+            ViewerProtocolPolicy == 'redirect-to-https'
+            AllowedMethods == ['GET', 'HEAD']
+            CachedMethods == ['GET', 'HEAD']
+            Compress == true
+            CachePolicyId.Ref == 'CachePolicyId'
+            ResponseHeadersPolicyId.Ref == 'ResponseHeadersPolicyId'
+            FunctionAssociations !exists
+            LambdaFunctionAssociations !exists
+        }
+    }
+}
+
+rule scrum17_scoped_policy {
+    %statement_count == 2
+    Resources.SiteBucketPolicy.Properties.Bucket.Ref == 'SiteBucket'
+    %statements[0] {
+        Effect == 'Allow'
+        Principal.Service == 'cloudfront.amazonaws.com'
+        Action == 's3:GetObject'
+        Resource.'Fn::Sub' == '${SiteBucket.Arn}/*'
+        Condition.StringEquals.'AWS:SourceArn'.'Fn::Sub' == 'arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${SiteDistribution}'
+        Condition.StringEquals.'AWS:SourceAccount'.Ref == 'AWS::AccountId'
+    }
+    %statements[1] {
+        Effect == 'Deny'
+        Principal == '*'
+        Action == 's3:*'
+        Resource[0].'Fn::GetAtt' == 'SiteBucket.Arn'
+        Resource[1].'Fn::Sub' == '${SiteBucket.Arn}/*'
+        Condition.Bool.'aws:SecureTransport' == 'false'
+    }
+}
+
+rule scrum17_naming_and_tags {
+    Parameters.SiteBucketName.Default == 's3-site-team07-a7f391'
+    Parameters.OriginAccessControlName.Default == 'oac-site-team07'
+    Resources.SiteDistribution.Properties.DistributionConfig.Comment == 'cf-site-team07'
+    Resources.*[ Type IN ['AWS::S3::Bucket', 'AWS::CloudFront::Distribution'] ].Properties {
+        some Tags[*] { Key == 'Project' Value == 'Team7' }
+        some Tags[*] { Key == 'Team' Value == 'Team7' }
+        some Tags[*] { Key == 'Environment' Value == 'Dev' }
+        some Tags[*] { Key == 'Workload' Value == 'Site' }
+        some Tags[*] { Key == 'ManagedBy' Value == 'Team7' }
+        some Tags[*] { Key == 'Repository' Value == 'Team7' }
+        some Tags[*] { Key == 'JiraProject' Value == 'SCRUM' }
+        some Tags[*] { Key == 'Component' }
+        some Tags[*] { Key == 'Name' }
+    }
+}

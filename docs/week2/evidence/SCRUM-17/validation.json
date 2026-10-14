@@ -1,0 +1,56 @@
+{
+  "checked_at": "2026-10-13T23:31:47.593457+00:00",
+  "aws_writes": false,
+  "template_sha256": "26b23c1d1a901dec75075ca3c4607d08d1b0b77ca16c6810f9e95aaec3d6f266",
+  "rules_sha256": "a8fe054c141ef9a12b44544cea6570f77bbc8f36f1c0a37bb4ba1cbe609acb38",
+  "cfn_lint_version": "cfn-lint 1.57.2",
+  "cfn_guard_version": "cfn-guard 3.2.1",
+  "lint": {
+    "exit_code": 0,
+    "findings": []
+  },
+  "guard": {
+    "status": "PASS",
+    "rules_passed": [
+      "scrum17_https_static_delivery",
+      "scrum17_naming_and_tags",
+      "scrum17_private_encrypted_bucket",
+      "scrum17_scope",
+      "scrum17_scoped_policy",
+      "scrum17_signed_origin"
+    ]
+  },
+  "negative_checks": [
+    {
+      "case": "public_bucket",
+      "result": "rejected",
+      "expected_rule": "scrum17_private_encrypted_bucket"
+    },
+    {
+      "case": "anonymous_read_allow",
+      "result": "rejected",
+      "expected_rule": "scrum17_scoped_policy"
+    },
+    {
+      "case": "broad_distribution_scope",
+      "result": "rejected",
+      "expected_rule": "scrum17_scoped_policy"
+    },
+    {
+      "case": "unsigned_origin",
+      "result": "rejected",
+      "expected_rule": "scrum17_signed_origin"
+    },
+    {
+      "case": "http_allowed",
+      "result": "rejected",
+      "expected_rule": "scrum17_https_static_delivery"
+    },
+    {
+      "case": "waf_added",
+      "result": "rejected",
+      "expected_rule": "scrum17_https_static_delivery"
+    }
+  ],
+  "service_predeployment_validation": "Not run; change-set creation awaits approval."
+}

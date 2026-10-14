@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-13",
+  "currency": "USD",
+  "region": "us-east-2",
+  "runtime_hours": "20",
+  "continuous_hours": "730",
+  "ebs_gb": "8",
+  "s3_total_gb": "1",
+  "s3_put_requests": "1000",
+  "s3_get_requests": "10000",
+  "cloudfront_gb": "1",
+  "cloudfront_https_requests": "10000",
+  "invalidation_paths": "10",
+  "ec2_egress_gb": "0.1",
+  "illustrative_october": {
+    "status": "Historical planning example; not the deployed account month-end projection",
+    "actual_mtd": "0",
+    "planned_start_utc": "2026-10-14T00:00:00Z",
+    "end_utc": "2026-11-01T00:00:00Z",
+    "month_days": "31",
+    "retained_days": "18",
+    "remaining_lab_hours": "20"
+  },
+  "rates": {
+    "ec2_hour": "0.0104",
+    "gp3_gb_month": "0.08",
+    "ipv4_hour": "0.005",
+    "s3_gb_month": "0.023",
+    "s3_put_request": "0.000005",
+    "s3_get_request": "0.0000004",
+    "cloudfront_gb_after_allowance": "0.085",
+    "cloudfront_https_request_after_allowance": "0.000001",
+    "invalidation_path_after_allowance": "0.005",
+    "ec2_egress_gb_after_allowance": "0.09"
+  },
+  "assumed_remaining_allowances": {
+    "cloudfront_gb": "1024",
+    "cloudfront_https_requests": "10000000",
+    "invalidation_paths": "1000",
+    "ec2_egress_gb": "100"
+  }
+}

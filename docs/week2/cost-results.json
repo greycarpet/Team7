@@ -1,0 +1,48 @@
+{
+  "lab": {
+    "rows": {
+      "ec2": "0.2080",
+      "ebs": "0.64",
+      "ipv4": "0.100",
+      "s3_storage": "0.023",
+      "s3_put": "0.005000",
+      "s3_get": "0.0040000",
+      "cloudfront_and_egress_with_allowances": "0.000000"
+    },
+    "before_account_credits": "0.9800000",
+    "shared_allowances_exhausted": "1.1340000"
+  },
+  "continuous": {
+    "rows": {
+      "ec2": "7.5920",
+      "ebs": "0.64",
+      "ipv4": "3.650",
+      "s3_storage": "0.023",
+      "s3_put": "0.005000",
+      "s3_get": "0.0040000",
+      "cloudfront_and_egress_with_allowances": "0.000000"
+    },
+    "before_account_credits": "11.9140000",
+    "shared_allowances_exhausted": "12.0680000"
+  },
+  "illustrative_october": {
+    "status": "Historical planning example; not the deployed account month-end projection",
+    "projection": "0.7019677419354838709677419355",
+    "budget_headroom": "4.298032258064516129032258064",
+    "alert_headroom": "3.298032258064516129032258064"
+  },
+  "lab_headroom": {
+    "budget": "4.0200000",
+    "alert": "3.0200000"
+  },
+  "runtime_boundaries_with_no_other_costs": {
+    "hours_at_4_dollars": "216.1038961038961038961038961",
+    "hours_at_5_dollars": "281.0389610389610389610389610"
+  },
+  "sensitivity": {
+    "additional_10_running_hours": "0.1540",
+    "additional_1_gb_ebs": "0.08",
+    "additional_1_gb_s3": "0.023",
+    "retained_ipv4_730_hours": "3.650"
+  }
+}

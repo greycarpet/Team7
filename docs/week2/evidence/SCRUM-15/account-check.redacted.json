@@ -1,0 +1,63 @@
+{
+  "captured_at_utc": "2026-10-13T22:45:03.258849+00:00",
+  "source": "Read-only AWS APIs; account identifiers and credit balances omitted",
+  "region": "us-east-2",
+  "budget": {
+    "name": "budget-monthly-team07",
+    "amount_usd": "5.0",
+    "period": "MONTHLY",
+    "metric": "UnblendedCost",
+    "excluded_record_types": [
+      "Credit",
+      "Refund"
+    ],
+    "scope": "Primary billing view; no project or region restriction returned",
+    "actual_mtd_usd": "0.0",
+    "billing_updated_at_utc": "2026-10-13T15:13:42.861000+00:00",
+    "notifications": [
+      {
+        "NotificationType": "ACTUAL",
+        "ComparisonOperator": "GREATER_THAN",
+        "Threshold": 100,
+        "NotificationState": "OK"
+      },
+      {
+        "NotificationType": "ACTUAL",
+        "ComparisonOperator": "GREATER_THAN",
+        "Threshold": 80,
+        "NotificationState": "OK"
+      },
+      {
+        "NotificationType": "FORECASTED",
+        "ComparisonOperator": "GREATER_THAN",
+        "Threshold": 100,
+        "NotificationState": "OK"
+      }
+    ],
+    "forecast_amount_returned": false,
+    "taxes": "No tax exclusion returned"
+  },
+  "plan": {
+    "type": "FREE",
+    "status": "ACTIVE",
+    "plan_expiration_utc": "2027-03-30T23:01:33.427000+00:00",
+    "positive_remaining_credits_verified": true,
+    "individual_credit_expirations_verified": false,
+    "free_tier_usage_records_returned": 0
+  },
+  "inventory": {
+    "ohio_ec2_instances": 0,
+    "ohio_ebs_volumes": 0,
+    "ohio_elastic_ips": 0,
+    "ohio_nat_gateways": 0,
+    "s3_buckets_returned": 0,
+    "cloudfront": "ListDistributions succeeded and returned an empty object; no distribution details returned",
+    "foundation_status": "CREATE_COMPLETE"
+  },
+  "limitations": [
+    "Regional inventory is not an all-region account audit.",
+    "No future billing guarantee; budget data lag and taxes remain relevant.",
+    "Empty Free Tier usage data does not prove eligibility or available allowances.",
+    "No AWS infrastructure resources changed."
+  ]
+}

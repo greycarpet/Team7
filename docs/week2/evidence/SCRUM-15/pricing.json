@@ -1,0 +1,246 @@
+{
+  "retrieved_at_utc": "2026-10-13T22:44:27.296367+00:00",
+  "prices": {
+    "ec2": [
+      {
+        "sku": "J8F5Q9BVHKTDD4YC",
+        "attributes": {
+          "enhancedNetworkingSupported": "No",
+          "intelTurboAvailable": "Yes",
+          "memory": "1 GiB",
+          "dedicatedEbsThroughput": "Up to 2085 Mbps",
+          "vcpu": "2",
+          "classicnetworkingsupport": "false",
+          "capacitystatus": "Used",
+          "locationType": "AWS Region",
+          "storage": "EBS only",
+          "instanceFamily": "General purpose",
+          "operatingSystem": "Linux",
+          "intelAvx2Available": "Yes",
+          "instanceFamilyCategory": "General Purpose",
+          "regionCode": "us-east-2",
+          "physicalProcessor": "Intel Skylake E5 2686 v5",
+          "clockSpeed": "3.1 GHz",
+          "ecu": "NA",
+          "networkPerformance": "Up to 5 Gigabit",
+          "servicename": "Amazon Elastic Compute Cloud",
+          "gpuMemory": "NA",
+          "dedicatedEbsThroughputDescription": "87 Mbps",
+          "vpcnetworkingsupport": "true",
+          "instanceType": "t3.micro",
+          "tenancy": "Shared",
+          "usagetype": "USE2-BoxUsage:t3.micro",
+          "normalizationSizeFactor": "0.5",
+          "intelAvxAvailable": "Yes",
+          "processorFeatures": "AVX; AVX2; Intel AVX; Intel AVX2; Intel AVX512; Intel Turbo",
+          "servicecode": "AmazonEC2",
+          "licenseModel": "No License required",
+          "currentGeneration": "Yes",
+          "preInstalledSw": "NA",
+          "location": "US East (Ohio)",
+          "processorArchitecture": "64-bit",
+          "marketoption": "OnDemand",
+          "operation": "RunInstances",
+          "availabilityzone": "NA"
+        },
+        "on_demand": {
+          "J8F5Q9BVHKTDD4YC.JRTCKXETXF": {
+            "priceDimensions": {
+              "J8F5Q9BVHKTDD4YC.JRTCKXETXF.6YS6EN2CT7": {
+                "unit": "Hrs",
+                "endRange": "Inf",
+                "description": "$0.0104 per On Demand Linux t3.micro Instance Hour",
+                "appliesTo": [],
+                "rateCode": "J8F5Q9BVHKTDD4YC.JRTCKXETXF.6YS6EN2CT7",
+                "beginRange": "0",
+                "pricePerUnit": {
+                  "USD": "0.0104000000"
+                }
+              }
+            },
+            "sku": "J8F5Q9BVHKTDD4YC",
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "termAttributes": {}
+          }
+        }
+      }
+    ],
+    "gp3": [
+      {
+        "sku": "M6UGCCQ3CDJQAA37",
+        "attributes": {
+          "maxThroughputvolume": "2000 MiB/s",
+          "volumeType": "General Purpose",
+          "maxIopsvolume": "80000",
+          "usagetype": "USE2-EBS:VolumeUsage.gp3",
+          "locationType": "AWS Region",
+          "maxVolumeSize": "64 TiB",
+          "storageMedia": "SSD-backed",
+          "regionCode": "us-east-2",
+          "servicecode": "AmazonEC2",
+          "volumeApiName": "gp3",
+          "location": "US East (Ohio)",
+          "servicename": "Amazon Elastic Compute Cloud",
+          "operation": ""
+        },
+        "on_demand": {
+          "M6UGCCQ3CDJQAA37.JRTCKXETXF": {
+            "priceDimensions": {
+              "M6UGCCQ3CDJQAA37.JRTCKXETXF.6YS6EN2CT7": {
+                "unit": "GB-Mo",
+                "endRange": "Inf",
+                "description": "$0.08 per GB-month of General Purpose (gp3) provisioned storage - US East (Ohio)",
+                "appliesTo": [],
+                "rateCode": "M6UGCCQ3CDJQAA37.JRTCKXETXF.6YS6EN2CT7",
+                "beginRange": "0",
+                "pricePerUnit": {
+                  "USD": "0.0800000000"
+                }
+              }
+            },
+            "sku": "M6UGCCQ3CDJQAA37",
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "termAttributes": {}
+          }
+        }
+      }
+    ],
+    "s3_storage": [
+      {
+        "sku": "YPGKVRB2EKTVDJDT",
+        "attributes": {
+          "volumeType": "Standard",
+          "storageClass": "General Purpose",
+          "regionCode": "us-east-2",
+          "servicecode": "AmazonS3",
+          "durability": "99.999999999%",
+          "usagetype": "USE2-TimedStorage-ByteHrs",
+          "locationType": "AWS Region",
+          "location": "US East (Ohio)",
+          "servicename": "Amazon Simple Storage Service",
+          "availability": "99.99%",
+          "operation": ""
+        },
+        "on_demand": {
+          "YPGKVRB2EKTVDJDT.JRTCKXETXF": {
+            "priceDimensions": {
+              "YPGKVRB2EKTVDJDT.JRTCKXETXF.PGHJ3S3EYE": {
+                "unit": "GB-Mo",
+                "endRange": "51200",
+                "description": "$0.023 per GB - first 50 TB / month of storage used",
+                "appliesTo": [],
+                "rateCode": "YPGKVRB2EKTVDJDT.JRTCKXETXF.PGHJ3S3EYE",
+                "beginRange": "0",
+                "pricePerUnit": {
+                  "USD": "0.0230000000"
+                }
+              },
+              "YPGKVRB2EKTVDJDT.JRTCKXETXF.PXJDJ3YRG3": {
+                "unit": "GB-Mo",
+                "endRange": "Inf",
+                "description": "$0.021 per GB - storage used / month over 500 TB",
+                "appliesTo": [],
+                "rateCode": "YPGKVRB2EKTVDJDT.JRTCKXETXF.PXJDJ3YRG3",
+                "beginRange": "512000",
+                "pricePerUnit": {
+                  "USD": "0.0210000000"
+                }
+              },
+              "YPGKVRB2EKTVDJDT.JRTCKXETXF.D42MF2PVJS": {
+                "unit": "GB-Mo",
+                "endRange": "512000",
+                "description": "$0.022 per GB - next 450 TB / month of storage used",
+                "appliesTo": [],
+                "rateCode": "YPGKVRB2EKTVDJDT.JRTCKXETXF.D42MF2PVJS",
+                "beginRange": "51200",
+                "pricePerUnit": {
+                  "USD": "0.0220000000"
+                }
+              }
+            },
+            "sku": "YPGKVRB2EKTVDJDT",
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "termAttributes": {}
+          }
+        }
+      }
+    ],
+    "s3_put": [
+      {
+        "sku": "GJKK9PMSTKPNGZS9",
+        "attributes": {
+          "regionCode": "us-east-2",
+          "servicecode": "AmazonS3",
+          "groupDescription": "PUT/COPY/POST or LIST requests",
+          "usagetype": "USE2-Requests-Tier1",
+          "locationType": "AWS Region",
+          "location": "US East (Ohio)",
+          "servicename": "Amazon Simple Storage Service",
+          "operation": "",
+          "group": "S3-API-Tier1"
+        },
+        "on_demand": {
+          "GJKK9PMSTKPNGZS9.JRTCKXETXF": {
+            "priceDimensions": {
+              "GJKK9PMSTKPNGZS9.JRTCKXETXF.6YS6EN2CT7": {
+                "unit": "Requests",
+                "endRange": "Inf",
+                "description": "$0.005 per 1,000 PUT, COPY, POST, or LIST requests",
+                "appliesTo": [],
+                "rateCode": "GJKK9PMSTKPNGZS9.JRTCKXETXF.6YS6EN2CT7",
+                "beginRange": "0",
+                "pricePerUnit": {
+                  "USD": "0.0000050000"
+                }
+              }
+            },
+            "sku": "GJKK9PMSTKPNGZS9",
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "termAttributes": {}
+          }
+        }
+      }
+    ],
+    "s3_get": [
+      {
+        "sku": "DJEKB32FV4HNZJZY",
+        "attributes": {
+          "regionCode": "us-east-2",
+          "servicecode": "AmazonS3",
+          "groupDescription": "GET and all other requests",
+          "usagetype": "USE2-Requests-Tier2",
+          "locationType": "AWS Region",
+          "location": "US East (Ohio)",
+          "servicename": "Amazon Simple Storage Service",
+          "operation": "",
+          "group": "S3-API-Tier2"
+        },
+        "on_demand": {
+          "DJEKB32FV4HNZJZY.JRTCKXETXF": {
+            "priceDimensions": {
+              "DJEKB32FV4HNZJZY.JRTCKXETXF.6YS6EN2CT7": {
+                "unit": "Requests",
+                "endRange": "Inf",
+                "description": "$0.004 per 10,000 GET and all other requests",
+                "appliesTo": [],
+                "rateCode": "DJEKB32FV4HNZJZY.JRTCKXETXF.6YS6EN2CT7",
+                "beginRange": "0",
+                "pricePerUnit": {
+                  "USD": "0.0000004000"
+                }
+              }
+            },
+            "sku": "DJEKB32FV4HNZJZY",
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "termAttributes": {}
+          }
+        }
+      }
+    ]
+  }
+}

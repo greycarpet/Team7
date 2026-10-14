@@ -2,9 +2,9 @@
 
 **From:** Josh Escobar | **Intended recipient:** Alyssa Esteves / [SCRUM-19](https://joshescobarx.atlassian.net/browse/SCRUM-19)
 
-**Prepared:** October 13, 2026 | **Reconciled:** October 14 UTC / October 13 America/Chicago | **Status:** In Review; ADR acceptance pending
+**Prepared:** October 13, 2026 | **Reconciled:** October 14 UTC / October 13 America/Chicago | **Status:** Accepted by Josh Escobar through PR #4 approval on October 13, 2026 (America/Chicago); handoff posted to SCRUM-19
 
-The architect's draft is available in [the cost report](SCRUM-15-costs.md) and [ADR-001](../adr/ADR-001.md), under [PR #4](https://github.com/greycarpet/Team7/pull/4). The proposed lab configuration is $0.98/month before account credits; 730-hour operation is $11.91. Both now have saved calculator links, original CSV exports and genuine screenshots. Preserve their assumptions when assembling the shared Solution Architecture Document.
+The accepted architect package is available in [the cost report](SCRUM-15-costs.md) and [ADR-001](../adr/ADR-001.md), under [PR #4](https://github.com/greycarpet/Team7/pull/4). The proposed lab configuration is $0.98/month before account credits; 730-hour operation is $11.91. Both have saved calculator links, original CSV exports and genuine screenshots. Preserve their assumptions when assembling the shared Solution Architecture Document.
 
 ## Prepared architect fields
 
@@ -23,7 +23,7 @@ Josh explicitly confirmed **"Already entered those sections"** in response to wh
 | Free Tier | Active FREE plan verified; account credits tracked privately. No legacy signup allowances assumed. Shared delivery/request allowances are conditional on remaining capacity. |
 | Decision and rejected option | Private S3 + CloudFront chosen; hosting on the tools EC2 rejected because stopping it would take down the website and continuous operation exceeds the modeled budget |
 | Consequences | Cache management, retained versions and EBS charges, CPU Standard-mode limits, ongoing budget monitoring, separate VM and website operations |
-| Decision status | ADR-001 Proposed; requested reviewer Alyssa; actual review date and acceptance pending. PR #5 approval does not approve this ADR or PR #4. |
+| Decision status | ADR-001 Accepted by Josh Escobar through explicit PR #4 approval on October 13, 2026 (America/Chicago). Separate Alyssa/instructor approval is not claimed. |
 
 ### Exact official form mapping
 
@@ -57,16 +57,16 @@ The tier rows are not extra charges. [AWS S3 storage classes](https://aws.amazon
 
 | Input | Owner and status |
 | --- | --- |
-| Cost table and ADR | SCRUM-38/39: review drafts, saved calculator estimates and exports prepared; ADR acceptance pending |
+| Cost table and ADR | SCRUM-38/39: cost package and ADR accepted through Josh's PR #4 approval; calculator estimates and exports included |
 | Architect form sections | Josh confirms entered; no independent saved-form readback |
 | Actual instance/volume settings and VM facts | SCRUM-16, Alyssa: not supplied by this architecture task |
 | HTTPS URL, OAC/privacy checks, redeployment evidence | SCRUM-17, Josh: Done; PR #5 merged and App/DevOps form completion confirmed |
 | Authorized/unauthorized SSH results, CloudShell test | SCRUM-18, Josh: pending deployed instance and coordinated testing |
 | Official form, course checks and final PDF | SCRUM-19, Alyssa: pending all contributor inputs |
 
-## Evidence and review remaining
+## Acceptance and implementation follow-up
 
-- Review PR #4 and ADR-001; confirm proposed monthly usage, record the actual reviewer/date/decision, and confirm the evidence format. SCRUM-15/38/39 remain In Review until review is complete. A posted handoff is not proof of recipient acceptance.
+- Josh explicitly stated "PR #4 approved" on October 13, 2026 (America/Chicago), accepting the architecture/cost package and completing the outstanding review step for SCRUM-15/38/39. The architect handoff was posted to SCRUM-19 in comment 10031; this does not claim separate recipient or instructor acceptance. Final merge and Jira closure are recorded in PR #4 and the Jira issues.
 - Website settings have been reconciled with SCRUM-17 evidence. Reconcile planned VM/disk/CPU/address settings when SCRUM-16 supplies them; this does not prevent preparing the cost/ADR package.
 - Per-credit expiry/service restrictions, the current account-wide projection, and independent CloudFront pricing-plan confirmation remain UNVERIFIED. Organization policy denied the pricing-plan lookup; no permissions were changed or bypass attempted. The model subtracts no account credits.
 - The official form's deployment screenshot is supplied by SCRUM-17. The execution guide also suggests private budget/Free Tier/credit console screenshots; these are not included here. If the instructor requires that exact format, obtain genuine private captures before course submission. The guide's suggested list is not an independently verified course rubric.

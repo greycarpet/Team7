@@ -1,6 +1,6 @@
 # SCRUM-15 estimate evidence
 
-Prepared October 13, 2026 for the Week 2 cost/ADR draft. These records contain no credentials, private keys or full account identifiers.
+Prepared October 13, 2026 for the Week 2 cost/ADR package, accepted through Josh Escobar's PR #4 approval on October 13, 2026 (America/Chicago). These records contain no credentials, private keys or full account identifiers.
 
 | Record | Provenance and use |
 | --- | --- |
@@ -33,4 +33,4 @@ Screenshots use the actual UTC date and Team7 course naming pattern. The browser
 
 [Provenance and integrity hashes](calculator-evidence.json) records original file hashes, capture/write times and CSV reconciliation. Public estimate inputs contain no account identifiers, private billing balances or credentials. The calculator's rounded S3 row differs from the price-list model's unrounded $0.032; final monthly totals agree to cents. No live account credits are built into either estimate.
 
-Website tests and screenshots are in the [SCRUM-17 package](../SCRUM-17/README.md). The October 13 account inventory predates that deployment and is not an all-region audit. This package has no private billing-console screenshot or instructor/ADR approval. User confirmation of Architect fields, review status, and the distinction between the official form and the guide's suggested screenshots are recorded in [the handoff](../../SCRUM-15-handoff.md).
+Website tests and screenshots are in the [SCRUM-17 package](../SCRUM-17/README.md). The October 13 account inventory predates that deployment and is not an all-region audit. This package has no private billing-console screenshot or instructor approval. User confirmation of Architect fields, project-owner acceptance of ADR-001 through PR #4, and the distinction between the official form and the guide's suggested screenshots are recorded in [the handoff](../../SCRUM-15-handoff.md).

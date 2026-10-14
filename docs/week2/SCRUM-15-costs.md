@@ -2,7 +2,7 @@
 
 **Task:** [SCRUM-15](https://joshescobarx.atlassian.net/browse/SCRUM-15) / [SCRUM-38](https://joshescobarx.atlassian.net/browse/SCRUM-38)
 
-**Owner:** Josh Escobar | **Date:** October 13, 2026 | **Status:** Draft for review
+**Owner:** Josh Escobar | **Date:** October 13, 2026 | **Status:** Accepted by project owner through PR #4 approval on October 13, 2026 (America/Chicago)
 
 **Workload region:** US East (Ohio), us-east-2 | **Currency:** USD | **Taxes:** excluded
 
@@ -125,4 +125,4 @@ Primary project sources: [SCRUM-15](https://joshescobarx.atlassian.net/browse/SC
 
 Additional pricing references checked October 13: [T3](https://aws.amazon.com/ec2/instance-types/t3/), [gp3](https://aws.amazon.com/ebs/pricing/), [IPv4](https://aws.amazon.com/vpc/pricing/), [S3](https://aws.amazon.com/s3/pricing/), [CloudFormation](https://aws.amazon.com/cloudformation/pricing/), [Budgets](https://aws.amazon.com/aws-cost-management/aws-budgets/pricing/), [basic monitoring](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-metrics-basic-detailed.html), [EC2 stop/start](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ec2-instance-stop-start-works.html).
 
-Saved calculator links, original CSV exports and course-named calculator screenshots are now included. Josh confirmed that document control, component costs, and redundancy/storage-tier sections have been entered in the official form. ADR/PR review remains pending. Individual credit terms, current account-wide projection and independent CloudFront pricing-plan verification remain explicitly unverified; no discount or guaranteed payable bill is asserted from those gaps. See [handoff](SCRUM-15-handoff.md) for the exact form mapping and remaining review.
+Saved calculator links, original CSV exports and course-named calculator screenshots are now included. Josh confirmed that document control, component costs, and redundancy/storage-tier sections have been entered in the official form, then approved PR #4 on October 13, 2026 (America/Chicago). Individual credit terms, current account-wide projection and independent CloudFront pricing-plan verification remain explicitly unverified; acceptance does not assert a discount or guaranteed payable bill from those gaps. See [handoff](SCRUM-15-handoff.md) for the exact form mapping and implementation follow-up.

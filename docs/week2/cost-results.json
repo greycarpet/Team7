@@ -25,7 +25,8 @@
     "before_account_credits": "11.9140000",
     "shared_allowances_exhausted": "12.0680000"
   },
-  "current_month_conditional": {
+  "illustrative_october": {
+    "status": "Historical planning example; not the deployed account month-end projection",
     "projection": "0.7019677419354838709677419355",
     "budget_headroom": "4.298032258064516129032258064",
     "alert_headroom": "3.298032258064516129032258064"

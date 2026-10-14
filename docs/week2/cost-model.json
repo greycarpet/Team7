@@ -12,7 +12,8 @@
   "cloudfront_https_requests": "10000",
   "invalidation_paths": "10",
   "ec2_egress_gb": "0.1",
-  "current_month": {
+  "illustrative_october": {
+    "status": "Historical planning example; not the deployed account month-end projection",
     "actual_mtd": "0",
     "planned_start_utc": "2026-10-14T00:00:00Z",
     "end_utc": "2026-11-01T00:00:00Z",

@@ -1,0 +1,3 @@
+# Preserve original calculator export and screenshot bytes for integrity hashes.
+*.csv -text
+*.jpg -text

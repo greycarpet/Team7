@@ -1,0 +1,18 @@
+﻿Estimate summary
+Upfront cost,Monthly cost,Total 12 months cost,Currency
+0,11.91,142.92,USD
+,,* Includes upfront cost
+
+
+Detailed Estimate
+Group hierarchy,Region,Description,Service,Upfront,Monthly,First 12 months total,Currency,Status,Configuration summary
+Team7 Week 2 - Ohio - Continuous 730 hours,US East (Ohio),Team7 continuous comparison - EC2 compute only; 730 h; EBS and IPv4 separate,Amazon EC2 ,0,7.592,91.10,USD,,"Tenancy (Shared Instances), Operating system (Linux), Workload (Consistent, Number of instances: 1), Advance EC2 instance (t3.micro), Pricing strategy (On-Demand Utilization: 730 Hours/Month), Enable monitoring (disabled), DT Inbound: Not selected (0 TB per month), DT Outbound: Not selected (0 TB per month), DT Intra-Region: (0 TB per month)"
+Team7 Week 2 - Ohio - Continuous 730 hours,US East (Ohio),"Team7 Week 2 - 8 GiB gp3 retained all month, including stopped VM",Amazon Elastic Block Store (EBS),0,0.64,7.68,USD,,"Number of volumes (1), Average duration of volume (730 hours per month), Storage amount per volume (8 GB), Snapshot Frequency (No snapshot storage), Provisioning IOPS per volume (gp3) (3000), General Purpose SSD (gp3) - Throughput (125 MBps)"
+Team7 Week 2 - Ohio - Continuous 730 hours,US East (Ohio),Team7 site - S3 Standard; 1 GB current and retained versions; no direct internet delivery,S3 Standard,0,0.03,0.36,USD,,"S3 Standard storage (1 GB per month), PUT, COPY, POST, LIST requests to S3 Standard (1000), GET, SELECT, and all other requests from S3 Standard (10000)"
+Team7 Week 2 - Ohio - Continuous 730 hours,US East (Ohio),Team7 PAYG - 1 GB US viewers and 10000 HTTPS requests; billable inputs 0 after shared 1TB/10M allowances; 10 invalidation paths within 1000 free; no WAF,Amazon CloudFront,0,0,0.00,USD,,"Data transfer out to internet (0 GB per month), Data transfer out to origin (0 GB per month), Number of requests (HTTPS) (0 per month)"
+Team7 Week 2 - Ohio - Continuous 730 hours,US East (Ohio),Team7 continuous comparison - 1 in-use public IPv4 x 730 hours; no idle IP,Public IPv4 Address,0,3.65,43.80,USD,,"Number of In-use public IPv4 addresses (1), Number of Idle public IPv4 addresses (0)"
+
+
+
+Acknowledgement
+"* AWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services."

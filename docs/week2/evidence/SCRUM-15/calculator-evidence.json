@@ -1,0 +1,104 @@
+{
+  "recorded_at_utc": "2026-10-14T00:47:09.722424+00:00",
+  "custodian": "Josh Escobar",
+  "source": "AWS public Pricing Calculator UI; Share and Export > CSV",
+  "lab_summary_capture_utc": "2026-10-14T00:38:26.265Z",
+  "continuous_summary_capture_utc": "2026-10-14T00:39:05.758Z",
+  "other_capture_time_basis": "Local file write times immediately after browser captures; not AWS-side timestamps.",
+  "screenshots": "Original native JPEG bytes; visually reviewed; fullPage request captured the app scroll viewport. CSVs preserve full inputs.",
+  "csv_exports": "Original downloaded bytes copied without modification; no account credits or taxes included.",
+  "calculator_adjustments": [
+    "EBS retained 730 hours separately from EC2 runtime in both estimates.",
+    "Lab IPv4 uses 20/730 average address-months because the form fixes 730 hours; actual plan is one address for 20 hours.",
+    "CloudFront billable usage manually excludes assumed available shared allowances. Gross usage stays in the description.",
+    "Ten invalidation paths and 0.1 GB EC2 egress are covered by assumed remaining shared allowances; these are in the model, not separate paid calculator lines.",
+    "S3 CSV row rounded to 0.03; unrounded model storage and request sum is 0.032."
+  ],
+  "estimates": {
+    "lab": {
+      "url": "https://calculator.aws/#/estimate?id=cd51e782cfb2e064fcefe2cc0bd67ae62706da26",
+      "csv": "20261014_Team7_aws_w2-cost-lab.csv",
+      "csv_summary_monthly_usd": "0.98",
+      "sum_exported_rows_usd": "0.978",
+      "unrounded_price_list_model_usd": "0.9800000",
+      "difference_from_model_usd": "-0.0020000",
+      "rounded_monthly_totals_match": true,
+      "row_inputs_checked": true
+    },
+    "continuous": {
+      "url": "https://calculator.aws/#/estimate?id=340bd531f85e38382e84d5701c939d8e6cd4d4d4",
+      "csv": "20261014_Team7_aws_w2-cost-continuous.csv",
+      "csv_summary_monthly_usd": "11.91",
+      "sum_exported_rows_usd": "11.912",
+      "unrounded_price_list_model_usd": "11.9140000",
+      "difference_from_model_usd": "-0.0020000",
+      "rounded_monthly_totals_match": true,
+      "row_inputs_checked": true
+    }
+  },
+  "files": [
+    {
+      "file": "20261014_Team7_aws_w2-cost-cloudfront-inputs.jpg",
+      "bytes": 74325,
+      "sha256": "70497f5d78087780937b38249cd33e43beb5b9a3bbcb026f99a3bfa51f4043ea",
+      "local_write_time_utc": "2026-10-14T00:35:35.627936+00:00",
+      "redaction": "none; public calculator inputs only"
+    },
+    {
+      "file": "20261014_Team7_aws_w2-cost-continuous.csv",
+      "bytes": 2393,
+      "sha256": "c0861dda9bb36136c18076a588aad437c588cc2ef97793b80b86c67b08fdcf6e",
+      "local_write_time_utc": "2026-10-14T00:39:17.631548+00:00",
+      "redaction": "none; public calculator inputs only"
+    },
+    {
+      "file": "20261014_Team7_aws_w2-cost-ebs-inputs.jpg",
+      "bytes": 89026,
+      "sha256": "b2380244771859112d90b6276f582e31b39828b394315fdd61fb409fe20eaef1",
+      "local_write_time_utc": "2026-10-14T00:34:44.278231+00:00",
+      "redaction": "none; public calculator inputs only"
+    },
+    {
+      "file": "20261014_Team7_aws_w2-cost-ec2-inputs.jpg",
+      "bytes": 73264,
+      "sha256": "fc189401c05777d86c24ef2a4b859c9ac86164e1367122b1fc651cb634b13bdc",
+      "local_write_time_utc": "2026-10-14T00:34:11.796807+00:00",
+      "redaction": "none; public calculator inputs only"
+    },
+    {
+      "file": "20261014_Team7_aws_w2-cost-estimate-continuous.jpg",
+      "bytes": 80629,
+      "sha256": "8071ad07053a4f5988768a9892adb014da9969697504f942c515463ace5d83cb",
+      "local_write_time_utc": "2026-10-14T00:39:05.753047+00:00",
+      "redaction": "none; public calculator inputs only"
+    },
+    {
+      "file": "20261014_Team7_aws_w2-cost-estimate-lab.jpg",
+      "bytes": 86294,
+      "sha256": "0f3667ee4215b0b28a2da9e3a611cc9d5198ce864b62d3f1d042830e2792e523",
+      "local_write_time_utc": "2026-10-14T00:38:26.265957+00:00",
+      "redaction": "none; public calculator inputs only"
+    },
+    {
+      "file": "20261014_Team7_aws_w2-cost-ipv4-inputs.jpg",
+      "bytes": 69092,
+      "sha256": "aeea74fdf828f5eed5728f5ed65788aba33478f9f4ec39b8c77c68e05e7877a7",
+      "local_write_time_utc": "2026-10-14T00:36:26.514152+00:00",
+      "redaction": "none; public calculator inputs only"
+    },
+    {
+      "file": "20261014_Team7_aws_w2-cost-lab.csv",
+      "bytes": 2379,
+      "sha256": "2a82917aba915ddd8d95c9034c64ce22a9e408f563b907cdf40be48e1524b140",
+      "local_write_time_utc": "2026-10-14T00:38:19.180945+00:00",
+      "redaction": "none; public calculator inputs only"
+    },
+    {
+      "file": "20261014_Team7_aws_w2-cost-s3-inputs.jpg",
+      "bytes": 88731,
+      "sha256": "9f3d73300e225912ddc08cdb85640abbfda386b4200c76398c106b8c10036ab7",
+      "local_write_time_utc": "2026-10-14T00:35:11.475298+00:00",
+      "redaction": "none; public calculator inputs only"
+    }
+  ]
+}

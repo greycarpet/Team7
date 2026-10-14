@@ -8,9 +8,19 @@
 
 The proposed lab configuration costs **$0.98/month before account credits**, assuming 20 running hours and available standard CloudFront/transfer allowances. Continuous operation at 730 hours costs **$11.91/month**, exceeding the $5 budget. Keep the static website independent of EC2 so the tools instance can be stopped after testing. [ADR-001](../adr/ADR-001.md) records this decision.
 
-## Planned inputs
+## Estimate inputs and deployment reconciliation
 
-These are planning values, not deployed settings. Read-only checks on October 13 found no EC2 instances, EBS volumes, Elastic IPs or NAT gateways in Ohio, and no S3 buckets. CloudFront returned no distribution details. The existing foundation stack remains CREATE_COMPLETE.
+Monthly usage quantities are planning allowances, not measured consumption. The earlier October 13 inventory in this evidence package predates the website deployment. SCRUM-17 subsequently deployed the website, verified both releases, and closed after PR #5 was merged and Josh confirmed the official form was updated. EC2 settings remain PLANNED under SCRUM-16; SCRUM-18 awaits that instance. The website evidence was captured October 14 UTC (October 13 in America/Chicago).
+
+| Component | Reconciliation with SCRUM-17 evidence |
+| --- | --- |
+| S3 | `s3-site-team07-a7f391` exists in Ohio; private REST origin, SSE-S3, BucketOwnerEnforced, versioning enabled. The prior name-availability question is resolved. |
+| CloudFront / OAC | `cf-site-team07` / `oac-site-team07`; HTTPS website at https://d3jg1ev4a532iw.cloudfront.net/; OAC always signs with SigV4, HTTP redirects to HTTPS, WAF and paid request logging absent. |
+| Pricing model | Pay-as-you-go is the intended model. Organization policy explicitly denied the independent pricing-plan subscription lookup. The model is conditional on that intended plan; PriceClass_100 and a literal stack output do not prove billing-plan state. No subscription was created by SCRUM-17. |
+| Retention / traffic | Both HTML versions and the shared stylesheet are recorded. Keep the 1 GB-month allowance across all versions and any staging, and the stated request/traffic allowances; these are not actual monthly usage measurements. |
+| Compute / disk / IPv4 | Planned t3.micro, Standard CPU credits, 8 GiB gp3 and one auto-assigned IPv4 while running; final settings and dates must come from SCRUM-16. |
+
+See the [deployment evidence](evidence/SCRUM-17/README.md), [merged PR #5](https://github.com/greycarpet/Team7/pull/5), and [SCRUM-17 closure](https://joshescobarx.atlassian.net/browse/SCRUM-17).
 
 | Input | Proposed monthly quantity or setting |
 | --- | --- |
@@ -18,10 +28,10 @@ These are planning values, not deployed settings. Read-only checks on October 13
 | Continuous comparison | Same design and traffic, 730 compute and IPv4 hours |
 | EBS | 8 GiB gp3 retained all month, 3,000 IOPS and 125 MiB/s; no additional provisioned performance |
 | Public IPv4 | One auto-assigned address only while running; no Elastic IP retained |
-| S3 bucket name | `s3-site-team07-a7f391`, selected from the approved naming standard; planned, availability pending creation |
+| S3 bucket name | `s3-site-team07-a7f391`, deployed under SCRUM-17 using the approved naming standard |
 | S3 storage | 1 GB-month total across current objects, noncurrent versions and any template staging; one month retention modeled |
 | S3 requests | 1,000 PUT/COPY/POST/LIST and 10,000 GET/other requests, including deployment and staging requests |
-| CloudFront | Pay-as-you-go; 1 GB to North American viewers; 10,000 HTTPS requests; 10 invalidation paths; no WAF |
+| CloudFront | Intended pay-as-you-go; 1 GB to US viewers (North America); 10,000 HTTPS requests; 10 invalidation paths; no WAF |
 | EC2 internet transfer | 0.1 GB outbound; inbound package downloads free; no cross-AZ/inter-region transfer modeled |
 | Monitoring | Basic service metrics only; no paid logs, custom metrics, detailed monitoring or extra alarms |
 
@@ -60,7 +70,7 @@ For eligible charges while sufficient credits remain, the modeled payable amount
 
 If the listed shared CloudFront delivery/request/invalidation and EC2 egress allowances are already exhausted, the same usage adds $0.154/month: $0.085 delivery + $0.01 HTTPS requests + $0.05 invalidations + $0.009 EC2 egress. Totals become $1.134 lab / $12.068 continuous, before credits and tax. This is an allowance-exhaustion sensitivity at the listed first paid tiers, not an uncapped-traffic worst case.
 
-## Live budget and October projection
+## Dated budget observation and illustrative October scenario
 
 Read-only budget checks at **2026-10-13 22:45 UTC** confirmed:
 
@@ -78,11 +88,28 @@ The 80% threshold is $4; the returned comparison is strictly GREATER_THAN. Notif
 
 The recurring lab model leaves $4.02 below the $5 limit and $3.02 below the $4 threshold, before other costs/tax. Continuous operation exceeds the budget by $6.914 before rounding. This is an incremental Week 2 model; account-wide future spend is not proven by the Ohio inventory.
 
-**Conditional October scenario:** if resources begin October 14 at 00:00 UTC, remain through November 1 at 00:00 UTC, consume all 20 lab hours and the full modeled request traffic, and there are no additional in-scope costs:
+**Historical planning example, not the current account projection:** the original estimate assumed all resources would begin October 14 at 00:00 UTC, remain through November 1 at 00:00 UTC, consume all 20 lab hours and the full modeled request traffic, with no additional in-scope costs:
 
 `$0.00 reported MTD + 20 x ($0.0104 + $0.005) + (8 x $0.08 + 1 x $0.023) x 18/31 + $0.005 + $0.004 = $0.701967742`
 
-The pre-tax projection is **$0.70**, with **$4.30** budget headroom and **$3.30** alert headroom. Billing lag, tax, unreported charges and other resources must be added before treating this as the account forecast. The 18/31 fraction uses October's actual length; 730 hours is used only for the recurring continuous comparison. Starting sooner or retaining more versions changes this scenario.
+That illustrative pre-tax result is **$0.70**, with **$4.30** budget headroom and **$3.30** alert headroom. The website bucket actually began on October 13 at 23:42:39 UTC and EC2 has no confirmed start date, so this scenario does not describe the deployed account's month-end forecast. The current account projection is **UNVERIFIED** until refreshed billing data, the EC2 schedule and other in-scope costs are reconciled. The 18/31 fraction uses October's actual length; 730 hours is used only for the recurring continuous comparison.
+
+## Saved AWS Pricing Calculator evidence
+
+Both estimates were created and exported on October 14, 2026 UTC. They reproduce the recurring monthly totals above; neither includes account credits or tax.
+
+| Scenario | Saved estimate | Original CSV export | Monthly total |
+| --- | --- | --- | ---: |
+| Lab, 20 hours | [AWS estimate](https://calculator.aws/#/estimate?id=cd51e782cfb2e064fcefe2cc0bd67ae62706da26) | [Lab CSV](evidence/SCRUM-15/20261014_Team7_aws_w2-cost-lab.csv) | $0.98 |
+| Continuous, 730 hours | [AWS estimate](https://calculator.aws/#/estimate?id=340bd531f85e38382e84d5701c939d8e6cd4d4d4) | [Continuous CSV](evidence/SCRUM-15/20261014_Team7_aws_w2-cost-continuous.csv) | $11.91 |
+
+Calculator conventions are explicit:
+
+- EBS is a separate 730-hour estimate in both cases. The EC2 calculator otherwise assumes storage is deleted during stopped hours, which would understate retained-disk cost.
+- The public IPv4 calculator has no runtime field. The lab entry uses an average address-month equivalent of `20/730 = 0.0273972602739726`, producing $0.10. This represents one real address for 20 hours, not a fractional deployed address. The continuous entry uses one address for 730 hours, producing $3.65.
+- CloudFront's pay-as-you-go form explicitly requires manual deduction of its 1 TB / 10 million request allowances. Its billable inputs are zero; the description preserves gross usage of 1 GB and 10,000 HTTPS requests. Ten invalidation paths are within the separate 1,000-path allowance. EC2's 0.1 GB egress is likewise modeled at zero with remaining shared allowance and remains explicit in the cost model rather than being entered as paid transfer.
+- The calculator rounds S3's $0.032 to $0.03 in CSV. Preserve the price-list model's unrounded line items; the final monthly totals agree to cents. The CSV's annual totals follow the calculator's rounding convention and are not a twelve-month billing forecast.
+- The calculator's Ohio location label identifies the estimate group; the CloudFront pricing input is the United States edge geography. Saved links expire after one year, as shown by the save dialog. CSVs and genuine screenshots are retained in the [evidence package](evidence/SCRUM-15/README.md).
 
 ## Cost controls and verification
 
@@ -98,4 +125,4 @@ Primary project sources: [SCRUM-15](https://joshescobarx.atlassian.net/browse/SC
 
 Additional pricing references checked October 13: [T3](https://aws.amazon.com/ec2/instance-types/t3/), [gp3](https://aws.amazon.com/ebs/pricing/), [IPv4](https://aws.amazon.com/vpc/pricing/), [S3](https://aws.amazon.com/s3/pricing/), [CloudFormation](https://aws.amazon.com/cloudformation/pricing/), [Budgets](https://aws.amazon.com/aws-cost-management/aws-budgets/pricing/), [basic monitoring](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-metrics-basic-detailed.html), [EC2 stop/start](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ec2-instance-stop-start-works.html).
 
-Saved Pricing Calculator links/exports, course-named screenshots, individual credit expiry details, official form mapping and review acceptance remain open. API observations support the draft but do not replace a required course screenshot. See [handoff](SCRUM-15-handoff.md).
+Saved calculator links, original CSV exports and course-named calculator screenshots are now included. Josh confirmed that document control, component costs, and redundancy/storage-tier sections have been entered in the official form. ADR/PR review remains pending. Individual credit terms, current account-wide projection and independent CloudFront pricing-plan verification remain explicitly unverified; no discount or guaranteed payable bill is asserted from those gaps. See [handoff](SCRUM-15-handoff.md) for the exact form mapping and remaining review.

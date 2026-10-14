@@ -1,0 +1,4 @@
+# Preserve byte-for-byte source/evidence hashes across Windows and Unix checkouts.
+site/** text eol=lf
+infrastructure/cloudformation/week2/site.yaml text eol=lf
+scripts/validation/scrum-17.guard text eol=lf

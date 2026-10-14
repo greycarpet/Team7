@@ -1,0 +1,135 @@
+{
+  "observed_at_utc": "2026-10-14T00:04:05.132776+00:00",
+  "release": "Team7 Week 2 - Release 2",
+  "https_origin": "https://d3jg1ev4a532iw.cloudfront.net",
+  "authenticated_objects": [
+    {
+      "key": "index.html",
+      "version_id": "gU6a2x9eXr.nDxPOxb0MgTmPiGw_pAoQ",
+      "bytes": 3781,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "public,max-age=60",
+      "encryption": "AES256",
+      "sha256": "3e6d3050890e4e7d7da00f1f462797d347e516dbfbfc196aa9208741a8e7d997",
+      "source_sha256": "3e6d3050890e4e7d7da00f1f462797d347e516dbfbfc196aa9208741a8e7d997"
+    },
+    {
+      "key": "assets/styles.css",
+      "version_id": "bNUUntS0gwSvuOg83pnfuBtTjN0s9xU_",
+      "bytes": 4900,
+      "content_type": "text/css; charset=utf-8",
+      "cache_control": "public,max-age=60",
+      "encryption": "AES256",
+      "sha256": "7a8f6b00967a4750736668725dafbe39e4ef2fcb623820dc1df867f68ab01e56",
+      "source_sha256": "7a8f6b00967a4750736668725dafbe39e4ef2fcb623820dc1df867f68ab01e56"
+    }
+  ],
+  "http_checks": [
+    {
+      "url": "https://d3jg1ev4a532iw.cloudfront.net/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3781",
+        "date": "Wed, 14 Oct 2026 00:04:09 GMT",
+        "last-modified": "Wed, 14 Oct 2026 00:02:56 GMT",
+        "x-amz-version-id": "gU6a2x9eXr.nDxPOxb0MgTmPiGw_pAoQ",
+        "cache-control": "public,max-age=60",
+        "x-amz-server-side-encryption": "AES256",
+        "x-cache": "Miss from cloudfront",
+        "x-xss-protection": "1; mode=block",
+        "x-frame-options": "SAMEORIGIN",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-content-type-options": "nosniff",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "bytes": 3781,
+      "sha256": "3e6d3050890e4e7d7da00f1f462797d347e516dbfbfc196aa9208741a8e7d997"
+    },
+    {
+      "url": "http://d3jg1ev4a532iw.cloudfront.net/",
+      "status": 301,
+      "location": "https://d3jg1ev4a532iw.cloudfront.net/"
+    },
+    {
+      "url": "https://d3jg1ev4a532iw.cloudfront.net/index.html",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3781",
+        "date": "Wed, 14 Oct 2026 00:04:09 GMT",
+        "last-modified": "Wed, 14 Oct 2026 00:02:56 GMT",
+        "x-amz-version-id": "gU6a2x9eXr.nDxPOxb0MgTmPiGw_pAoQ",
+        "cache-control": "public,max-age=60",
+        "x-amz-server-side-encryption": "AES256",
+        "x-cache": "Hit from cloudfront",
+        "x-xss-protection": "1; mode=block",
+        "x-frame-options": "SAMEORIGIN",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-content-type-options": "nosniff",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "bytes": 3781,
+      "sha256": "3e6d3050890e4e7d7da00f1f462797d347e516dbfbfc196aa9208741a8e7d997"
+    },
+    {
+      "url": "http://d3jg1ev4a532iw.cloudfront.net/index.html",
+      "status": 301,
+      "location": "https://d3jg1ev4a532iw.cloudfront.net/index.html"
+    },
+    {
+      "url": "https://d3jg1ev4a532iw.cloudfront.net/assets/styles.css",
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-length": "4900",
+        "date": "Wed, 14 Oct 2026 00:04:09 GMT",
+        "last-modified": "Wed, 14 Oct 2026 00:00:28 GMT",
+        "x-amz-version-id": "bNUUntS0gwSvuOg83pnfuBtTjN0s9xU_",
+        "cache-control": "public,max-age=60",
+        "x-amz-server-side-encryption": "AES256",
+        "x-cache": "Miss from cloudfront",
+        "x-xss-protection": "1; mode=block",
+        "x-frame-options": "SAMEORIGIN",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-content-type-options": "nosniff",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "bytes": 4900,
+      "sha256": "7a8f6b00967a4750736668725dafbe39e4ef2fcb623820dc1df867f68ab01e56"
+    },
+    {
+      "url": "http://d3jg1ev4a532iw.cloudfront.net/assets/styles.css",
+      "status": 301,
+      "location": "https://d3jg1ev4a532iw.cloudfront.net/assets/styles.css"
+    },
+    {
+      "url": "https://s3-site-team07-a7f391.s3.us-east-2.amazonaws.com/index.html",
+      "status": 403,
+      "access_denied": true
+    }
+  ],
+  "checks": {
+    "authenticated_hash:index.html": true,
+    "authenticated_hash:assets/styles.css": true,
+    "https_200:/": true,
+    "https_hash:/": true,
+    "security_headers:/": true,
+    "release_marker:/": true,
+    "http_redirect:/": true,
+    "https_200:/index.html": true,
+    "https_hash:/index.html": true,
+    "security_headers:/index.html": true,
+    "release_marker:/index.html": true,
+    "http_redirect:/index.html": true,
+    "https_200:/assets/styles.css": true,
+    "https_hash:/assets/styles.css": true,
+    "security_headers:/assets/styles.css": true,
+    "http_redirect:/assets/styles.css": true,
+    "unsigned_known_s3_object_denied": true
+  },
+  "passed": true,
+  "completed_at_utc": "2026-10-14T00:04:10.121920+00:00",
+  "source_revision": "e5472eb706cc02e44c9284f3fd60a5abdb2ffe6d",
+  "upload_method": "AWS CLI s3api put-object with SSE-S3, content type and public,max-age=60"
+}

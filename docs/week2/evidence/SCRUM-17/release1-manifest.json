@@ -1,0 +1,19 @@
+{
+  "release": "Team7 Week 2 - Release 1",
+  "status": "Published and verified; see corresponding release verification record",
+  "source_revision": "081da4c5c8cab8b9c76e5186664ea16316d415fa",
+  "files": [
+    {
+      "path": "site/index.html",
+      "s3_key": "index.html",
+      "bytes": 3738,
+      "sha256": "5910c483dc722b8476b21f07da84a6801470ee2e37cd319320141be3c9c0981a"
+    },
+    {
+      "path": "site/assets/styles.css",
+      "s3_key": "assets/styles.css",
+      "bytes": 4900,
+      "sha256": "7a8f6b00967a4750736668725dafbe39e4ef2fcb623820dc1df867f68ab01e56"
+    }
+  ]
+}

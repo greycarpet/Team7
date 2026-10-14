@@ -1,6 +1,6 @@
 {
   "release": "Team7 Week 2 - Release 2",
-  "status": "source reviewed; deployment evidence recorded separately",
+  "status": "Published and verified; see corresponding release verification record",
   "files": [
     {
       "path": "site/index.html",
@@ -14,5 +14,6 @@
       "bytes": 4900,
       "sha256": "7a8f6b00967a4750736668725dafbe39e4ef2fcb623820dc1df867f68ab01e56"
     }
-  ]
+  ],
+  "source_revision": "e5472eb706cc02e44c9284f3fd60a5abdb2ffe6d"
 }

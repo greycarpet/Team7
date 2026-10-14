@@ -1,0 +1,136 @@
+{
+  "ticket": "SCRUM-17",
+  "cloudtrail_event_history": {"CreateChangeSet": "2026-10-13T23:41:21+00:00", "ExecuteChangeSet": "2026-10-13T23:42:23+00:00", "observed_at_utc": "2026-10-13T23:49:11.829303+00:00", "durable_retention": "Not established"},
+  "authorization": "User explicitly stated DEPLOYMENT AUTHORIZED",
+  "approved_commit": "081da4c5c8cab8b9c76e5186664ea16316d415fa",
+  "region": "us-east-2",
+  "stack_name": "cfn-site-team07",
+  "template_sha256": "26b23c1d1a901dec75075ca3c4607d08d1b0b77ca16c6810f9e95aaec3d6f266",
+  "deployed_template_matches_reviewed": true,
+  "change_set": {
+    "name": "scrum17-create-081da4c-20261013",
+    "status": "CREATE_COMPLETE",
+    "execution": "Executed with rollback enabled",
+    "reviewed_changes": [
+      {
+        "Type": "Resource",
+        "ResourceChange": {
+          "Action": "Add",
+          "LogicalResourceId": "SiteBucketPolicy",
+          "ResourceType": "AWS::S3::BucketPolicy",
+          "Scope": [],
+          "Details": []
+        }
+      },
+      {
+        "Type": "Resource",
+        "ResourceChange": {
+          "Action": "Add",
+          "LogicalResourceId": "SiteBucket",
+          "ResourceType": "AWS::S3::Bucket",
+          "Scope": [],
+          "Details": []
+        }
+      },
+      {
+        "Type": "Resource",
+        "ResourceChange": {
+          "Action": "Add",
+          "LogicalResourceId": "SiteDistribution",
+          "ResourceType": "AWS::CloudFront::Distribution",
+          "Scope": [],
+          "Details": []
+        }
+      },
+      {
+        "Type": "Resource",
+        "ResourceChange": {
+          "Action": "Add",
+          "LogicalResourceId": "SiteOriginAccessControl",
+          "ResourceType": "AWS::CloudFront::OriginAccessControl",
+          "Scope": [],
+          "Details": []
+        }
+      }
+    ],
+    "validation": "DescribeEvents returned successful CREATE_CHANGESET operation and no VALIDATION_ERROR events; no individual validator results were returned."
+  },
+  "stack_status": "CREATE_COMPLETE",
+  "distribution_status": "Deployed",
+  "observed_at_utc": "2026-10-13T23:47:05.110119+00:00",
+  "resources": [
+    {
+      "logical_id": "SiteBucket",
+      "type": "AWS::S3::Bucket",
+      "name_or_id": "s3-site-team07-a7f391",
+      "status": "CREATE_COMPLETE",
+      "completed_at_utc": "2026-10-13T23:42:39.817000+00:00"
+    },
+    {
+      "logical_id": "SiteBucketPolicy",
+      "type": "AWS::S3::BucketPolicy",
+      "name_or_id": "s3-site-team07-a7f391",
+      "status": "CREATE_COMPLETE",
+      "completed_at_utc": "2026-10-13T23:45:17.097000+00:00"
+    },
+    {
+      "logical_id": "SiteDistribution",
+      "type": "AWS::CloudFront::Distribution",
+      "name_or_id": "E1PBX75YJOS2B9",
+      "status": "CREATE_COMPLETE",
+      "completed_at_utc": "2026-10-13T23:45:14.768000+00:00"
+    },
+    {
+      "logical_id": "SiteOriginAccessControl",
+      "type": "AWS::CloudFront::OriginAccessControl",
+      "name_or_id": "E2X7EYYCOARJ7I",
+      "status": "CREATE_COMPLETE",
+      "completed_at_utc": "2026-10-13T23:42:26.272000+00:00"
+    }
+  ],
+  "website_url": "https://d3jg1ev4a532iw.cloudfront.net/",
+  "controls": {
+    "all_four_public_access_blocks": true,
+    "ownership": "BucketOwnerEnforced",
+    "encryption": "AES256 (SSE-S3)",
+    "versioning": "Enabled",
+    "website_configuration": "NoSuchWebsiteConfiguration",
+    "bucket_policy_is_public": false,
+    "allow_principal": "cloudfront.amazonaws.com",
+    "allow_action": "s3:GetObject",
+    "allow_scope": "Exact deployed distribution ARN and Team7 account; account identifier redacted",
+    "deny": "s3:* on bucket and objects when aws:SecureTransport is false",
+    "oac": {
+      "name": "oac-site-team07",
+      "id": "E2X7EYYCOARJ7I",
+      "origin": "s3",
+      "signing_behavior": "always",
+      "signing_protocol": "sigv4"
+    },
+    "origin": "s3-site-team07-a7f391.s3.us-east-2.amazonaws.com",
+    "origin_access_identity": "",
+    "default_root_object": "index.html",
+    "viewer_protocol_policy": "redirect-to-https",
+    "allowed_methods": [
+      "GET",
+      "HEAD"
+    ],
+    "cache_policy": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+    "response_headers_policy": "67f7725c-6f97-4210-82d7-5512b31e9d03",
+    "waf_association": "none",
+    "access_logging": false,
+    "price_class": "PriceClass_100",
+    "pricing_plan": "No subscription created in this deployment; independent subscription lookup denied by organization SCP. Stack PricingModel output records intent only.",
+    "default_cloudfront_certificate": true,
+    "required_bucket_and_distribution_tags": "Verified"
+  },
+  "versioning_wait": {
+    "bucket_complete_utc": "2026-10-13T23:42:39.817+00:00",
+    "earliest_upload_utc": "2026-10-13T23:57:39.817+00:00"
+  },
+  "limitations": [
+    "No configured trail returned by CloudTrail DescribeTrails in us-east-2 (including shadow trails). Durable audit retention is not established; logging configuration was not changed.",
+    "PricingPlanManager ListSubscriptions denied by explicit organization service control policy; no permission changes attempted.",
+    "HTTP behavior, content integrity and deployment screenshots are recorded separately after upload."
+  ]
+}

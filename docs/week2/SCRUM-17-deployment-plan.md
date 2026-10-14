@@ -1,12 +1,13 @@
 # SCRUM-17: Private S3 and CloudFront website
 
-**Status:** Prepared for review; AWS deployment is not authorized or completed.
+**Status:** Executed after explicit user authorization on October 13, 2026; both releases verified. See [actual handoff and review limits](SCRUM-17-handoff.md).
 **Owner:** Josh Escobar. **Prepared:** October 13, 2026.
 **Tickets:** [SCRUM-17](https://joshescobarx.atlassian.net/browse/SCRUM-17), SCRUM-42, SCRUM-43.
 
-The website runs independently of the tools EC2 instance. This change prepares
-the website source, infrastructure, and verification procedure. Actual HTTPS,
-private-origin, and redeployment results must be collected after deployment.
+This file preserves the reviewed deployment plan. The website runs independently
+of the tools EC2 instance. Actual deployment, HTTPS, private-origin and redeployment
+results are recorded in the [handoff](SCRUM-17-handoff.md). Publishing used AWS CLI
+with the planned files, keys and metadata instead of console uploads.
 
 ## Reviewed scope
 
@@ -144,7 +145,7 @@ reviewed update; do not delete/recreate the stack automatically.
 ## Validation and references
 
 See [validation record](evidence/SCRUM-17/validation.md) and
-[handoff checklist](SCRUM-17-handoff.md). No deployment check is marked passed.
+[handoff checklist](SCRUM-17-handoff.md). The original local-validation record predates deployment; completed live checks are recorded separately in the handoff and release evidence.
 The official shared form requires the actual HTTPS URL, redeployment method,
 deployment screenshot, and one-line component descriptions; the ticket also
 requires private S3/OAC and a verified changed release. Additional console views

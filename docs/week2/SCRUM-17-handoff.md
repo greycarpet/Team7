@@ -1,67 +1,96 @@
 # SCRUM-17 website handoff
 
-**Status:** Prepared, not deployed. **Owner:** Josh Escobar.
-**Recipients:** SCRUM-19/shared-document owner and Week 3 API owner.
+**Status:** Deployed and technically verified; shared-form transcription and final
+review remain. **Owner:** Josh Escobar. **Review:** [PR #5](https://github.com/greycarpet/Team7/pull/5).
 
-## Values
+## Confirmed values
 
-| Field | Planned or observed value |
+| Field | Observed value |
 | --- | --- |
-| Proposed stack | cfn-site-team07 |
-| Planned S3 bucket | s3-site-team07-a7f391 |
-| Planned distribution label | cf-site-team07 |
-| Planned OAC name | oac-site-team07 |
-| Region | us-east-2 for stack/S3; CloudFront global |
-| HTTPS website URL | Pending deployment |
-| Distribution and OAC IDs | Pending deployment |
-| Reviewed template/site commit | Record exact approved commit before execution |
-| Release 1 and Release 2 SHA-256 / object Version IDs | Release 1 source hashes in manifest; deployed versions and Release 2 pending |
-| Deployment screenshot | Pending genuine deployed evidence |
+| Stack | cfn-site-team07 — CREATE_COMPLETE |
+| S3 bucket | s3-site-team07-a7f391 — private, us-east-2 |
+| Distribution | cf-site-team07 / E1PBX75YJOS2B9 — Deployed |
+| OAC | oac-site-team07 / E2X7EYYCOARJ7I — s3, always, sigv4 |
+| HTTPS website | https://d3jg1ev4a532iw.cloudfront.net/ |
+| Week 3 exact origin | https://d3jg1ev4a532iw.cloudfront.net |
+| Approved infrastructure and Release 1 commit | 081da4c5c8cab8b9c76e5186664ea16316d415fa |
+| Release 2 source commit | e5472eb706cc02e44c9284f3fd60a5abdb2ffe6d |
+| Release 1 HTML S3 version | FoR5j2mkqHvscZXRw0kqTV546fCa3NyG |
+| Release 2 HTML S3 version | gU6a2x9eXr.nDxPOxb0MgTmPiGw_pAoQ |
+| Shared CSS S3 version | bNUUntS0gwSvuOg83pnfuBtTjN0s9xU_ |
+| Invalidation | ICN1KYXRYPHLQQJBFAPBLB5CWP, /*, Completed |
 
-## Repeatable publishing method
+Josh explicitly authorized this deployment. CloudFormation created exactly the
+four reviewed resources with rollback enabled. The deployed original template
+matched the reviewed source. Initial object writes began after the planned
+15-minute wait following bucket/versioning creation.
 
-Source is `site/`; no build command. Upload `index.html` to the bucket root and
-`assets/styles.css` to `assets/styles.css` using S3 Console. Use the Content-Type
-and Cache-Control values in the [deployment plan](SCRUM-17-deployment-plan.md).
-For a change, review/commit/hash the changed source, upload under the same keys,
-record the new object versions, invalidate `/*` on the actual distribution, wait
-for Completed, then verify the release marker and compare deployed bytes/hashes.
-This is the planned procedure; record the actually performed method after testing.
+## Actual publishing and redeployment method
 
-## Acceptance checks (all pending)
+Used AWS CLI with the existing Team7 profile to upload only `site/index.html`
+and `site/assets/styles.css` under `index.html` and `assets/styles.css`.
+Metadata: respectively `text/html; charset=utf-8` and
+`text/css; charset=utf-8`, both `Cache-Control: public,max-age=60`, SSE-S3 and
+SHA-256 upload checksums. This used CLI uploads rather than the console steps
+in the prepared guide; keys, content and security settings were unchanged.
 
-- [ ] Stack CREATE_COMPLETE; CloudFront Deployed; actual names/IDs recorded.
-- [ ] Four S3 public-access blocks true; BucketOwnerEnforced; SSE-S3; versioning enabled; website hosting disabled.
-- [ ] Complete bucket policy inspected: only scoped CloudFront read Allow, plus insecure-transport Deny.
-- [ ] Regional REST origin and OAC attached; S3/always/sigv4; no OAI or website endpoint.
-- [ ] HTTPS root and `/index.html` return 200 with Release 1 and working CSS.
-- [ ] HTTP redirects to the corresponding HTTPS URL.
-- [ ] Authenticated S3 proves the exact object exists; unsigned direct-S3 access to that key is denied.
-- [ ] Required tags, root object, cache/headers policies, pay-as-you-go and absence of WAF verified.
-- [ ] Release 2 source change committed, uploaded and observed after completed invalidation.
-- [ ] Authenticated deployed content SHA-256 matches each reviewed source file; both releases traceable.
-- [ ] Official form URL, actual redeployment method, screenshot and component descriptions populated.
-- [ ] Handoff to SCRUM-19 and Week 3 completed; website remains available.
+Release 1 was uploaded and observed before editing Release 2. The second release
+changed the release heading to “One change, published.”, changed its explanatory
+text and changed the marker to “Team7 Week 2 - Release 2”. That change was
+reviewed locally, committed and pushed, then uploaded as a new `index.html`
+version. The unchanged CSS was not uploaded again. After invalidating `/*`
+and observing Completed, fresh HTTP requests and a browser reload confirmed
+Release 2. Both releases matched the reviewed source SHA-256 values through
+authenticated S3 downloads and public CloudFront responses.
 
-## Evidence
+For another release: review and commit the source, hash it, upload only the
+changed website keys with the same metadata, record the new versions, invalidate
+the affected paths, wait for completion, then compare downloaded hashes and
+capture the visible release. Never upload repository files or private evidence.
 
-Use the actual UTC capture date in `YYYYMMDD_Team7_aws_...png`. The guide suggests
-these supporting views: `w2-site-stack`, `w2-site-s3-private`,
-`w2-site-bucket-policy`, `w2-site-s3-properties`, `w2-site-objects`,
-`w2-site-origin`, `w2-site-oac`, `w2-site-https-behavior`, `w2-site-settings`,
-`w2-site-release1`, `w2-site-release2`, `w2-site-invalidation`, and
-`w2-site-http-tests`. Reconcile evidence with the official course form/rubric;
-the form itself does not specify this many screenshots. Keep originals private
-and publish only reviewed redactions. Local previews are not deployment evidence.
+## Acceptance results
 
-## Draft component descriptions for the form
+- [x] Stack CREATE_COMPLETE and CloudFront Deployed; actual identifiers recorded.
+- [x] Four public-access blocks true; BucketOwnerEnforced; SSE-S3; versioning enabled; no S3 website configuration.
+- [x] Complete bucket policy inspected: exact distribution/account-scoped CloudFront read Allow and insecure-transport Deny; AWS reports IsPublic=false.
+- [x] Regional REST origin with OAC s3/always/sigv4; no OAI or website endpoint.
+- [x] HTTPS root, index.html and CSS return 200 for both releases; all body hashes match source.
+- [x] HTTP returns 301 to the corresponding HTTPS URL for all three tested paths.
+- [x] Authenticated exact-object downloads and HeadObject establish existence; unsigned direct-S3 index.html returns AccessDenied/403.
+- [x] Tags, root object, managed policies and no WAF association verified.
+- [x] Release 2 committed, uploaded, invalidated and observed; previous HTML version retained.
+- [x] Genuine screenshots, timestamps, hashes and component descriptions recorded.
+- [ ] Independently confirm the distribution billing plan: organization policy denies PricingPlanManager ListSubscriptions.
+- [ ] Copy the supplied App/DevOps fields into the shared official form and complete final PR/course review.
 
-Use after deployment confirms the names and configuration:
+[Form entries](SCRUM-17-form-entries.md) contain the precise Website and Evidence
+fields owned by App/DevOps. No live course form was available to edit here;
+its submission has not been claimed. VM facts and SSH test results belong to
+SCRUM-16/18 and remain separate inputs to SCRUM-19.
 
-- `s3-site-team07-a7f391` stores website files privately with encryption and versioning.
-- `cf-site-team07` serves the website over HTTPS through its generated CloudFront hostname.
-- `oac-site-team07` signs CloudFront's requests to the private S3 origin.
-- The site bucket policy permits the selected CloudFront distribution to read objects and denies insecure transport.
+## Evidence and limitations
 
-For Week 3, hand over the exact HTTPS origin (scheme + hostname, without a trailing
-path) for API CORS planning. The present site has no visitor-counter/API behavior.
+[Evidence index](evidence/SCRUM-17/README.md), [Release 1 checks](evidence/SCRUM-17/release1-verification.json),
+[Release 2 checks](evidence/SCRUM-17/release2-verification.json), and
+[screenshot provenance](evidence/SCRUM-17/screenshots.json).
+
+The screenshot date is October 14 in UTC (October 13 in America/Chicago).
+JPEG is the browser's native screenshot format; originals were copied unchanged.
+The images show public content, with their source URL recorded in the manifest.
+
+No pricing-plan subscription was created. Pay-as-you-go is the intended model,
+but the independent lookup is denied by the organization's policy; neither
+PriceClass_100 nor the stack's literal PricingModel output proves billing state.
+No permissions or policies were changed to bypass that restriction.
+
+CloudTrail event history includes the actual change-set writes. No configured
+trail was returned, so durable retention is not established. WAF and paid request
+logging remain absent under the approved course scope. Bucket and policy are
+retained on stack deletion; future cleanup needs explicit review.
+
+## Week 3 handoff
+
+Use the exact HTTPS origin above for CORS planning. No visitor counter, API or
+JavaScript integration is implemented in this static site. The current HTML CSP
+does not allow scripts or API connections, so review it when implementing those
+features. Keep the S3 origin private and continue publishing through CloudFront.

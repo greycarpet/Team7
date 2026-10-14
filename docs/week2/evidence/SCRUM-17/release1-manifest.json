@@ -1,7 +1,7 @@
 {
   "release": "Team7 Week 2 - Release 1",
-  "status": "source prepared; not uploaded",
-  "source_revision": "Record the Git commit containing this manifest before upload.",
+  "status": "Published and verified; see corresponding release verification record",
+  "source_revision": "081da4c5c8cab8b9c76e5186664ea16316d415fa",
   "files": [
     {
       "path": "site/index.html",

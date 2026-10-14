@@ -1,0 +1,18 @@
+{
+  "release": "Team7 Week 2 - Release 2",
+  "status": "source reviewed; deployment evidence recorded separately",
+  "files": [
+    {
+      "path": "site/index.html",
+      "s3_key": "index.html",
+      "bytes": 3781,
+      "sha256": "3e6d3050890e4e7d7da00f1f462797d347e516dbfbfc196aa9208741a8e7d997"
+    },
+    {
+      "path": "site/assets/styles.css",
+      "s3_key": "assets/styles.css",
+      "bytes": 4900,
+      "sha256": "7a8f6b00967a4750736668725dafbe39e4ef2fcb623820dc1df867f68ab01e56"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # SCRUM-16 deployment handoff
 
+> Current checkpoint, 2026-10-17: deployment, VM facts, SSH positive/negative/positive tests, final stop, and requested screenshot follow-ups are recorded. Remaining: PR review and the official Solution Architecture form/PDF (last). Initial SSH host identity was accepted on first use; independent verification is not claimed. Earlier observations below are historical where superseded.
+
 Josh authorized deployment on October 17, 2026 at 15:03 America/Chicago. Initial template commit: 25cf463. The CREATE change set contained exactly three Adds, no IAM capabilities, normal rollback and no validation-error events. Stack creation succeeded.
 
 ## Verified infrastructure
@@ -44,7 +46,7 @@ The server ED25519 key was accepted on first use by Josh. Available EC2 console 
 
 SCRUM-40's deployment objective and SCRUM-41's facts/access/stop objectives are complete. Josh performed both infrastructure and Security & Ops work with his own retained key. Copy the values above into the actual course form; no live form edit is claimed.
 
-SCRUM-16 remains open for required genuine screenshots and shared-form population. SCRUM-18's SSH-specific negative probe and fresh positive controls are now complete: authorized logins at 20:43:02Z and 20:45:26Z bracket the CloudShell SSH timeout at 20:44:12Z on October 17. The same instance remained running throughout; it was stopped afterward. See PR #7's SCRUM-18 handoff. Josh requested the shared Solution Architecture form be completed last.
+SCRUM-16 remains open for final review and shared-form population. The requested storage screenshots have been received and reviewed below. SCRUM-18's SSH-specific negative probe and fresh positive controls are now complete: authorized logins at 20:43:02Z and 20:45:26Z bracket the CloudShell SSH timeout at 20:44:12Z on October 17. The same instance remained running throughout; it was stopped afterward. See PR #7's SCRUM-18 handoff. Josh requested the shared Solution Architecture form be completed last.
 
 SCRUM-19 requires the current official form, final field mapping, evidence, review and official PDF export. No Alyssa/instructor approval or submission is claimed. PR #6 remains unmerged.
 
@@ -52,7 +54,7 @@ Earlier AWS deployment extract: [deployment.json](evidence/SCRUM-16/deployment.j
 
 ## Root storage screenshot received, October 17, 2026
 
-Visually reviewed original 20261017_Team7_aws_w2-ec2-volume.png (SHA-256 424065a32cb7b9969b8416750e92918ce0f658ea4cc5298127ba3a54ce6f690c). It shows the exact stopped instance, root /dev/xvda, vol-06c9656cbce745cdb, 8 GiB, Attached/In-use, Encrypted Yes, and Delete on termination Yes. It is the instance Storage tab, not the volume Details view; gp3 is not visible in this image. Earlier AWS API evidence establishes gp3; a volume Details capture is still requested for visual evidence. Original retained privately in the project upload, not published here.
+Visually reviewed original 20261017_Team7_aws_w2-ec2-volume.png (SHA-256 424065a32cb7b9969b8416750e92918ce0f658ea4cc5298127ba3a54ce6f690c). It shows the exact stopped instance, root /dev/xvda, vol-06c9656cbce745cdb, 8 GiB, Attached/In-use, Encrypted Yes, and Delete on termination Yes. It is the instance Storage tab, not the volume Details view; gp3 is not visible in this image. The volume Details capture reviewed below establishes gp3 visually as well. Original retained privately in the project upload, not published here.
 
 ## Detail screenshot follow-up, October 17, 2026
 

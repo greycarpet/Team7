@@ -83,3 +83,9 @@ The retained GroupDescription still says Week 1 intentionally: the approved upda
 - 20261017_Team7_aws_w2-ssh-change-set.png: shows Change sets (0), plus Last executed change set link for scrum18-ssh-562d839-20261017, execution 15:19:31 UTC-0500. SHA-256 2fdfbff530c82aa4764770f21e145532332a88f74f5f6ea0a7947a744c6d5774. This confirms the execution reference, not the property-level changes or Replacement=False. The earlier API/change-set review supports those details; try the last-executed link for a genuine details screenshot if still available. Do not create another change set for evidence.
 
 Both originals were inspected and remain privately retained in project uploads. No fabricated or substituted screenshot is claimed.
+
+## Detail screenshot follow-up, October 17, 2026
+
+Visually verified 20261017_Team7_aws_w2-ssh-change-set-details.png: scrum18-ssh-562d839-20261017, CREATE_COMPLETE and EXECUTE_COMPLETE, exactly one resource change: Team7ToolsSecurityGroup, Modify, AWS::EC2::SecurityGroup, Replacement=False. This resolves the previous screenshot gap; the original executed change set was accessible through its last-executed link. No new change set was created. SHA-256 932fea4f35a924fd091f3e77751f964262592d42871600de53bb26b248207e29.
+
+Original retained privately in the project upload, unchanged and not publicly published. This follow-up supersedes the corresponding pending screenshot note above. The Solution Architecture form remains deferred until last; PR merge and parent-ticket completion are not claimed.

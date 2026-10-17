@@ -76,3 +76,10 @@ All three originals were visually inspected and remain privately retained in the
 | 20261017_Team7_aws_w2-ssh-attached-groups.png | Correct stopped instance; sole tools group attached; matching inbound and outbound rule IDs | a767af6809e6b9ec816a1fcb3ec3381a4d2e836ca12da606870ebfa218a3978f |
 
 The retained GroupDescription still says Week 1 intentionally: the approved update preserved this resource property to avoid replacement. The Week 2 rule description identifies SCRUM-18. These images corroborate the API observations and close the inbound/outbound/attachment screenshot gaps. CloudFormation change-set/stack screenshots and remaining VM evidence are still to be collected; the course form remains last.
+
+## CloudFormation screenshots received, October 17, 2026
+
+- 20261017_Team7_aws_w2-ssh-stack.png: visually confirms cfn-security-team07 UPDATE_COMPLETE at 15:19:36 UTC-0500 and Team7ToolsSecurityGroup UPDATE_COMPLETE at 15:19:34. SHA-256 500fa36825bf80391ced6fe9b32f7631e65d74da1f43398e67b69b30fffad826.
+- 20261017_Team7_aws_w2-ssh-change-set.png: shows Change sets (0), plus Last executed change set link for scrum18-ssh-562d839-20261017, execution 15:19:31 UTC-0500. SHA-256 2fdfbff530c82aa4764770f21e145532332a88f74f5f6ea0a7947a744c6d5774. This confirms the execution reference, not the property-level changes or Replacement=False. The earlier API/change-set review supports those details; try the last-executed link for a genuine details screenshot if still available. Do not create another change set for evidence.
+
+Both originals were inspected and remain privately retained in project uploads. No fabricated or substituted screenshot is claimed.

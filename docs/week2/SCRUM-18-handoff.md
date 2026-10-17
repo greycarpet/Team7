@@ -52,4 +52,15 @@ Post-test AWS inspection confirmed running at the same target before stopping, o
 
 Genuine screenshot visually reviewed: 20261017_Team7_aws_w2-ssh-cloudshell-blocked.png. It shows the Ohio CloudShell tab, source, complete SSH command, 20:44:12 UTC timestamp, timeout and exit 255. SHA-256: 723f3b5ff972c2f51bf1fc5a973d75274cfa96e8f5886de90291180d8f42edf8. Original retained privately in the project upload; not published to this public repository. It also includes the earlier TCP test, which remains separately identified as historical.
 
-SCRUM-45's allowed/blocked validation objective is complete. Windows positive results are user-supplied terminal transcripts; their screenshot remains requested for the course package. Remaining parent deliverables: configuration/final-stopped screenshots, allowed-login screenshot, shared-form population (last), and review. TOFU limitation above remains; the retest proves host-key continuity, not independent initial identity verification.
+SCRUM-45's allowed/blocked validation objective is complete. Windows positive results are supported by terminal transcripts and the genuine screenshot reviewed below. Final-stopped screenshot is also received. Remaining parent deliverables: other configuration screenshots, shared-form population (last), and review. TOFU limitation above remains; the retest proves host-key continuity, not independent initial identity verification.
+
+## Additional original screenshots reviewed, October 17, 2026
+
+Originals retained privately in the project uploads, not published to the public repository. These are genuine user captures, not recreated evidence.
+
+| Filename | Verified content | SHA-256 |
+| --- | --- | --- |
+| 20261017_Team7_aws_w2-ssh-allowed.png | Both fresh SSH commands and authenticated ec2-user results at 20:43:02Z and 20:45:26Z; server-observed source and target match the recorded test | deaf978b3f12574d918bfa5b4fb40119f40684d711d31088079b01c446128efa |
+| 20261017_Team7_aws_w2-ssh-final-stopped.png | ec2-tools-team07, exact instance ID, Stopped, t3.micro, us-east-2a, private IPv4, intended VPC/public subnet, no public IPv4, IMDSv2 Required | 4c037fc73de7f6427cbf9f69ff3987afec3a8cb0729c09049db267a8fa40e130 |
+
+The stopped screenshot has no visible capture clock; its date derives from the supplied filename/upload context. The independent API timestamp remains the precise stopped-state verification time. The PowerShell image shows a passphrase prompt but no passphrase or private-key material. No further instance restart is needed for these screenshots.

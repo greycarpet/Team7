@@ -11,7 +11,7 @@ Josh authorized deployment on October 17, 2026 at 15:03 America/Chicago. Initial
 - IMDSv2 required, endpoint enabled, hop limit 1; Standard CPU credits; detailed monitoring disabled.
 - Root vol-06c9656cbce745cdb: encrypted 8 GiB gp3, 3000 IOPS, 125 MiB/s, Name ebs-tools-team07. Retained on stop; deleted on termination.
 - System, instance and attached EBS status checks all passed before stopping.
-- FINAL STATE: Stopped, verified 2026-10-17T20:36:18.805918Z after the authorized SSH test window. Disk remains attached/billable. There is no current public IPv4; re-read it after next start. Creation-time CloudFormation outputs are not authoritative after restart.
+- FINAL STATE: Stopped, verified 2026-10-17T20:47:53.236206Z after the completed SSH retest window. Disk remains attached/billable. There is no current public IPv4; re-read it after next start. Creation-time CloudFormation outputs are not authoritative after restart.
 - Only sg-0d4b70aeec5581403 attached. SCRUM-18 has since changed the Week 1 zero-ingress baseline to exactly TCP/22 from one authorized operator IPv4 /32; no IPv6 ingress. Authorized Windows SSH succeeded.
 - Imported public-key bytes match Josh's supplied RSA public key. SHA256:PXjRehpG9x82mXhuq3lG0mH7Ys5aiNaTxkeTVL75rc4. This is the client key fingerprint, not the server host fingerprint. Private key remains on Josh's Windows laptop.
 
@@ -44,7 +44,7 @@ The server ED25519 key was accepted on first use by Josh. Available EC2 console 
 
 SCRUM-40's deployment objective and SCRUM-41's facts/access/stop objectives are complete. Josh performed both infrastructure and Security & Ops work with his own retained key. Copy the values above into the actual course form; no live form edit is claimed.
 
-SCRUM-16 remains open for required genuine screenshots and shared-form population. SCRUM-18 has an authenticated positive test and a CloudShell TCP timeout but still needs the guide's SSH-specific negative probe and post-negative fresh positive control. See PR #7's SCRUM-18 handoff. No restart was performed to fill this evidence gap.
+SCRUM-16 remains open for required genuine screenshots and shared-form population. SCRUM-18's SSH-specific negative probe and fresh positive controls are now complete: authorized logins at 20:43:02Z and 20:45:26Z bracket the CloudShell SSH timeout at 20:44:12Z on October 17. The same instance remained running throughout; it was stopped afterward. See PR #7's SCRUM-18 handoff. Josh requested the shared Solution Architecture form be completed last.
 
 SCRUM-19 requires the current official form, final field mapping, evidence, review and official PDF export. No Alyssa/instructor approval or submission is claimed. PR #6 remains unmerged.
 

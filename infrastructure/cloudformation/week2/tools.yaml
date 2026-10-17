@@ -161,6 +161,27 @@ Resources:
           Fn::GetAtt:
           - Team7ToolsLaunchTemplate
           - LatestVersionNumber
+      Tags:
+      - Key: Name
+        Value: ec2-tools-team07
+      - Key: Project
+        Value: Team7
+      - Key: Team
+        Value: Team7
+      - Key: Environment
+        Value: Dev
+      - Key: Owner
+        Value: Team7
+      - Key: Workload
+        Value: Tools
+      - Key: Component
+        Value: Compute
+      - Key: ManagedBy
+        Value: Team7
+      - Key: Repository
+        Value: Team7
+      - Key: JiraProject
+        Value: SCRUM
 Outputs:
   InstanceId:
     Description: Tools instance ID.

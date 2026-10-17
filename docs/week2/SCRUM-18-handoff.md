@@ -64,3 +64,15 @@ Originals retained privately in the project uploads, not published to the public
 | 20261017_Team7_aws_w2-ssh-final-stopped.png | ec2-tools-team07, exact instance ID, Stopped, t3.micro, us-east-2a, private IPv4, intended VPC/public subnet, no public IPv4, IMDSv2 Required | 4c037fc73de7f6427cbf9f69ff3987afec3a8cb0729c09049db267a8fa40e130 |
 
 The stopped screenshot has no visible capture clock; its date derives from the supplied filename/upload context. The independent API timestamp remains the precise stopped-state verification time. The PowerShell image shows a passphrase prompt but no passphrase or private-key material. No further instance restart is needed for these screenshots.
+
+## Security-group screenshots reviewed, October 17, 2026
+
+All three originals were visually inspected and remain privately retained in the project uploads. No image modifications or public publication were performed.
+
+| Filename | Verified content | SHA-256 |
+| --- | --- | --- |
+| 20261017_Team7_aws_w2-ssh-inbound.png | Correct group/VPC; one IPv4 SSH TCP/22 rule from the approved operator /32; rule sgr-040165bbbd29fb448 | f35e78d1776c860cc042f272ce4545d323e021b365c7127c2d11e2f58f757dc9 |
+| 20261017_Team7_aws_w2-ssh-outbound.png | Same group; one IPv4 All traffic egress rule to 0.0.0.0/0; rule sgr-0c5218ce1138a563f | 597f0f227ef8f14ed138ee32bd5dce26e8f2989a72e1b30497913ad77f2de007 |
+| 20261017_Team7_aws_w2-ssh-attached-groups.png | Correct stopped instance; sole tools group attached; matching inbound and outbound rule IDs | a767af6809e6b9ec816a1fcb3ec3381a4d2e836ca12da606870ebfa218a3978f |
+
+The retained GroupDescription still says Week 1 intentionally: the approved update preserved this resource property to avoid replacement. The Week 2 rule description identifies SCRUM-18. These images corroborate the API observations and close the inbound/outbound/attachment screenshot gaps. CloudFormation change-set/stack screenshots and remaining VM evidence are still to be collected; the course form remains last.

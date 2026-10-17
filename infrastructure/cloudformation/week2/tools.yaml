@@ -1,0 +1,196 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SCRUM-16: Team7 tools VM using the existing public subnet and zero-ingress
+  tools group. Imports only the operator public key.'
+Parameters:
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Description: Existing Team7 public subnet in us-east-2a.
+  SecurityGroupId:
+    Type: AWS::EC2::SecurityGroup::Id
+    Description: Existing sg-tools-team07; this stack does not modify its rules.
+  ImageId:
+    Type: AWS::EC2::Image::Id
+    Description: Reviewed Amazon-owned AL2023 x86_64 AMI in us-east-2; pin exact ID.
+  PublicKeyMaterial:
+    Type: String
+    MinLength: 80
+    MaxLength: 4096
+    AllowedPattern: ^ssh-rsa [A-Za-z0-9+/]+={0,3}( [^\r\n]+)?$
+    Description: Operator RSA PUBLIC key only, one OpenSSH line. Never enter a private
+      key.
+Resources:
+  Team7ToolsKeyPair:
+    Type: AWS::EC2::KeyPair
+    Properties:
+      KeyName: key-tools-team07
+      PublicKeyMaterial:
+        Ref: PublicKeyMaterial
+      Tags:
+      - Key: Name
+        Value: key-tools-team07
+      - Key: Project
+        Value: Team7
+      - Key: Team
+        Value: Team7
+      - Key: Environment
+        Value: Dev
+      - Key: Owner
+        Value: Team7
+      - Key: Workload
+        Value: Tools
+      - Key: Component
+        Value: Access
+      - Key: ManagedBy
+        Value: Team7
+      - Key: Repository
+        Value: Team7
+      - Key: JiraProject
+        Value: SCRUM
+  Team7ToolsLaunchTemplate:
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      TagSpecifications:
+      - ResourceType: launch-template
+        Tags:
+        - Key: Name
+          Value: ec2-tools-team07
+        - Key: Project
+          Value: Team7
+        - Key: Team
+          Value: Team7
+        - Key: Environment
+          Value: Dev
+        - Key: Owner
+          Value: Team7
+        - Key: Workload
+          Value: Tools
+        - Key: Component
+          Value: Compute
+        - Key: ManagedBy
+          Value: Team7
+        - Key: Repository
+          Value: Team7
+        - Key: JiraProject
+          Value: SCRUM
+      LaunchTemplateData:
+        ImageId:
+          Ref: ImageId
+        InstanceType: t3.micro
+        KeyName:
+          Ref: Team7ToolsKeyPair
+        CreditSpecification:
+          CpuCredits: standard
+        MetadataOptions:
+          HttpEndpoint: enabled
+          HttpTokens: required
+          HttpPutResponseHopLimit: 1
+          InstanceMetadataTags: disabled
+        Monitoring:
+          Enabled: false
+        InstanceInitiatedShutdownBehavior: stop
+        NetworkInterfaces:
+        - DeviceIndex: 0
+          AssociatePublicIpAddress: true
+          DeleteOnTermination: true
+          SubnetId:
+            Ref: SubnetId
+          Groups:
+          - Ref: SecurityGroupId
+        BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: 8
+            VolumeType: gp3
+            Iops: 3000
+            Throughput: 125
+            Encrypted: true
+            KmsKeyId: alias/aws/ebs
+            DeleteOnTermination: true
+        TagSpecifications:
+        - ResourceType: instance
+          Tags:
+          - Key: Name
+            Value: ec2-tools-team07
+          - Key: Project
+            Value: Team7
+          - Key: Team
+            Value: Team7
+          - Key: Environment
+            Value: Dev
+          - Key: Owner
+            Value: Team7
+          - Key: Workload
+            Value: Tools
+          - Key: Component
+            Value: Compute
+          - Key: ManagedBy
+            Value: Team7
+          - Key: Repository
+            Value: Team7
+          - Key: JiraProject
+            Value: SCRUM
+        - ResourceType: volume
+          Tags:
+          - Key: Name
+            Value: ebs-tools-team07
+          - Key: Project
+            Value: Team7
+          - Key: Team
+            Value: Team7
+          - Key: Environment
+            Value: Dev
+          - Key: Owner
+            Value: Team7
+          - Key: Workload
+            Value: Tools
+          - Key: Component
+            Value: Storage
+          - Key: ManagedBy
+            Value: Team7
+          - Key: Repository
+            Value: Team7
+          - Key: JiraProject
+            Value: SCRUM
+  Team7ToolsInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      LaunchTemplate:
+        LaunchTemplateId:
+          Ref: Team7ToolsLaunchTemplate
+        Version:
+          Fn::GetAtt:
+          - Team7ToolsLaunchTemplate
+          - LatestVersionNumber
+Outputs:
+  InstanceId:
+    Description: Tools instance ID.
+    Value:
+      Ref: Team7ToolsInstance
+  PrivateIp:
+    Description: Private IPv4.
+    Value:
+      Fn::GetAtt:
+      - Team7ToolsInstance
+      - PrivateIp
+  PublicIp:
+    Description: Temporary public IPv4 at creation; re-read EC2 after each start.
+    Value:
+      Fn::GetAtt:
+      - Team7ToolsInstance
+      - PublicIp
+  ImageId:
+    Description: Pinned AMI ID.
+    Value:
+      Ref: ImageId
+  SubnetId:
+    Description: Existing public subnet.
+    Value:
+      Ref: SubnetId
+  SecurityGroupId:
+    Description: Existing tools group.
+    Value:
+      Ref: SecurityGroupId
+  KeyPairName:
+    Description: Imported public key name.
+    Value:
+      Ref: Team7ToolsKeyPair

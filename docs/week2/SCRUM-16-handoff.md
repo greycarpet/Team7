@@ -53,3 +53,9 @@ Earlier AWS deployment extract: [deployment.json](evidence/SCRUM-16/deployment.j
 ## Root storage screenshot received, October 17, 2026
 
 Visually reviewed original 20261017_Team7_aws_w2-ec2-volume.png (SHA-256 424065a32cb7b9969b8416750e92918ce0f658ea4cc5298127ba3a54ce6f690c). It shows the exact stopped instance, root /dev/xvda, vol-06c9656cbce745cdb, 8 GiB, Attached/In-use, Encrypted Yes, and Delete on termination Yes. It is the instance Storage tab, not the volume Details view; gp3 is not visible in this image. Earlier AWS API evidence establishes gp3; a volume Details capture is still requested for visual evidence. Original retained privately in the project upload, not published here.
+
+## Detail screenshot follow-up, October 17, 2026
+
+Visually verified 20261017_Team7_aws_w2-ec2-volume-details.png: vol-06c9656cbce745cdb / ebs-tools-team07, 8 GiB gp3, 3000 IOPS, throughput 125, us-east-2a, attached to the correct tools instance as /dev/xvda, Encrypted with aws/ebs. Volume is In-use because it remains attached; this does not contradict the stopped instance. SHA-256 4b07aeb41bebab2cea3d5c3539136c50937bc058cf04883a7351674caf034d37. This closes the requested volume-type screenshot gap.
+
+Original retained privately in the project upload, unchanged and not publicly published. This follow-up supersedes the corresponding pending screenshot note above. The Solution Architecture form remains deferred until last; PR merge and parent-ticket completion are not claimed.

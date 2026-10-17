@@ -10,7 +10,7 @@ Template commit 562d839eaa65bcc8cbf285aae7059cbdbfb213eb.
 - Instance i-0dd31fddcfc283ea7 has only this security group attached.
 - Instance started at 2026-10-17T20:20:07Z for the authorized coordinated test window.
 - All three health checks passed after startup. Latest console output shows the restarted OS, AL2023.12.20261016 and kernel 6.18.54-121.166.amzn2023.x86_64, but no SSH host-key fingerprints. Standard console-output reads returned empty output. Independent host identity verification remains pending; no host identity pass is claimed.
-- FINAL STATE: Stopped, verified by DescribeInstances at 2026-10-17T20:36:18.805918Z after testing. Root EBS remains retained/billable; there is no current public IPv4.
+- FINAL STATE: Stopped, verified by DescribeInstances at 2026-10-17T20:47:53.236206Z after the completed retest. Root EBS remains retained/billable; there is no current public IPv4.
 
 ## Actual validation record, October 17, 2026
 
@@ -25,12 +25,31 @@ Template commit 562d839eaa65bcc8cbf285aae7059cbdbfb213eb.
 
 Original positive report: Team7-VM-Facts-20261017T203004365Z.txt, SHA-256 5090a9a067e987aae4c38c44a39843b9d388552fe447a90e52a59fceaa964b1f, retained privately. CloudShell output was supplied by Josh in the project conversation; do not describe it as an uploaded file or screenshot. Personal source/destination public IPs are omitted from this public summary and recorded in private Jira. No private key was sent to CloudShell.
 
-## Acceptance gaps and correction
+## Initial acceptance gaps (historical)
 
-The conversation initially summarized the restricted SSH test as passed. More precisely, the configuration, positive SSH login and negative TCP probe support expected restriction. The How-To requires an SSH-client probe from standard CloudShell followed by a new authorized SSH login. Neither that SSH-client negative probe nor the post-negative positive control has been captured. SCRUM-45 remains In Progress; no complete guide-level pass is claimed.
+The conversation initially summarized the restricted SSH test as passed. More precisely, the configuration, positive SSH login and negative TCP probe support expected restriction. The How-To requires an SSH-client probe from standard CloudShell followed by a new authorized SSH login. Those two observations were missing at the first checkpoint; the completed retest below supersedes that gap.
 
 The initial server host key was accepted by Josh on first use (TOFU). Independent console-fingerprint comparison was unavailable. Later collection enforced the known_hosts entry. Record this deviation; do not label host identity independently verified.
 
-SCRUM-44's configuration objective is complete. SCRUM-18 stays open until remaining test evidence, genuine screenshots and course-form fields are complete. Obtain a coordinated authorized start/test/stop window before rerunning: refresh target IP, verify healthy running VM and authorized source, use the guide's keyless CloudShell SSH probe, repeat fresh authorized login, save genuine evidence, then stop and verify. Do not broaden ingress or upload keys.
+SCRUM-44's configuration objective is complete. SCRUM-18 stays open for remaining genuine screenshots and course-form fields. The form is deferred until last per Josh's instruction.
 
 PR #7 remains unmerged. cfn-lint, AWS template validation and the dedicated Python security checks passed during preparation; no cfn-guard execution is claimed. Week 1 empty-ingress evidence remains historical.
+
+## Completed SSH retest, October 17, 2026
+
+Josh continued the authorized test workflow. The same instance was restarted; its temporary public IPv4 changed. Both positive logins and the negative probe targeted that same new address (exact public addresses retained privately in Jira).
+
+| UTC time | Source / test | Actual result |
+| --- | --- | --- |
+| 20:43:02 | Josh's Windows laptop, fresh SSH | ec2-user, expected hostname, SSH_CONNECTION source matches authorized /32 |
+| 20:44:12 | Ohio CloudShell, keyless OpenSSH probe | connect to host port 22: Connection timed out; SSH exit 255 |
+| 20:45:26 | Josh's Windows laptop, fresh SSH after negative | ec2-user, expected hostname, same authorized source and private target |
+| 20:47:53.236206 | AWS DescribeInstances after normal stop | stopped; no current public IPv4 |
+
+The negative probe used -4, -F /dev/null, ConnectTimeout=10, ConnectionAttempts=1, BatchMode=yes, PubkeyAuthentication=no, PasswordAuthentication=no, KbdInteractiveAuthentication=no and StrictHostKeyChecking=yes. Public checkip succeeded and showed a different source. Windows used -F NUL, IdentitiesOnly=yes, StrictHostKeyChecking=yes, and HostKeyAlias referencing its previously saved server entry. No authentication bypass or ingress expansion was used.
+
+Post-test AWS inspection confirmed running at the same target before stopping, only sg-0d4b70aeec5581403 attached, and exactly TCP/22 from the authorized /32 with no IPv6 ingress. Combined configuration and before/after SSH controls support the unauthorized-source network block. A timeout alone does not identify which network control dropped traffic.
+
+Genuine screenshot visually reviewed: 20261017_Team7_aws_w2-ssh-cloudshell-blocked.png. It shows the Ohio CloudShell tab, source, complete SSH command, 20:44:12 UTC timestamp, timeout and exit 255. SHA-256: 723f3b5ff972c2f51bf1fc5a973d75274cfa96e8f5886de90291180d8f42edf8. Original retained privately in the project upload; not published to this public repository. It also includes the earlier TCP test, which remains separately identified as historical.
+
+SCRUM-45's allowed/blocked validation objective is complete. Windows positive results are user-supplied terminal transcripts; their screenshot remains requested for the course package. Remaining parent deliverables: configuration/final-stopped screenshots, allowed-login screenshot, shared-form population (last), and review. TOFU limitation above remains; the retest proves host-key continuity, not independent initial identity verification.

@@ -1,0 +1,93 @@
+# SCRUM-18 deployment checkpoint
+
+> Current checkpoint, 2026-10-17: deployment, VM facts, SSH positive/negative/positive tests, final stop, and requested screenshot follow-ups are recorded. Remaining: PR review and the official Solution Architecture form/PDF (last). Initial SSH host identity was accepted on first use; independent verification is not claimed. Earlier observations below are historical where superseded.
+
+Updated 2026-10-17. Josh authorized PR #7 at 15:18 America/Chicago.
+Template commit 562d839eaa65bcc8cbf285aae7059cbdbfb213eb.
+
+- cfn-security-team07 reached UPDATE_COMPLETE.
+- Reviewed change set: scrum18-ssh-562d839-20261017. One Modify of Team7ToolsSecurityGroup, Replacement=False. Runtime property change is ingress only; descriptive metadata also updated. No validation-error events.
+- Group sg-0d4b70aeec5581403 retains original VPC, GroupDescription, tags and default IPv4 egress.
+- Exactly one ingress rule: TCP/22, one approved operator public IPv4 /32. Actual source retained in private project conversation and AWS parameter; omitted here.
+- Instance i-0dd31fddcfc283ea7 has only this security group attached.
+- Instance started at 2026-10-17T20:20:07Z for the authorized coordinated test window.
+- All three health checks passed after startup. Latest console output shows the restarted OS, AL2023.12.20261016 and kernel 6.18.54-121.166.amzn2023.x86_64, but no SSH host-key fingerprints. Standard console-output reads returned empty output. Independent host identity verification remains pending; no host identity pass is claimed.
+- FINAL STATE: Stopped, verified by DescribeInstances at 2026-10-17T20:47:53.236206Z after the completed retest. Root EBS remains retained/billable; there is no current public IPv4.
+
+## Initial validation record, October 17, 2026 (historical)
+
+| Observation | Evidence | Interpretation |
+| --- | --- | --- |
+| Authorized login | Windows report at 20:30:12Z; ec2-user; SSH_CONNECTION source matched authorized /32; SSH exit 0 | Authenticated positive test succeeded |
+| CloudShell public connectivity | checkip endpoint returned a different public egress IPv4 at 20:34:39Z | Internet access and distinct observed source established; environment type not separately captured |
+| CloudShell TCP/22 | timeout 10 bash -c TCP-connect probe against same temporary public target; exit 124 | Expected TCP timeout; this was not an SSH-client probe |
+| Effective access | AWS read after tests: only intended group attached; exactly TCP/22 from one /32, no IPv6 ingress | Configuration supports source restriction |
+| Target state | AWS read after negative test found instance running at the test target; normal StopInstances followed | Timeout was not manufactured by stopping the VM |
+| Final state | DescribeInstances at 20:36:18.805918Z: stopped | Required cost-control stop verified |
+
+Original positive report: Team7-VM-Facts-20261017T203004365Z.txt, SHA-256 5090a9a067e987aae4c38c44a39843b9d388552fe447a90e52a59fceaa964b1f, retained privately. CloudShell output was supplied by Josh in the project conversation; do not describe it as an uploaded file or screenshot. Personal source/destination public IPs are omitted from this public summary and recorded in private Jira. No private key was sent to CloudShell.
+
+## Initial acceptance gaps (historical)
+
+The conversation initially summarized the restricted SSH test as passed. More precisely, the configuration, positive SSH login and negative TCP probe support expected restriction. The How-To requires an SSH-client probe from standard CloudShell followed by a new authorized SSH login. Those two observations were missing at the first checkpoint; the completed retest below supersedes that gap.
+
+The initial server host key was accepted by Josh on first use (TOFU). Independent console-fingerprint comparison was unavailable. Later collection enforced the known_hosts entry. Record this deviation; do not label host identity independently verified.
+
+SCRUM-44's configuration objective is complete. SCRUM-18 stays open for final review and course-form fields; the requested configuration screenshots are received below. The form is deferred until last per Josh's instruction.
+
+PR #7 remains unmerged. cfn-lint, AWS template validation and the dedicated Python security checks passed during preparation; no cfn-guard execution is claimed. Week 1 empty-ingress evidence remains historical.
+
+## Completed SSH retest, October 17, 2026
+
+Josh continued the authorized test workflow. The same instance was restarted; its temporary public IPv4 changed. Both positive logins and the negative probe targeted that same new address (exact public addresses retained privately in Jira).
+
+| UTC time | Source / test | Actual result |
+| --- | --- | --- |
+| 20:43:02 | Josh's Windows laptop, fresh SSH | ec2-user, expected hostname, SSH_CONNECTION source matches authorized /32 |
+| 20:44:12 | Ohio CloudShell, keyless OpenSSH probe | connect to host port 22: Connection timed out; SSH exit 255 |
+| 20:45:26 | Josh's Windows laptop, fresh SSH after negative | ec2-user, expected hostname, same authorized source and private target |
+| 20:47:53.236206 | AWS DescribeInstances after normal stop | stopped; no current public IPv4 |
+
+The negative probe used -4, -F /dev/null, ConnectTimeout=10, ConnectionAttempts=1, BatchMode=yes, PubkeyAuthentication=no, PasswordAuthentication=no, KbdInteractiveAuthentication=no and StrictHostKeyChecking=yes. Public checkip succeeded and showed a different source. Windows used -F NUL, IdentitiesOnly=yes, StrictHostKeyChecking=yes, and HostKeyAlias referencing its previously saved server entry. No authentication bypass or ingress expansion was used.
+
+Post-test AWS inspection confirmed running at the same target before stopping, only sg-0d4b70aeec5581403 attached, and exactly TCP/22 from the authorized /32 with no IPv6 ingress. Combined configuration and before/after SSH controls support the unauthorized-source network block. A timeout alone does not identify which network control dropped traffic.
+
+Genuine screenshot visually reviewed: 20261017_Team7_aws_w2-ssh-cloudshell-blocked.png. It shows the Ohio CloudShell tab, source, complete SSH command, 20:44:12 UTC timestamp, timeout and exit 255. SHA-256: 723f3b5ff972c2f51bf1fc5a973d75274cfa96e8f5886de90291180d8f42edf8. Original retained privately in the project upload; not published to this public repository. It also includes the earlier TCP test, which remains separately identified as historical.
+
+SCRUM-45's allowed/blocked validation objective is complete. Windows positive results are supported by terminal transcripts and the genuine screenshot reviewed below. Final-stopped screenshot is also received. Remaining parent deliverables: shared-form population (last) and review. The requested configuration screenshots are received below. TOFU limitation above remains; the retest proves host-key continuity, not independent initial identity verification.
+
+## Additional original screenshots reviewed, October 17, 2026
+
+Originals retained privately in the project uploads, not published to the public repository. These are genuine user captures, not recreated evidence.
+
+| Filename | Verified content | SHA-256 |
+| --- | --- | --- |
+| 20261017_Team7_aws_w2-ssh-allowed.png | Both fresh SSH commands and authenticated ec2-user results at 20:43:02Z and 20:45:26Z; server-observed source and target match the recorded test | deaf978b3f12574d918bfa5b4fb40119f40684d711d31088079b01c446128efa |
+| 20261017_Team7_aws_w2-ssh-final-stopped.png | ec2-tools-team07, exact instance ID, Stopped, t3.micro, us-east-2a, private IPv4, intended VPC/public subnet, no public IPv4, IMDSv2 Required | 4c037fc73de7f6427cbf9f69ff3987afec3a8cb0729c09049db267a8fa40e130 |
+
+The stopped screenshot has no visible capture clock; its date derives from the supplied filename/upload context. The independent API timestamp remains the precise stopped-state verification time. The PowerShell image shows a passphrase prompt but no passphrase or private-key material. No further instance restart is needed for these screenshots.
+
+## Security-group screenshots reviewed, October 17, 2026
+
+All three originals were visually inspected and remain privately retained in the project uploads. No image modifications or public publication were performed.
+
+| Filename | Verified content | SHA-256 |
+| --- | --- | --- |
+| 20261017_Team7_aws_w2-ssh-inbound.png | Correct group/VPC; one IPv4 SSH TCP/22 rule from the approved operator /32; rule sgr-040165bbbd29fb448 | f35e78d1776c860cc042f272ce4545d323e021b365c7127c2d11e2f58f757dc9 |
+| 20261017_Team7_aws_w2-ssh-outbound.png | Same group; one IPv4 All traffic egress rule to 0.0.0.0/0; rule sgr-0c5218ce1138a563f | 597f0f227ef8f14ed138ee32bd5dce26e8f2989a72e1b30497913ad77f2de007 |
+| 20261017_Team7_aws_w2-ssh-attached-groups.png | Correct stopped instance; sole tools group attached; matching inbound and outbound rule IDs | a767af6809e6b9ec816a1fcb3ec3381a4d2e836ca12da606870ebfa218a3978f |
+
+The retained GroupDescription still says Week 1 intentionally: the approved update preserved this resource property to avoid replacement. The Week 2 rule description identifies SCRUM-18. These images corroborate the API observations and close the inbound/outbound/attachment screenshot gaps. CloudFormation change-set/stack screenshots are received below; VM storage evidence is recorded in PR #6. The course form remains last.
+
+## CloudFormation screenshots received, October 17, 2026
+
+- 20261017_Team7_aws_w2-ssh-stack.png: visually confirms cfn-security-team07 UPDATE_COMPLETE at 15:19:36 UTC-0500 and Team7ToolsSecurityGroup UPDATE_COMPLETE at 15:19:34. SHA-256 500fa36825bf80391ced6fe9b32f7631e65d74da1f43398e67b69b30fffad826.
+- 20261017_Team7_aws_w2-ssh-change-set.png: shows Change sets (0), plus Last executed change set link for scrum18-ssh-562d839-20261017, execution 15:19:31 UTC-0500. SHA-256 2fdfbff530c82aa4764770f21e145532332a88f74f5f6ea0a7947a744c6d5774. This confirms the execution reference, not the property-level changes or Replacement=False. The earlier API/change-set review supports those details; the genuine details screenshot reviewed below now corroborates them. No additional change set was needed.
+
+Both originals were inspected and remain privately retained in project uploads. No fabricated or substituted screenshot is claimed.
+
+## Detail screenshot follow-up, October 17, 2026
+
+Visually verified 20261017_Team7_aws_w2-ssh-change-set-details.png: scrum18-ssh-562d839-20261017, CREATE_COMPLETE and EXECUTE_COMPLETE, exactly one resource change: Team7ToolsSecurityGroup, Modify, AWS::EC2::SecurityGroup, Replacement=False. This resolves the previous screenshot gap; the original executed change set was accessible through its last-executed link. No new change set was created. SHA-256 932fea4f35a924fd091f3e77751f964262592d42871600de53bb26b248207e29.
+
+Original retained privately in the project upload, unchanged and not publicly published. This follow-up supersedes the corresponding pending screenshot note above. The Solution Architecture form remains deferred until last; PR merge and parent-ticket completion are not claimed.

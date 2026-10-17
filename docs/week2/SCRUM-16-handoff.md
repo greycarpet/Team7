@@ -49,3 +49,7 @@ SCRUM-16 remains open for required genuine screenshots and shared-form populatio
 SCRUM-19 requires the current official form, final field mapping, evidence, review and official PDF export. No Alyssa/instructor approval or submission is claimed. PR #6 remains unmerged.
 
 Earlier AWS deployment extract: [deployment.json](evidence/SCRUM-16/deployment.json). Its earlier zero-ingress/stopped observations are historical; this dated handoff records subsequent changes.
+
+## Root storage screenshot received, October 17, 2026
+
+Visually reviewed original 20261017_Team7_aws_w2-ec2-volume.png (SHA-256 424065a32cb7b9969b8416750e92918ce0f658ea4cc5298127ba3a54ce6f690c). It shows the exact stopped instance, root /dev/xvda, vol-06c9656cbce745cdb, 8 GiB, Attached/In-use, Encrypted Yes, and Delete on termination Yes. It is the instance Storage tab, not the volume Details view; gp3 is not visible in this image. Earlier AWS API evidence establishes gp3; a volume Details capture is still requested for visual evidence. Original retained privately in the project upload, not published here.

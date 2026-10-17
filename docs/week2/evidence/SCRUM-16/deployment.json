@@ -1,0 +1,178 @@
+{
+  "date": "2026-10-17",
+  "source": "AWS API observations through connected AWS account; compact reviewed extract, not screenshots",
+  "template_commit": "48d77a53422b6e7c5bdd6c65e12fbd3a88d6827c",
+  "template_sha256": "b239f130263795f3e8c2ac890f237accf4424d40406a80fafcbbbfdb18a6695f",
+  "stack_status": "UPDATE_COMPLETE",
+  "observed_at": "2026-10-17T20:08:42.899509+00:00",
+  "instance": {
+    "id": "i-0dd31fddcfc283ea7",
+    "ami": "ami-0d31a22b09ceec4db",
+    "type": "t3.micro",
+    "subnet": "subnet-015dee27e366615f0",
+    "vpc": "vpc-05ac92d29e000c0ce",
+    "az": "us-east-2a",
+    "private_ip": "10.7.1.86",
+    "name": "ec2-tools-team07",
+    "metadata": {
+      "State": "applied",
+      "HttpTokens": "required",
+      "HttpPutResponseHopLimit": 1,
+      "HttpEndpoint": "enabled",
+      "HttpProtocolIpv6": "disabled",
+      "InstanceMetadataTags": "disabled"
+    },
+    "security_groups": [
+      "sg-0d4b70aeec5581403"
+    ],
+    "cpu_credits": "standard",
+    "key_name": "key-tools-team07",
+    "required_tags": [
+      {
+        "Key": "Environment",
+        "Value": "Dev"
+      },
+      {
+        "Key": "Name",
+        "Value": "ec2-tools-team07"
+      },
+      {
+        "Key": "JiraProject",
+        "Value": "SCRUM"
+      },
+      {
+        "Key": "Workload",
+        "Value": "Tools"
+      },
+      {
+        "Key": "ManagedBy",
+        "Value": "Team7"
+      },
+      {
+        "Key": "Owner",
+        "Value": "Team7"
+      },
+      {
+        "Key": "Repository",
+        "Value": "Team7"
+      },
+      {
+        "Key": "Component",
+        "Value": "Compute"
+      },
+      {
+        "Key": "Project",
+        "Value": "Team7"
+      },
+      {
+        "Key": "Team",
+        "Value": "Team7"
+      }
+    ]
+  },
+  "volume": {
+    "id": "vol-06c9656cbce745cdb",
+    "type": "gp3",
+    "size_gib": 8,
+    "encrypted": true,
+    "iops": 3000,
+    "throughput": 125,
+    "tags": [
+      {
+        "Key": "ManagedBy",
+        "Value": "Team7"
+      },
+      {
+        "Key": "Environment",
+        "Value": "Dev"
+      },
+      {
+        "Key": "Project",
+        "Value": "Team7"
+      },
+      {
+        "Key": "Team",
+        "Value": "Team7"
+      },
+      {
+        "Key": "Workload",
+        "Value": "Tools"
+      },
+      {
+        "Key": "Name",
+        "Value": "ebs-tools-team07"
+      },
+      {
+        "Key": "Owner",
+        "Value": "Team7"
+      },
+      {
+        "Key": "JiraProject",
+        "Value": "SCRUM"
+      },
+      {
+        "Key": "Repository",
+        "Value": "Team7"
+      },
+      {
+        "Key": "Component",
+        "Value": "Storage"
+      }
+    ],
+    "delete_on_termination": true
+  },
+  "public_key_sha256": "SHA256:PXjRehpG9x82mXhuq3lG0mH7Ys5aiNaTxkeTVL75rc4",
+  "public_key_match": true,
+  "health": [
+    {
+      "AvailabilityZone": "us-east-2a",
+      "AvailabilityZoneId": "use2-az1",
+      "Operator": {
+        "Managed": false,
+        "HiddenByDefault": false
+      },
+      "InstanceId": "i-0dd31fddcfc283ea7",
+      "InstanceState": {
+        "Code": 16,
+        "Name": "running"
+      },
+      "InstanceStatus": {
+        "Details": [
+          {
+            "Name": "reachability",
+            "Status": "passed"
+          }
+        ],
+        "Status": "ok"
+      },
+      "SystemStatus": {
+        "Details": [
+          {
+            "Name": "reachability",
+            "Status": "passed"
+          }
+        ],
+        "Status": "ok"
+      },
+      "AttachedEbsStatus": {
+        "Details": [
+          {
+            "Name": "reachability",
+            "Status": "passed"
+          }
+        ],
+        "Status": "ok"
+      }
+    }
+  ],
+  "final_state": "stopped",
+  "final_state_observed_at": "2026-10-17T20:09:59.751050+00:00",
+  "security_group_ingress": [],
+  "pending": [
+    "SSH host fingerprint verification",
+    "authorized login and host VM facts",
+    "SCRUM-18 /32 rule and positive/negative tests",
+    "genuine course screenshots",
+    "SCRUM-19 official form and final PDF"
+  ]
+}

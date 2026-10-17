@@ -11,16 +11,41 @@ Josh authorized deployment on October 17, 2026 at 15:03 America/Chicago. Initial
 - IMDSv2 required, endpoint enabled, hop limit 1; Standard CPU credits; detailed monitoring disabled.
 - Root vol-06c9656cbce745cdb: encrypted 8 GiB gp3, 3000 IOPS, 125 MiB/s, Name ebs-tools-team07. Retained on stop; deleted on termination.
 - System, instance and attached EBS status checks all passed before stopping.
-- FINAL STATE: Stopped, verified 2026-10-17T20:09:59.751050Z. Disk remains attached/billable. Re-read public IPv4 after next start; creation-time CloudFormation output is not authoritative after restart.
-- Only sg-0d4b70aeec5581403 attached; zero inbound rules. SSH tests have not been performed.
+- FINAL STATE: Stopped, verified 2026-10-17T20:36:18.805918Z after the authorized SSH test window. Disk remains attached/billable. There is no current public IPv4; re-read it after next start. Creation-time CloudFormation outputs are not authoritative after restart.
+- Only sg-0d4b70aeec5581403 attached. SCRUM-18 has since changed the Week 1 zero-ingress baseline to exactly TCP/22 from one authorized operator IPv4 /32; no IPv6 ingress. Authorized Windows SSH succeeded.
 - Imported public-key bytes match Josh's supplied RSA public key. SHA256:PXjRehpG9x82mXhuq3lG0mH7Ys5aiNaTxkeTVL75rc4. This is the client key fingerprint, not the server host fingerprint. Private key remains on Josh's Windows laptop.
 
 ## Naming correction
 CloudFormation propagated stack Name=cfn-tools-team07 over the launch template's instance Name. Corrected by explicitly defining instance resource tags at commit 48d77a53422b6e7c5bdd6c65e12fbd3a88d6827c. cfn-lint returned []. The reviewed UPDATE change set showed only Team7ToolsInstance Tags, Replacement=False, RequiresRecreation=Never, with no validation errors. Update succeeded; actual Name=ec2-tools-team07 verified. No instance replacement or ingress change.
 
-## Acceptance still pending
-SCRUM-40's technical deployment objective is verified. SCRUM-16/41 remain incomplete pending host-level VM facts, access/test evidence and course screenshots. SCRUM-18 needs Josh's current Windows-laptop public IPv4, one approved /32 ingress rule on the existing security stack, and a coordinated start/test/stop window. Verify server fingerprints before SSH acceptance; collect host facts on Windows using the retained private key. A CloudShell timeout is not proof without paired allowed-source success and reviewed network configuration.
+## Host-level facts collected
 
-SCRUM-19 still needs these actual VM/test fields in the official form and final PDF. Do not claim Alyssa or instructor approval. PR #6 stays draft; no merge or ticket closure is asserted.
+Josh took over Alyssa's implementation because she was unavailable. At 2026-10-17T20:30:12Z (15:30:12 CDT), Josh ran Collect-Team7-VMFacts.ps1 from Windows. All ten diagnostic commands returned 0, collection reported zero failed checks, and SSH returned 0.
 
-Evidence: [compact AWS observations](evidence/SCRUM-16/deployment.json). This extract excludes full public-key material, account identifiers, temporary public IP and unrelated fields. No console screenshot or in-guest OS/kernel observation is claimed.
+| Field | Observed value |
+| --- | --- |
+| VM name | ec2-tools-team07 |
+| Login | ec2-user |
+| OS | Amazon Linux 2023.12.20261016 |
+| Kernel | 6.18.54-121.166.amzn2023.x86_64 |
+| Type / CPU | t3.micro / 2 logical CPUs, x86_64 |
+| Guest memory | 913 MiB total, 634 MiB available at collection |
+| Disk / root filesystem | 8 GiB / XFS |
+| Private IPv4 | 10.7.1.86/24, ens5 |
+| Default gateway | 10.7.1.1 |
+
+Server-observed SSH_CONNECTION source matched the approved /32. The original report remains private: Team7-VM-Facts-20261017T203004365Z.txt, SHA-256 5090a9a067e987aae4c38c44a39843b9d388552fe447a90e52a59fceaa964b1f. This public summary omits personal public IP, temporary destination public IP, machine/boot IDs and full raw output. Private key/passphrase remain on Josh's Windows laptop; they were not transferred.
+
+## Host identity limitation
+
+The server ED25519 key was accepted on first use by Josh. Available EC2 console logs did not contain a usable fingerprint for independent comparison. Later scripted SSH required the existing known_hosts entry. This is TOFU, not independently verified host identity. Preserve the deviation from the guide; do not claim that control passed.
+
+## Handoff and remaining acceptance
+
+SCRUM-40's deployment objective and SCRUM-41's facts/access/stop objectives are complete. Josh performed both infrastructure and Security & Ops work with his own retained key. Copy the values above into the actual course form; no live form edit is claimed.
+
+SCRUM-16 remains open for required genuine screenshots and shared-form population. SCRUM-18 has an authenticated positive test and a CloudShell TCP timeout but still needs the guide's SSH-specific negative probe and post-negative fresh positive control. See PR #7's SCRUM-18 handoff. No restart was performed to fill this evidence gap.
+
+SCRUM-19 requires the current official form, final field mapping, evidence, review and official PDF export. No Alyssa/instructor approval or submission is claimed. PR #6 remains unmerged.
+
+Earlier AWS deployment extract: [deployment.json](evidence/SCRUM-16/deployment.json). Its earlier zero-ingress/stopped observations are historical; this dated handoff records subsequent changes.

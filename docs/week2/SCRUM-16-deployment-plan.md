@@ -1,3 +1,5 @@
+> EXECUTED 2026-10-17: Josh authorized deployment. See [actual deployment handoff](SCRUM-16-handoff.md) for the completed deployment, naming correction, verified stopped state and pending SSH/course evidence. The proposal below is preserved as the pre-deployment record.
+
 # SCRUM-16: reviewed deployment proposal
 
 Prepared 2026-10-17. Status: PREPARED, NOT DEPLOYED. Josh is taking over implementation because Alyssa is unavailable, per the project conversation. Existing Jira assignments have not been changed.

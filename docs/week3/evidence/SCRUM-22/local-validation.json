@@ -1,0 +1,28 @@
+{
+  "captured_at_utc": "2026-10-20T00:58:09.993108+00:00",
+  "status": "PREPARED_NOT_DEPLOYED",
+  "python_tests": 9,
+  "javascript_tests": 3,
+  "local_checks": {
+    "cfn_lint": "PASS (1.57.2)",
+    "cloudformation_guard": "PASS (3.2.1, project rules)",
+    "inline_handler_source_match": "PASS",
+    "diff_whitespace": "PASS"
+  },
+  "sha256": {
+    "application/lambda/visitor_counter.py": "2c342edccf8d2a78ac76d2bcb5defff1938375646170e79dabcd6332170f0dff",
+    "infrastructure/cloudformation/week3/visitor-api.yaml": "e30a8a3096e5590e4d3738cd07d6751051d554c5750263f6ef922bffd3993bb7",
+    "site/index.html": "3a157117b212401fa21023564ddd564c59e44e2e6d718b034c40a18e88f425dd",
+    "site/assets/visitor-counter-v1.js": "8b87821065a8c72cf6fdf82896937245721ea32d1a906a8dbcce95bfe80aebce",
+    "scripts/build_visitor_site.py": "4c4bf4c4c9b9c7b74b98ea555fccfe35ad79e5dfdc18fba2f9051e4e24a41ba3",
+    "scripts/build_visitor_template.py": "db1de3f6e1466efd646190f45674d9b6603f2fc7d3ed3057393fd21c7ba24dd5"
+  },
+  "iam_policy_autopilot": "Generation blocked by automatic approval review for an unverified endpoint; not counted as passed. Safer AWS reference/Access Analyzer/simulation fallback used.",
+  "pending": [
+    "Authorized change set",
+    "Deployed integration tests",
+    "Live browser CORS/CSP tests",
+    "End-of-week screenshots and final specification"
+  ],
+  "credential_pattern_scan": "PASS: no AWS key ID/private-key/account ID patterns in the 15 changed files; not a general secret-detection guarantee."
+}

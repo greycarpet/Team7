@@ -1,0 +1,285 @@
+{
+  "captured_date_utc": "2026-10-20",
+  "region": "us-east-2",
+  "currency": "USD",
+  "source": "AWS Price List GetProducts API (us-east-1 endpoint)",
+  "lambda_requests": [
+    {
+      "product": {
+        "productFamily": "Serverless",
+        "attributes": {
+          "regionCode": "us-east-2",
+          "servicecode": "AWSLambda",
+          "groupDescription": "Invocation call for a Lambda function",
+          "usagetype": "USE2-Request",
+          "locationType": "AWS Region",
+          "location": "US East (Ohio)",
+          "servicename": "AWS Lambda",
+          "operation": "",
+          "group": "AWS-Lambda-Requests"
+        },
+        "sku": "ZEA64MMVK5QRB5TC"
+      },
+      "serviceCode": "AWSLambda",
+      "terms": {
+        "OnDemand": {
+          "ZEA64MMVK5QRB5TC.JRTCKXETXF": {
+            "priceDimensions": {
+              "ZEA64MMVK5QRB5TC.JRTCKXETXF.6YS6EN2CT7": {
+                "unit": "Request",
+                "endRange": "Inf",
+                "description": "AWS Lambda - Total Requests - US East (Ohio)",
+                "appliesTo": [],
+                "rateCode": "ZEA64MMVK5QRB5TC.JRTCKXETXF.6YS6EN2CT7",
+                "beginRange": "0",
+                "pricePerUnit": {
+                  "USD": "0.0000002000"
+                }
+              }
+            },
+            "sku": "ZEA64MMVK5QRB5TC",
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "termAttributes": {}
+          }
+        }
+      },
+      "version": "20261016182359",
+      "publicationDate": "2026-10-16T18:23:59Z"
+    }
+  ],
+  "http_api": [
+    {
+      "product": {
+        "productFamily": "API Calls",
+        "attributes": {
+          "regionCode": "us-east-2",
+          "servicecode": "AmazonApiGateway",
+          "usagetype": "USE2-ApiGatewayHttpRequest",
+          "description": "HTTP API Requests",
+          "locationType": "AWS Region",
+          "location": "US East (Ohio)",
+          "servicename": "Amazon API Gateway",
+          "operation": "ApiGatewayHttpApi"
+        },
+        "sku": "9R977R3Z4DEQKWJB"
+      },
+      "serviceCode": "AmazonApiGateway",
+      "terms": {
+        "OnDemand": {
+          "9R977R3Z4DEQKWJB.JRTCKXETXF": {
+            "priceDimensions": {
+              "9R977R3Z4DEQKWJB.JRTCKXETXF.Y5DREYKEMT": {
+                "unit": "Requests",
+                "endRange": "Inf",
+                "description": "$0.9/million requests - API Gateway HTTP API (more than 300 million)",
+                "appliesTo": [],
+                "rateCode": "9R977R3Z4DEQKWJB.JRTCKXETXF.Y5DREYKEMT",
+                "beginRange": "300000000",
+                "pricePerUnit": {
+                  "USD": "0.0000009000"
+                }
+              },
+              "9R977R3Z4DEQKWJB.JRTCKXETXF.9NXBCPDZYR": {
+                "unit": "Requests",
+                "endRange": "300000000",
+                "description": "$1/million requests - API Gateway HTTP API (first 300 million)",
+                "appliesTo": [],
+                "rateCode": "9R977R3Z4DEQKWJB.JRTCKXETXF.9NXBCPDZYR",
+                "beginRange": "0",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                }
+              }
+            },
+            "sku": "9R977R3Z4DEQKWJB",
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "termAttributes": {}
+          }
+        }
+      },
+      "version": "20261013003044",
+      "publicationDate": "2026-10-13T00:30:44Z"
+    }
+  ],
+  "lambda_arm_duration": [
+    {
+      "product": {
+        "productFamily": "Serverless",
+        "attributes": {
+          "regionCode": "us-east-2",
+          "servicecode": "AWSLambda",
+          "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+          "usagetype": "USE2-Lambda-GB-Second-ARM",
+          "locationType": "AWS Region",
+          "location": "US East (Ohio)",
+          "servicename": "AWS Lambda",
+          "operation": "",
+          "group": "AWS-Lambda-Duration-ARM"
+        },
+        "sku": "CHGDQQ3YSPF93CBA"
+      },
+      "serviceCode": "AWSLambda",
+      "terms": {
+        "OnDemand": {
+          "CHGDQQ3YSPF93CBA.JRTCKXETXF": {
+            "priceDimensions": {
+              "CHGDQQ3YSPF93CBA.JRTCKXETXF.AVR3V96UTF": {
+                "unit": "Lambda-GB-Second",
+                "endRange": "Inf",
+                "description": "AWS Lambda - Total Compute for ARM - US East (Ohio)-Tier-3",
+                "appliesTo": [],
+                "rateCode": "CHGDQQ3YSPF93CBA.JRTCKXETXF.AVR3V96UTF",
+                "beginRange": "18750000000",
+                "pricePerUnit": {
+                  "USD": "0.0000106667"
+                }
+              },
+              "CHGDQQ3YSPF93CBA.JRTCKXETXF.6JGAYSJBNY": {
+                "unit": "Lambda-GB-Second",
+                "endRange": "18750000000",
+                "description": "AWS Lambda - Total Compute for ARM - US East (Ohio)-Tier-2",
+                "appliesTo": [],
+                "rateCode": "CHGDQQ3YSPF93CBA.JRTCKXETXF.6JGAYSJBNY",
+                "beginRange": "7500000000",
+                "pricePerUnit": {
+                  "USD": "0.0000120001"
+                }
+              },
+              "CHGDQQ3YSPF93CBA.JRTCKXETXF.6NBUNBXSC3": {
+                "unit": "Lambda-GB-Second",
+                "endRange": "7500000000",
+                "description": "AWS Lambda - Total Compute for ARM - US East (Ohio)-Tier-1",
+                "appliesTo": [],
+                "rateCode": "CHGDQQ3YSPF93CBA.JRTCKXETXF.6NBUNBXSC3",
+                "beginRange": "0",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                }
+              }
+            },
+            "sku": "CHGDQQ3YSPF93CBA",
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "termAttributes": {}
+          }
+        }
+      },
+      "version": "20261016182359",
+      "publicationDate": "2026-10-16T18:23:59Z"
+    }
+  ],
+  "logs": {
+    "0": [
+      {
+        "product": {
+          "productFamily": "Data Payload",
+          "attributes": {
+            "regionCode": "us-east-2",
+            "servicecode": "AmazonCloudWatch",
+            "groupDescription": "Existing system, application, and custom log files",
+            "usagetype": "USE2-DataProcessing-Bytes",
+            "locationType": "AWS Region",
+            "location": "US East (Ohio)",
+            "servicename": "AmazonCloudWatch",
+            "operation": "PutLogEvents",
+            "version": "Current",
+            "group": "Ingested Logs",
+            "logsDestination": "Amazon CloudWatch Logs"
+          },
+          "sku": "5T6Z6V26DSR7SZ49"
+        },
+        "serviceCode": "AmazonCloudWatch",
+        "terms": {
+          "OnDemand": {
+            "5T6Z6V26DSR7SZ49.JRTCKXETXF": {
+              "priceDimensions": {
+                "5T6Z6V26DSR7SZ49.JRTCKXETXF.6YS6EN2CT7": {
+                  "unit": "GB",
+                  "endRange": "Inf",
+                  "description": "$0.50 per GB custom log data ingested in Standard log class - US East (Ohio)",
+                  "appliesTo": [],
+                  "rateCode": "5T6Z6V26DSR7SZ49.JRTCKXETXF.6YS6EN2CT7",
+                  "beginRange": "0",
+                  "pricePerUnit": {
+                    "USD": "0.5000000000"
+                  }
+                }
+              },
+              "sku": "5T6Z6V26DSR7SZ49",
+              "effectiveDate": "2026-10-01T00:00:00Z",
+              "offerTermCode": "JRTCKXETXF",
+              "termAttributes": {}
+            }
+          }
+        },
+        "version": "20261007115540",
+        "publicationDate": "2026-10-07T11:55:40Z"
+      }
+    ],
+    "1": [
+      {
+        "product": {
+          "productFamily": "Storage Snapshot",
+          "attributes": {
+            "storageMedia": "Amazon S3",
+            "regionCode": "us-east-2",
+            "servicecode": "AmazonCloudWatch",
+            "groupDescription": "Amazon CloudWatch Logs Storage Current version",
+            "usagetype": "USE2-TimedStorage-ByteHrs",
+            "locationType": "AWS Region",
+            "location": "US East (Ohio)",
+            "servicename": "AmazonCloudWatch",
+            "operation": "",
+            "version": "Current",
+            "group": "Amazon CloudWatch Standard Storage pricing current"
+          },
+          "sku": "X7X4WD4A95NDR9U5"
+        },
+        "serviceCode": "AmazonCloudWatch",
+        "terms": {
+          "OnDemand": {
+            "X7X4WD4A95NDR9U5.JRTCKXETXF": {
+              "priceDimensions": {
+                "X7X4WD4A95NDR9U5.JRTCKXETXF.6YS6EN2CT7": {
+                  "unit": "GB-Mo",
+                  "endRange": "Inf",
+                  "description": "$0.03 per GB-mo of log storage - US East (Ohio)",
+                  "appliesTo": [],
+                  "rateCode": "X7X4WD4A95NDR9U5.JRTCKXETXF.6YS6EN2CT7",
+                  "beginRange": "0",
+                  "pricePerUnit": {
+                    "USD": "0.0300000000"
+                  }
+                }
+              },
+              "sku": "X7X4WD4A95NDR9U5",
+              "effectiveDate": "2026-10-01T00:00:00Z",
+              "offerTermCode": "JRTCKXETXF",
+              "termAttributes": {}
+            }
+          }
+        },
+        "version": "20261007115540",
+        "publicationDate": "2026-10-07T11:55:40Z"
+      }
+    ]
+  },
+  "ddb_write_usd_per_wru": 6.25e-7,
+  "ddb_price_source": "SCRUM-21 pricing evidence in PR #8, retrieved 2026-10-20",
+  "example": {
+    "visits": 10000,
+    "http_requests_including_preflights": 20000,
+    "billed_lambda_duration_seconds": 0.2,
+    "lambda_memory_gb": 0.25,
+    "ddb_wrus": 10000,
+    "logs_ingested_gb": 0.01,
+    "logs_stored_gb_month": 0.01,
+    "gross_usd": 0.0402167
+  },
+  "exclusions": [
+    "Existing infrastructure, S3/CloudFront, transfer, DynamoDB storage, extra diagnostics",
+    "Free-tier benefits and credits are not assumed"
+  ]
+}

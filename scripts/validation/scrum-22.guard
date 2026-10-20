@@ -1,0 +1,36 @@
+# Project-specific deployment constraints, not a compliance certification.
+rule visitor_api_scope {
+  Resources.*.Type IN ['AWS::Logs::LogGroup', 'AWS::IAM::Role', 'AWS::Lambda::Function', 'AWS::ApiGatewayV2::Api', 'AWS::ApiGatewayV2::Integration', 'AWS::ApiGatewayV2::Route', 'AWS::ApiGatewayV2::Stage', 'AWS::Lambda::Permission']
+  Parameters.VisitorTableName.AllowedValues == ['ddb-visitor-team07']
+  Parameters.AllowedOrigin.AllowedValues == ['https://d3jg1ev4a532iw.cloudfront.net']
+  Resources.VisitorFunction.Properties {
+    FunctionName == 'lambda-visitor-team07'
+    Runtime == 'python3.13'
+    MemorySize == 256
+    Timeout == 5
+    VpcConfig !exists
+    ReservedConcurrentExecutions !exists
+  }
+  Resources.VisitorApi.Properties {
+    ProtocolType == 'HTTP'
+    CorsConfiguration.AllowMethods == ['POST', 'OPTIONS']
+    CorsConfiguration.AllowCredentials == false
+  }
+  Resources.VisitorRoute.Properties.RouteKey == 'POST /visits'
+  Resources.VisitorStage.Properties.DefaultRouteSettings {
+    ThrottlingRateLimit == 2
+    ThrottlingBurstLimit == 5
+    DetailedMetricsEnabled == false
+  }
+  Resources.LambdaLogGroup.Properties.RetentionInDays == 7
+  Resources.ApiAccessLogGroup.Properties.RetentionInDays == 7
+  Resources.LambdaExecutionRole.Properties {
+    RoleName == 'role-lambda-team07'
+    ManagedPolicyArns !exists
+    Policies[0].PolicyDocument.Statement[0] {
+      Action == 'dynamodb:UpdateItem'
+      Condition.'ForAllValues:StringEquals'.'dynamodb:LeadingKeys' == ['site']
+      Condition.'Null'.'dynamodb:LeadingKeys' == 'false'
+    }
+  }
+}

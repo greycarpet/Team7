@@ -3,11 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; script-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="visitor-api" content="">
   <meta name="description" content="Team7's cloud capstone: a simple website exploring secure delivery, clear architecture, and repeatable releases.">
   <meta name="theme-color" content="#142d2a">
   <title>Team7 | Cloud Capstone</title>
   <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/visitor-counter-v1.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -18,7 +20,7 @@
   <main id="main">
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">CLOUD CAPSTONE / WEEK 02</p>
+        <p class="eyebrow">CLOUD CAPSTONE / WEEK 03</p>
         <h1 id="hero-title">Small site.<br>Strong foundations.</h1>
         <p class="intro">A hands-on exploration of secure cloud delivery. Clear architecture, thoughtful access controls, and changes we can verify.</p>
         <a class="button" href="#architecture">Explore the architecture <span aria-hidden="true">&#8599;</span></a>
@@ -44,8 +46,8 @@
       </div>
     </section>
     <section class="release wrap" id="release" aria-labelledby="release-title">
-      <div><p class="eyebrow">THE LATEST CHAPTER</p><h2 id="release-title">One change, published.</h2><p>Updated release notes show how a reviewed change moves from source control to the live site.</p></div>
-      <div class="release-tag"><span>RELEASE MARKER</span><strong>Team7 Week 2 - Release 2</strong></div>
+      <div><p class="eyebrow">THE LATEST CHAPTER</p><h2 id="release-title">Every visit adds up.</h2><p>A small serverless counter records page views. Reloads and test visits count too.</p><p><strong>Page views:</strong> <span id="visitor-count" role="status" aria-live="polite">Loading...</span></p><noscript><p>Enable JavaScript to view the page counter.</p></noscript></div>
+      <div class="release-tag"><span>RELEASE MARKER</span><strong>Team7 Week 3 - Visitor Counter</strong></div>
     </section>
   </main>
   <footer class="site-footer wrap"><span>TEAM7 / CLOUD CAPSTONE</span><span>Built to learn. Designed to grow.</span></footer>

@@ -1,0 +1,281 @@
+{
+  "captured_date_utc": "2026-10-20",
+  "redaction": "AWS account ID replaced with ACCOUNT_ID",
+  "aws": {
+    "status": "success",
+    "stdout": "",
+    "stderr": "Error calling function call_boto3 with arguments {'service_name': 'cloudformation', 'operation_name': 'DescribeStacks', 'region_name': 'us-east-2', 'params': {'StackName': 'cfn-visitor-api-team07'}}: An error occurred (ValidationError) when calling the DescribeStacks operation: Stack with id cfn-visitor-api-team07 does not exist\n",
+    "return_value": {
+      "0:cloudformation.ValidateTemplate": {
+        "Parameters": [
+          {
+            "ParameterKey": "VisitorTableName",
+            "DefaultValue": "ddb-visitor-team07",
+            "NoEcho": false
+          },
+          {
+            "ParameterKey": "AllowedOrigin",
+            "DefaultValue": "https://d3jg1ev4a532iw.cloudfront.net",
+            "NoEcho": false
+          }
+        ],
+        "Description": "Team7 SCRUM-22 - HTTP API and atomic visitor counter (existing DynamoDB table).",
+        "Capabilities": [
+          "CAPABILITY_NAMED_IAM"
+        ],
+        "CapabilitiesReason": "The following resource(s) require capabilities: [AWS::IAM::Role]"
+      },
+      "1:accessanalyzer.ValidatePolicy": {
+        "findings": []
+      },
+      "2:accessanalyzer.ValidatePolicy": {
+        "findings": []
+      },
+      "3:iam.SimulateCustomPolicy": {
+        "EvaluationResults": [
+          {
+            "EvalActionName": "dynamodb:UpdateItem",
+            "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+            "EvalDecision": "allowed",
+            "MatchedStatements": [
+              {
+                "SourcePolicyId": "PolicyInputList.1",
+                "SourcePolicyType": "IAM Policy",
+                "StartPosition": {
+                  "Line": 1,
+                  "Column": 41
+                },
+                "EndPosition": {
+                  "Line": 1,
+                  "Column": 327
+                }
+              }
+            ],
+            "MissingContextValues": [],
+            "EvalDecisionDetails": {},
+            "ResourceSpecificResults": [
+              {
+                "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+                "EvalResourceDecision": "allowed",
+                "MatchedStatements": [
+                  {
+                    "SourcePolicyId": "PolicyInputList.1",
+                    "SourcePolicyType": "IAM Policy",
+                    "StartPosition": {
+                      "Line": 1,
+                      "Column": 41
+                    },
+                    "EndPosition": {
+                      "Line": 1,
+                      "Column": 327
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "EvalActionName": "dynamodb:GetItem",
+            "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+            "EvalDecision": "implicitDeny",
+            "MatchedStatements": [],
+            "MissingContextValues": [],
+            "EvalDecisionDetails": {},
+            "ResourceSpecificResults": [
+              {
+                "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+                "EvalResourceDecision": "implicitDeny"
+              }
+            ]
+          },
+          {
+            "EvalActionName": "dynamodb:PutItem",
+            "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+            "EvalDecision": "implicitDeny",
+            "MatchedStatements": [],
+            "MissingContextValues": [],
+            "EvalDecisionDetails": {},
+            "ResourceSpecificResults": [
+              {
+                "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+                "EvalResourceDecision": "implicitDeny"
+              }
+            ]
+          },
+          {
+            "EvalActionName": "dynamodb:DeleteItem",
+            "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+            "EvalDecision": "implicitDeny",
+            "MatchedStatements": [],
+            "MissingContextValues": [],
+            "EvalDecisionDetails": {},
+            "ResourceSpecificResults": [
+              {
+                "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+                "EvalResourceDecision": "implicitDeny"
+              }
+            ]
+          }
+        ]
+      },
+      "4:iam.SimulateCustomPolicy": {
+        "EvaluationResults": [
+          {
+            "EvalActionName": "dynamodb:UpdateItem",
+            "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+            "EvalDecision": "implicitDeny",
+            "MatchedStatements": [],
+            "MissingContextValues": [],
+            "EvalDecisionDetails": {},
+            "ResourceSpecificResults": [
+              {
+                "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+                "EvalResourceDecision": "implicitDeny"
+              }
+            ]
+          }
+        ]
+      },
+      "5:iam.SimulateCustomPolicy": {
+        "EvaluationResults": [
+          {
+            "EvalActionName": "dynamodb:UpdateItem",
+            "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+            "EvalDecision": "implicitDeny",
+            "MatchedStatements": [],
+            "MissingContextValues": [
+              "dynamodb:LeadingKeys"
+            ],
+            "EvalDecisionDetails": {},
+            "ResourceSpecificResults": [
+              {
+                "EvalResourceName": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+                "EvalResourceDecision": "implicitDeny",
+                "MissingContextValues": [
+                  "dynamodb:LeadingKeys"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "6:logs.DescribeLogGroups": {
+        "logGroups": []
+      },
+      "7:cloudformation.DescribeStacks": {
+        "error": "An error occurred (ValidationError) when calling the DescribeStacks operation: Stack with id cfn-visitor-api-team07 does not exist"
+      }
+    },
+    "api_calls": [
+      {
+        "service": "cloudformation",
+        "operation": "ValidateTemplate",
+        "status": "success",
+        "n_items": {
+          "Parameters": 2,
+          "Capabilities": 1
+        }
+      },
+      {
+        "service": "accessanalyzer",
+        "operation": "ValidatePolicy",
+        "status": "success",
+        "n_items": {
+          "findings": 0
+        }
+      },
+      {
+        "service": "accessanalyzer",
+        "operation": "ValidatePolicy",
+        "status": "success",
+        "n_items": {
+          "findings": 0
+        }
+      },
+      {
+        "service": "iam",
+        "operation": "SimulateCustomPolicy",
+        "status": "success",
+        "n_items": {
+          "EvaluationResults": 4
+        }
+      },
+      {
+        "service": "iam",
+        "operation": "SimulateCustomPolicy",
+        "status": "success",
+        "n_items": {
+          "EvaluationResults": 1
+        }
+      },
+      {
+        "service": "iam",
+        "operation": "SimulateCustomPolicy",
+        "status": "success",
+        "n_items": {
+          "EvaluationResults": 1
+        }
+      },
+      {
+        "service": "logs",
+        "operation": "DescribeLogGroups",
+        "status": "success",
+        "n_items": {
+          "logGroups": 0
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeStacks",
+        "status": "error",
+        "error": "ClientError: An error occurred (ValidationError) when calling the DescribeStacks operation: Stack with id cfn-visitor-api-team07 does not exist"
+      }
+    ]
+  },
+  "identity_policy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "IncrementSiteCounter",
+        "Effect": "Allow",
+        "Action": "dynamodb:UpdateItem",
+        "Resource": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+        "Condition": {
+          "ForAllValues:StringEquals": {
+            "dynamodb:LeadingKeys": [
+              "site"
+            ]
+          },
+          "Null": {
+            "dynamodb:LeadingKeys": "false"
+          }
+        }
+      },
+      {
+        "Sid": "WriteFunctionLogs",
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": "arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/lambda/lambda-visitor-team07:*"
+      }
+    ]
+  },
+  "trust_policy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "lambda.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole"
+      }
+    ]
+  },
+  "limitations": [
+    "Policy simulation does not establish effective access through SCPs or prove the deployed integration.",
+    "Missing proposed stack is the expected preflight state, not a validation failure."
+  ]
+}

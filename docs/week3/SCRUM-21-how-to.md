@@ -1,6 +1,6 @@
 # SCRUM-21: DynamoDB visitor counter how-to
 
-Prepared 2026-10-20 UTC (2026-10-19 US Central). Status: preparation only; AWS deployment and seeding have not run.
+Prepared 2026-10-20 UTC (2026-10-19 US Central). **Deployment update:** the table has now been deployed and seeded after explicit authorization. See [the deployment handoff](SCRUM-21-deployment-handoff.md) for current state and evidence. The preparation/deployment instructions below describe the reviewed workflow; do not repeat the CREATE steps against the existing stack. The original PDF is a snapshot from before deployment.
 
 Jira: https://joshescobarx.atlassian.net/browse/SCRUM-21
 
@@ -13,7 +13,7 @@ Proposed implementer: Alyssa; proposed reviewer: Josh. Assignments are not chang
 |---|---|
 | Region | us-east-2 (Ohio) |
 | Table | ddb-visitor-team07 |
-| CloudFormation stack | cfn-visitor-data-team07 - proposed, requires approval |
+| CloudFormation stack | cfn-visitor-data-team07 - approved and deployed October 19, 2026 |
 | Logical resource | VisitorCounterTable |
 | Partition key | id, String (S); no sort key |
 | Seed item | {"id":"site","count":0}; count is a Number, not a key |
@@ -47,11 +47,11 @@ aws dynamodb list-tables --profile aws-Team7 --region us-east-2
 aws cloudformation validate-template --template-body file://infrastructure/cloudformation/week3/visitor-data.yaml --profile aws-Team7 --region us-east-2
 ```
 
-STOP before creating a stack, change set, or item. The repository requires the user to say `DEPLOYMENT AUTHORIZED` after reviewing the proposed stack name, one-table resource change, security settings and cost. No approval has been given yet.
+For any future creation or mutation, STOP until the user explicitly authorizes that operation after reviewing its plan. Authorization for this initial stack/table/seed was received on October 19, 2026 at 19:27 CDT and has been executed. It does not authorize resets, replacements, cleanup or later Lambda/API deployments.
 
 ## 3. Deploy through CloudFormation (only after authorization)
 
-These are future operator instructions, not completed work. Use the reviewed PR commit. Recheck that the proposed stack and table do not already exist. If either exists, inspect ownership and state; do not delete it or switch to an unreviewed update/import.
+These commands document the reviewed deployment workflow. This stack and table now exist; see the deployment handoff for the completed AWS connector operations. Do not repeat CREATE, delete the resources, or switch to an unreviewed update/import. For future separately authorized work, use the reviewed commit and inspect current ownership and state first.
 
 Create a CREATE change set with an unused name. The example below uses `scrum21-create-v1`; change the suffix if needed. Run each fenced command as one line, or copy from the repository Markdown.
 

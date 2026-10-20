@@ -1,10 +1,10 @@
 # SCRUM-21 deployment review
 
-Status: NOT DEPLOYED. Approval outstanding. This plan covers SCRUM-21, SCRUM-47 and SCRUM-48 only.
+Status: DEPLOYED after explicit authorization on October 19, 2026 at 19:27 CDT. See [deployment handoff and evidence](SCRUM-21-deployment-handoff.md). The reviewed plan below covered SCRUM-21, SCRUM-47 and SCRUM-48 only and is retained as the approval record.
 
 ## Proposed operation
 
-Target: verified Team7 AWS account, us-east-2. Proposed new CloudFormation stack: `cfn-visitor-data-team07`; this stack name requires approval. Approved table name: `ddb-visitor-team07`.
+Target: verified Team7 AWS account, us-east-2. Stack name approved with deployment authorization: `cfn-visitor-data-team07`. Approved table name: `ddb-visitor-team07`.
 
 | Action | Resource / data | Expected impact |
 |---|---|---|
@@ -19,9 +19,9 @@ Cost: pay-per-request and storage. Captured Ohio prices: $0.625/million WRUs, $0
 
 ## Validation and approval boundary
 
-See evidence/validation-20261020.json for actual results. Local lint, project Guard policy and offline safety tests are preparation checks. AWS ValidateTemplate is a read-only syntax check. No change set or stack has been created, and deploy-time validation has not run.
+See evidence/validation-20261020.json for the original preparation checks. Local lint, project Guard policy and offline safety tests passed, as did AWS ValidateTemplate. Subsequently, the authorized CREATE change set passed pre-deployment validation, the stack reached CREATE_COMPLETE, and the seed was verified. The deployment handoff records these later results.
 
-Approval must cover the proposed stack name, one-table creation and conditional seed. AGENTS.md requires the explicit phrase `DEPLOYMENT AUTHORIZED` before AWS mutations, including change-set creation. After authorization, create and inspect a CREATE change set. Execute only if its actions match this reviewed plan; otherwise stop for review of the differences.
+Approval covered the stack name, one-table creation and conditional seed. The user's `DEPLOYMENT AUTHORIZED` satisfied AGENTS.md before change-set creation. The actual change set matched this plan and was executed. Future changes require their own scope review and authorization.
 
 Rollback: retain normal CloudFormation rollback behavior. A failed deployment or stack deletion may leave the protected table. Inspect events and ownership before retrying. Do not disable deletion protection, delete the table or reset the counter as an automatic recovery action. Cleanup, import, replacement and data resets require their own approved plan.
 

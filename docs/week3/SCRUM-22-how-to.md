@@ -1,5 +1,7 @@
 # SCRUM-22 implementation and endpoint handoff
 
+> **Acceptance update — October 20, 2026:** Josh supplied a browser Console screenshot from https://example.org. It explicitly reports that the POST /visits preflight was blocked by CORS because Access-Control-Allow-Origin was absent. SCRUM-51’s foreign-origin browser acceptance now passes; SCRUM-23 is ready for review. This supersedes pending-browser notes below, which describe the October 19 tooling limitation. See the [review record](evidence/SCRUM-22/20261020_Team7_browser_w3-cors-negative-review.json). The screenshot’s Console clock reads 2026-10-20T23:53:22.051Z (18:53:22.051 CDT); Network headers/status and a new counter read are not shown. The original remains private and unchanged. Remaining course screenshots and final specification review are still outstanding.
+
 Owner: Josh Escobar. Status: deployed and technically verified on October 19, 2026. See [the deployment handoff](SCRUM-22-deployment-handoff.md) for evidence, actual values and the pending foreign-origin browser test under SCRUM-23. Read [the deployment plan](SCRUM-22-deployment-plan.md) before any further AWS mutation. Screenshots are due at the end of Week 3; preserve textual API evidence and never reset the counter to recreate a zero screenshot.
 
 ## Request flow

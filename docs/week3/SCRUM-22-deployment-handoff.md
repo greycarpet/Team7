@@ -1,5 +1,7 @@
 # SCRUM-22 deployment handoff
 
+> **Acceptance update — October 20, 2026:** Josh supplied a browser Console screenshot from https://example.org. It explicitly reports that the POST /visits preflight was blocked by CORS because Access-Control-Allow-Origin was absent. SCRUM-51’s foreign-origin browser acceptance now passes; SCRUM-23 is ready for review. This supersedes pending-browser notes below, which describe the October 19 tooling limitation. See the [review record](evidence/SCRUM-22/20261020_Team7_browser_w3-cors-negative-review.json). The screenshot’s Console clock reads 2026-10-20T23:53:22.051Z (18:53:22.051 CDT); Network headers/status and a new counter read are not shown. The original remains private and unchanged. Remaining course screenshots and final specification review are still outstanding.
+
 Deployed after Josh's **DEPLOYMENT AUTHORIZED** at **October 19, 2026, 20:02:02 CDT**. Approved code commit: `e7e283dd5ba6494588254ef8853239d10e8072df`, [PR #9](https://github.com/greycarpet/Team7/pull/9). Region: **us-east-2**. No PR was merged.
 
 The stack reached **CREATE_COMPLETE at 20:04:51.881 CDT** (2026-10-20T01:04:51.881Z), with all nine planned resources complete. The change set contained only the nine reviewed Add actions and no validation errors. The deployed template exactly matched the approved template.

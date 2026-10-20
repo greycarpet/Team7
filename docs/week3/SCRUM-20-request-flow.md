@@ -2,7 +2,7 @@
 
 Owner: Josh Escobar. Prepared October 20, 2026 for [SCRUM-20](https://joshescobarx.atlassian.net/browse/SCRUM-20) and [SCRUM-46](https://joshescobarx.atlassian.net/browse/SCRUM-46). The architect-owned request-flow section is populated in the [SCRUM-24 working specification](SCRUM-24-application-api-spec.md), owned by Alyssa and reviewed by Josh.
 
-This document reconciles the deployment evidence recorded on October 19 with the implementation. It does not claim a fresh AWS test on October 20. Final specification review, the foreign-origin browser test and end-of-week screenshots remain outstanding.
+This document reconciles the deployment evidence recorded on October 19 with the implementation. It does not claim a fresh AWS test on October 20. The foreign-origin browser check passed in Josh’s supplied October 20 screenshot. Final specification review and the remaining end-of-week screenshots are outstanding.
 
 ## Deployed components
 
@@ -49,7 +49,7 @@ The count includes reloads and test traffic; it is not a unique-visitor metric. 
 | --- | --- |
 | Invalid content/body | Lambda 400 / invalid_request before writing |
 | Missing/foreign Origin | Lambda 403 / origin_not_allowed before writing; browser CORS may hide the response |
-| Foreign preflight | Recorded HTTP test: 204 without matching allow-origin; independent browser rejection is pending |
+| Foreign preflight | Recorded HTTP test: 204 without matching allow-origin; Josh’s October 20 browser screenshot confirms CORS preflight rejection |
 | Unmatched public route/method | API Gateway 404; defensive direct-Lambda method guard returns 405 |
 | Failed condition, datastore/access error or invalid returned count | Lambda 503 / counter_unavailable; no reset or automatic retry |
 | Platform throttling/failure | Gateway-dependent 429/5xx; site displays Temporarily unavailable on request/response failure |
@@ -66,8 +66,8 @@ The API stack reached CREATE_COMPLETE on October 19 at 20:04:51.881 CDT. Recorde
 | [API deployment handoff](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/SCRUM-22-deployment-handoff.md) | Endpoint, deployed configuration, website release and remaining browser procedure |
 | [Deployment evidence](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_aws_w3-api-deployment.json) | Stack results, permissions, logs and strong reads |
 | [HTTP test evidence](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_aws_w3-api-tests.json) | Success, concurrent increments, preflight and negative requests |
-| [Browser verification](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_browser_w3-counter-verification.json) | Allowed-origin browser count and explicitly pending foreign-origin check |
+| [Browser verification](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_browser_w3-counter-verification.json) | October 19 historical record: allowed-origin count; foreign-origin check pending at that time |
 
-The cloud browser rejected the local data: test page before navigation. This tooling limitation is not a passed CORS test. Josh's manual procedure is in the API deployment handoff. Capture genuine screenshots at the end of Week 3, using the actual capture date and current state, per Josh's instruction. That timing supersedes earlier instructions in the datastore handoff.
+The October 19 cloud browser rejected the local data: test page before navigation; that historical tooling limitation was not a passed CORS test. Josh subsequently supplied an unchanged browser screenshot with Console time 2026-10-20T23:53:22.051Z (18:53:22.051 CDT), origin https://example.org, and the actual API endpoint. Chrome explicitly reports CORS preflight rejection because Access-Control-Allow-Origin is absent. This completes the foreign-origin browser check; see the [review record](https://github.com/greycarpet/Team7/blob/02f1d19b635871d01389b81387753e1979dbdff8/docs/week3/evidence/SCRUM-22/20261020_Team7_browser_w3-cors-negative-review.json). The image does not show the OPTIONS status/raw headers or a fresh counter read. The original remains private. Capture genuine screenshots at the end of Week 3, using the actual capture date and current state, per Josh's instruction. That timing supersedes earlier instructions in the datastore handoff.
 
 SCRUM-46's request-flow documentation is ready. SCRUM-20 remains subject to review of the architect-owned specification section and course evidence. Alyssa retains SCRUM-24 ownership; this working draft is not a submitted course form or final PDF.

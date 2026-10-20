@@ -1,6 +1,6 @@
 # SCRUM-24: Application and API design specification
 
-**Status:** Working draft for review. Data, API and website deployment are verified in the October 19 records. The foreign-origin browser check, end-of-week screenshots, final course-form review and PDF remain pending.
+**Status:** Working draft for review. Data, API and website deployment are verified in the October 19 records. The foreign-origin browser check passed in Josh’s supplied October 20 screenshot. Remaining end-of-week screenshots, final course-form review and PDF are pending.
 
 **Owner:** Alyssa. **Architect / application / security reviewer:** Josh Escobar.
 
@@ -16,7 +16,7 @@ The Team7 website displays a page-view counter. Each accepted POST causes one at
 | --- | --- | --- |
 | SCRUM-21 / 47 / 48 | DynamoDB deployed; initial zero conditionally seeded and verified; subtasks Done | Parent In Review for course evidence and datastore review |
 | SCRUM-22 / 49 / 50 | Lambda, API and website deployed; live counter tests passed; subtasks Done | Parent In Review for course evidence and specification review |
-| SCRUM-23 / 51 | Exact-origin CORS, allowed-origin browser and HTTP negative tests verified | Foreign-origin browser rejection pending; In Progress |
+| SCRUM-23 / 51 | Exact-origin CORS, allowed-origin browser, HTTP negative tests and foreign-origin browser rejection verified | SCRUM-51 Done; parent In Review for final evidence/specification review |
 | SCRUM-52 | Browser code and deployed role/environment checks complete; Done | Include recorded result in final evidence |
 | SCRUM-20 / 46 | Architect-owned flow populated below and detailed handoff prepared | Josh's review and final course evidence |
 | SCRUM-24 | Shared working draft assembled; Jira In Progress under Alyssa | Official form completeness, screenshots, review, PDF and separate submission record |
@@ -85,7 +85,7 @@ The update condition requires an existing item with a numeric, nonnegative count
 | Allowed origin | Exactly https://d3jg1ev4a532iw.cloudfront.net; POST/OPTIONS; content-type; credentials false; max age 300 seconds |
 | Allowed browser | Live CloudFront page displayed count 5 with correct endpoint/CSP and no site CSP/CORS errors |
 | HTTP negative checks | Foreign OPTIONS: 204 without matching allow-origin; foreign/missing-Origin POST: 403 without incrementing |
-| Foreign-origin browser | **Pending.** Cloud browser policy blocked the local data: test page before navigation; this does not prove browser CORS rejection |
+| Foreign-origin browser | **Passed October 20.** Josh’s screenshot shows origin https://example.org and Chrome explicitly rejecting the actual API preflight for missing Access-Control-Allow-Origin; Console time 23:53:22.051Z / 18:53:22.051 CDT |
 | Browser credentials | Delivered HTML/JS matched reviewed files; inspection and credential-pattern checks passed |
 | Lambda credentials | Execution-role temporary credentials; environment contains only TABLE_NAME and ALLOWED_ORIGIN |
 | Invocation / data access | API-to-Lambda permission scoped to API/account/stage/route; Lambda UpdateItem scoped to exact table and site key |
@@ -100,14 +100,14 @@ This is a public demo API with AuthorizationType NONE. CORS and Origin checking 
 | [Datastore handoff](https://github.com/greycarpet/Team7/blob/54825ef4c11b5dc8133f71feff33a001e8b8de7c/docs/week3/SCRUM-21-deployment-handoff.md) | Table ACTIVE; schema/settings and initial-zero strong read |
 | [API deployment handoff](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/SCRUM-22-deployment-handoff.md) | Nine resources completed; deployed template/configuration matched; website release and manual CORS procedure |
 | [HTTP test record](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_aws_w3-api-tests.json) | One sequential and three concurrent increments returned distinct counts 1–4; strong read confirmed total; negative requests did not increment |
-| [Browser record](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_browser_w3-counter-verification.json) | Allowed-origin count displayed; foreign-origin browser check pending |
+| [Browser record](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_browser_w3-counter-verification.json) | October 19 historical record: allowed-origin count; foreign-origin check pending at that time |
 | [Website verification](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_aws_w3-site-verification.json) | HTML/JS hashes matched; private S3 index returned 403; credential-pattern check passed |
 
-These are deployment/test records, not screenshots. The prior draft used preparation commit e7e283d; the later evidence commit supplies the actual endpoint and live results. Do not repeat deployment or seeding because the earlier draft marked them pending.
+The October 19 records are deployment/test records rather than screenshots. The [October 20 browser review](https://github.com/greycarpet/Team7/blob/02f1d19b635871d01389b81387753e1979dbdff8/docs/week3/evidence/SCRUM-22/20261020_Team7_browser_w3-cors-negative-review.json) documents Josh’s genuine supplied screenshot, including its SHA-256. Its explicit CORS diagnostic closes the browser-test gap. The original remains private and unchanged. The screenshot does not show Network-panel OPTIONS status/raw headers or a fresh DynamoDB count; the printed time is the client Console clock. The prior draft used preparation commit e7e283d; the later evidence commit supplies the actual endpoint and live results. Do not repeat deployment or seeding because the earlier draft marked them pending.
 
 ## Remaining work and final review
 
-- [ ] Josh: complete SCRUM-51's foreign-origin browser check using the deployment handoff procedure. Record actual foreign origin, preflight headers and browser CORS error; distinguish it from CSP/network failure.
+- [x] Josh: foreign-origin browser check completed. The supplied screenshot shows the exact foreign origin and endpoint, and Chrome explicitly identifies preflight CORS rejection rather than a generic CSP/network failure. See the October 20 review record; raw Network-panel headers/status are not claimed.
 - [ ] Josh and Alyssa: collect genuine console/browser screenshots at the end of Week 3, using the course filename convention and actual capture date. Preserve the counter's true current value.
 - [ ] Alyssa: map these sections to every official Application & API Design Specification field, including the full table ARN from private Jira/stack output. This repository draft does not establish official form completion.
 - [ ] Josh: review the flow, contract, evidence and security result. Alyssa: review datastore values and final assembly.

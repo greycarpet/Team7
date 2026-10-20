@@ -1,0 +1,60 @@
+{
+  "observations": {
+    "account_matches": true,
+    "region": "us-east-2",
+    "observed_at": "2026-10-20T00:16:01.031081+00:00",
+    "tables": [],
+    "stacks": [
+      {
+        "name": "cfn-tools-team07",
+        "status": "UPDATE_COMPLETE"
+      },
+      {
+        "name": "cfn-site-team07",
+        "status": "CREATE_COMPLETE"
+      },
+      {
+        "name": "cfn-security-team07",
+        "status": "UPDATE_COMPLETE"
+      },
+      {
+        "name": "cfn-foundation-team07",
+        "status": "CREATE_COMPLETE"
+      }
+    ],
+    "functions": []
+  },
+  "api_calls": [
+    {
+      "service": "sts",
+      "operation": "GetCallerIdentity",
+      "status": "success"
+    },
+    {
+      "service": "dynamodb",
+      "operation": "ListTables",
+      "status": "success",
+      "n_items": {
+        "TableNames": 0
+      }
+    },
+    {
+      "service": "cloudformation",
+      "operation": "DescribeStacks",
+      "status": "success",
+      "n_items": {
+        "Stacks": 4
+      }
+    },
+    {
+      "service": "lambda",
+      "operation": "ListFunctions",
+      "status": "success",
+      "n_items": {
+        "Functions": 0
+      }
+    }
+  ],
+  "aws_mutations_performed": [],
+  "scope": "Read-only discovery; deployment and seed not performed."
+}

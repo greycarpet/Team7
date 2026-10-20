@@ -1,0 +1,673 @@
+{
+  "ticket": "SCRUM-21",
+  "related_tickets": [
+    "SCRUM-47",
+    "SCRUM-48",
+    "SCRUM-22",
+    "SCRUM-24"
+  ],
+  "source_commit": "25e3a8e44baf547e7bb79e07862253e889777b22",
+  "authorization": {
+    "phrase": "DEPLOYMENT AUTHORIZED",
+    "submitted_at": "2026-10-19T19:27:42-05:00",
+    "scope": "Proposed stack name, one DynamoDB table, and conditional initial seed in us-east-2"
+  },
+  "capture_date_timezone": "America/Chicago",
+  "redactions": [
+    "AWS account ID replaced with ACCOUNT_ID in this public repository copy."
+  ],
+  "seed_request": {
+    "TableName": "ddb-visitor-team07",
+    "Item": {
+      "id": {
+        "S": "site"
+      },
+      "count": {
+        "N": "0"
+      }
+    },
+    "ConditionExpression": "attribute_not_exists(#id)",
+    "ExpressionAttributeNames": {
+      "#id": "id"
+    }
+  },
+  "scope_result": {
+    "created_resources": [
+      "AWS::CloudFormation::Stack cfn-visitor-data-team07",
+      "AWS::DynamoDB::Table ddb-visitor-team07"
+    ],
+    "created_items": [
+      {
+        "id": "site",
+        "count": 0
+      }
+    ],
+    "updated_resources": [],
+    "replaced_resources": [],
+    "deleted_resources": [],
+    "screenshots_captured": false
+  },
+  "evidence": {
+    "preflight": {
+      "status": "success",
+      "stdout": "",
+      "return_value": {
+        "observed_at_utc": "2026-10-20T00:28:28.976797+00:00",
+        "account_matches": true,
+        "region": "us-east-2",
+        "table_names": [],
+        "stacks": [
+          {
+            "name": "cfn-tools-team07",
+            "status": "UPDATE_COMPLETE"
+          },
+          {
+            "name": "cfn-site-team07",
+            "status": "CREATE_COMPLETE"
+          },
+          {
+            "name": "cfn-security-team07",
+            "status": "UPDATE_COMPLETE"
+          },
+          {
+            "name": "cfn-foundation-team07",
+            "status": "CREATE_COMPLETE"
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "service": "sts",
+          "operation": "GetCallerIdentity",
+          "status": "success"
+        },
+        {
+          "service": "dynamodb",
+          "operation": "ListTables",
+          "status": "success",
+          "n_items": {
+            "TableNames": 0
+          }
+        },
+        {
+          "service": "cloudformation",
+          "operation": "DescribeStacks",
+          "status": "success",
+          "n_items": {
+            "Stacks": 4
+          }
+        }
+      ]
+    },
+    "change_set_creation": {
+      "status": "success",
+      "stdout": "",
+      "return_value": {
+        "account_matches": true,
+        "region": "us-east-2",
+        "created_at_utc": "2026-10-20T00:29:03.158473+00:00",
+        "change_set": {
+          "Id": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:changeSet/scrum21-create-20261020-0028/557a109d-d9bd-4898-986c-2a965b75ea30",
+          "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449"
+        }
+      },
+      "api_calls": [
+        {
+          "service": "sts",
+          "operation": "GetCallerIdentity",
+          "status": "success"
+        },
+        {
+          "service": "cloudformation",
+          "operation": "CreateChangeSet",
+          "status": "success"
+        }
+      ]
+    },
+    "change_set_review": {
+      "status": "success",
+      "stdout": "",
+      "return_value": {
+        "change_set": {
+          "ChangeSetName": "scrum21-create-20261020-0028",
+          "ChangeSetId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:changeSet/scrum21-create-20261020-0028/557a109d-d9bd-4898-986c-2a965b75ea30",
+          "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+          "StackName": "cfn-visitor-data-team07",
+          "Description": "SCRUM-21 approved deployment; source commit 25e3a8e44baf547e7bb79e07862253e889777b22",
+          "Parameters": [
+            {
+              "ParameterKey": "VisitorTableName",
+              "ParameterValue": "ddb-visitor-team07"
+            }
+          ],
+          "CreationTime": "2026-10-20T00:29:02.991000+00:00",
+          "ExecutionStatus": "AVAILABLE",
+          "Status": "CREATE_COMPLETE",
+          "NotificationARNs": [],
+          "RollbackConfiguration": {},
+          "Capabilities": [],
+          "Changes": [
+            {
+              "Type": "Resource",
+              "ResourceChange": {
+                "Action": "Add",
+                "LogicalResourceId": "VisitorCounterTable",
+                "ResourceType": "AWS::DynamoDB::Table",
+                "Scope": [],
+                "Details": []
+              }
+            }
+          ],
+          "IncludeNestedStacks": false,
+          "DeploymentConfig": {
+            "Mode": "STANDARD",
+            "DisableRollback": false
+          }
+        },
+        "events": {
+          "OperationEvents": [
+            {
+              "EventId": "b397ba82-a40c-4216-b265-db10acc9a238",
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "OperationId": "557a109d-d9bd-4898-986c-2a965b75ea30",
+              "OperationType": "CREATE_CHANGESET",
+              "OperationStatus": "SUCCEEDED",
+              "EventType": "STACK_EVENT",
+              "Timestamp": "2026-10-20T00:29:05.549000+00:00",
+              "StartTime": "2026-10-20T00:29:03.056000+00:00",
+              "EndTime": "2026-10-20T00:29:05.549000+00:00"
+            },
+            {
+              "EventId": "3c1e18fa-6a18-469f-a887-9d731882d9ae",
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "OperationId": "557a109d-d9bd-4898-986c-2a965b75ea30",
+              "OperationType": "CREATE_CHANGESET",
+              "OperationStatus": "IN_PROGRESS",
+              "EventType": "STACK_EVENT",
+              "Timestamp": "2026-10-20T00:29:03.056000+00:00",
+              "StartTime": "2026-10-20T00:29:03.056000+00:00"
+            }
+          ]
+        }
+      },
+      "api_calls": [
+        {
+          "service": "cloudformation",
+          "operation": "DescribeChangeSet",
+          "status": "success",
+          "n_items": {
+            "Parameters": 1,
+            "NotificationARNs": 0,
+            "Capabilities": 0,
+            "Changes": 1
+          }
+        },
+        {
+          "service": "cloudformation",
+          "operation": "DescribeEvents",
+          "status": "success",
+          "n_items": {
+            "OperationEvents": 2
+          }
+        }
+      ]
+    },
+    "execution": {
+      "status": "success",
+      "stdout": "",
+      "return_value": {
+        "executed_at_utc": "2026-10-20T00:29:51.487393+00:00",
+        "region": "us-east-2",
+        "stack_name": "cfn-visitor-data-team07",
+        "execution": {}
+      },
+      "api_calls": [
+        {
+          "service": "cloudformation",
+          "operation": "ExecuteChangeSet",
+          "status": "success"
+        }
+      ]
+    },
+    "stack_completion": {
+      "status": "success",
+      "stdout": "",
+      "return_value": {
+        "observed_at_utc": "2026-10-20T00:30:30.557271+00:00",
+        "stack": {
+          "Stacks": [
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "StackName": "cfn-visitor-data-team07",
+              "ChangeSetId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:changeSet/scrum21-create-20261020-0028/557a109d-d9bd-4898-986c-2a965b75ea30",
+              "Description": "SCRUM-21 - Team7 visitor counter data store (us-east-2).",
+              "Parameters": [
+                {
+                  "ParameterKey": "VisitorTableName",
+                  "ParameterValue": "ddb-visitor-team07"
+                }
+              ],
+              "CreationTime": "2026-10-20T00:29:02.991000+00:00",
+              "LastUpdatedTime": "2026-10-20T00:29:51.352000+00:00",
+              "RollbackConfiguration": {},
+              "StackStatus": "CREATE_COMPLETE",
+              "DisableRollback": false,
+              "DeploymentConfig": {
+                "Mode": "STANDARD",
+                "DisableRollback": false
+              },
+              "NotificationARNs": [],
+              "Outputs": [
+                {
+                  "OutputKey": "CounterItemId",
+                  "OutputValue": "site",
+                  "Description": "Seed item key; count is a Number attribute, not a key."
+                },
+                {
+                  "OutputKey": "VisitorTableName",
+                  "OutputValue": "ddb-visitor-team07",
+                  "Description": "DynamoDB table for the Lambda configuration."
+                },
+                {
+                  "OutputKey": "PartitionKey",
+                  "OutputValue": "id",
+                  "Description": "String partition key; no sort key."
+                },
+                {
+                  "OutputKey": "VisitorTableArn",
+                  "OutputValue": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+                  "Description": "Scope the later Lambda IAM policy to this ARN."
+                }
+              ],
+              "Tags": [],
+              "EnableTerminationProtection": false,
+              "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+              },
+              "LastOperations": [
+                {
+                  "OperationType": "CREATE_STACK",
+                  "OperationId": "8cec882d-d016-4ee6-98b1-08644e21c3ac"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "api_calls": [
+        {
+          "service": "cloudformation",
+          "operation": "DescribeStacks",
+          "status": "success",
+          "n_items": {
+            "Stacks": 1
+          }
+        }
+      ]
+    },
+    "table_validation": {
+      "status": "success",
+      "stdout": "",
+      "return_value": {
+        "verified_at_utc": "2026-10-20T00:31:07.539595+00:00",
+        "account_matches": true,
+        "region": "us-east-2",
+        "resource": {
+          "StackResourceDetail": {
+            "StackName": "cfn-visitor-data-team07",
+            "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+            "LogicalResourceId": "VisitorCounterTable",
+            "PhysicalResourceId": "ddb-visitor-team07",
+            "ResourceType": "AWS::DynamoDB::Table",
+            "LastUpdatedTimestamp": "2026-10-20T00:30:06.835000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "Metadata": "{}",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          }
+        },
+        "template": {
+          "TemplateBody": "AWSTemplateFormatVersion: '2010-09-09'\nDescription: 'SCRUM-21 - Team7 visitor counter data store (us-east-2).'\nParameters:\n  VisitorTableName:\n    Type: String\n    Default: ddb-visitor-team07\n    AllowedValues: [ddb-visitor-team07]\n    Description: Approved Team7 DynamoDB name.\nResources:\n  VisitorCounterTable:\n    Type: AWS::DynamoDB::Table\n    DeletionPolicy: Retain\n    UpdateReplacePolicy: Retain\n    Properties:\n      TableName: !Ref VisitorTableName\n      BillingMode: PAY_PER_REQUEST\n      TableClass: STANDARD\n      AttributeDefinitions:\n        - AttributeName: id\n          AttributeType: S\n      KeySchema:\n        - AttributeName: id\n          KeyType: HASH\n      DeletionProtectionEnabled: true\n      # False selects encryption with an AWS-owned key; encryption stays on.\n      SSESpecification:\n        SSEEnabled: false\n      # Lab counter only: no paid PITR. Retention is not a backup.\n      PointInTimeRecoverySpecification:\n        PointInTimeRecoveryEnabled: false\n      Tags:\n        - Key: Name\n          Value: !Ref VisitorTableName\n        - Key: Project\n          Value: Team7\n        - Key: Team\n          Value: Team7\n        - Key: Environment\n          Value: Dev\n        - Key: Workload\n          Value: VisitorCounter\n        - Key: Component\n          Value: Storage\n        - Key: Owner\n          Value: Team7\n        - Key: ManagedBy\n          Value: Team7\n        - Key: Repository\n          Value: Team7\n        - Key: JiraProject\n          Value: SCRUM\nOutputs:\n  VisitorTableName:\n    Description: DynamoDB table for the Lambda configuration.\n    Value: !Ref VisitorCounterTable\n  VisitorTableArn:\n    Description: Scope the later Lambda IAM policy to this ARN.\n    Value: !GetAtt VisitorCounterTable.Arn\n  PartitionKey:\n    Description: String partition key; no sort key.\n    Value: id\n  CounterItemId:\n    Description: Seed item key; count is a Number attribute, not a key.\n    Value: site\n",
+          "StagesAvailable": [
+            "Original",
+            "Processed"
+          ]
+        },
+        "table": {
+          "AttributeDefinitions": [
+            {
+              "AttributeName": "id",
+              "AttributeType": "S"
+            }
+          ],
+          "TableName": "ddb-visitor-team07",
+          "KeySchema": [
+            {
+              "AttributeName": "id",
+              "KeyType": "HASH"
+            }
+          ],
+          "TableStatus": "ACTIVE",
+          "CreationDateTime": "2026-10-20T00:29:55.441000+00:00",
+          "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0,
+            "ReadCapacityUnits": 0,
+            "WriteCapacityUnits": 0
+          },
+          "TableSizeBytes": 0,
+          "ItemCount": 0,
+          "TableArn": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+          "TableId": "bb380c71-bb68-4e27-8434-85a778aee60e",
+          "BillingModeSummary": {
+            "BillingMode": "PAY_PER_REQUEST",
+            "LastUpdateToPayPerRequestDateTime": "2026-10-20T00:29:55.441000+00:00"
+          },
+          "TableClassSummary": {
+            "TableClass": "STANDARD"
+          },
+          "DeletionProtectionEnabled": true,
+          "WarmThroughput": {
+            "ReadUnitsPerSecond": 12000,
+            "WriteUnitsPerSecond": 4000,
+            "Status": "ACTIVE"
+          }
+        },
+        "backups": {
+          "ContinuousBackupsDescription": {
+            "ContinuousBackupsStatus": "ENABLED",
+            "PointInTimeRecoveryDescription": {
+              "PointInTimeRecoveryStatus": "DISABLED"
+            }
+          }
+        },
+        "pre_seed_item": {},
+        "tags": {
+          "Tags": [
+            {
+              "Key": "Project",
+              "Value": "Team7"
+            },
+            {
+              "Key": "Owner",
+              "Value": "Team7"
+            },
+            {
+              "Key": "Repository",
+              "Value": "Team7"
+            },
+            {
+              "Key": "ManagedBy",
+              "Value": "Team7"
+            },
+            {
+              "Key": "JiraProject",
+              "Value": "SCRUM"
+            },
+            {
+              "Key": "Environment",
+              "Value": "Dev"
+            },
+            {
+              "Key": "Team",
+              "Value": "Team7"
+            },
+            {
+              "Key": "Component",
+              "Value": "Storage"
+            },
+            {
+              "Key": "Name",
+              "Value": "ddb-visitor-team07"
+            },
+            {
+              "Key": "Workload",
+              "Value": "VisitorCounter"
+            }
+          ]
+        },
+        "events": {
+          "OperationEvents": [
+            {
+              "EventId": "7e3fb63b-d39e-42d9-a5d5-a36338a241aa",
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "OperationId": "8cec882d-d016-4ee6-98b1-08644e21c3ac",
+              "OperationType": "CREATE_STACK",
+              "OperationStatus": "SUCCEEDED",
+              "EventType": "STACK_EVENT",
+              "Timestamp": "2026-10-20T00:30:07.951000+00:00",
+              "StartTime": "2026-10-20T00:29:51.343000+00:00",
+              "EndTime": "2026-10-20T00:30:07.951000+00:00"
+            },
+            {
+              "EventId": "c4657f19-ad11-4212-8730-3a8d5aad56a7",
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "OperationId": "8cec882d-d016-4ee6-98b1-08644e21c3ac",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "cfn-visitor-data-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-20T00:30:07.950000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum21-20261020-0028-execute"
+            },
+            {
+              "EventId": "8fa9de37-75f9-4e1b-b661-0a9a2af14d5f",
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "OperationId": "8cec882d-d016-4ee6-98b1-08644e21c3ac",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "VisitorCounterTable",
+              "PhysicalResourceId": "ddb-visitor-team07",
+              "ResourceType": "AWS::DynamoDB::Table",
+              "Timestamp": "2026-10-20T00:30:06.835000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ResourceProperties": "{\"TableName\":\"ddb-visitor-team07\",\"SSESpecification\":{\"SSEEnabled\":\"false\"},\"AttributeDefinitions\":[{\"AttributeType\":\"S\",\"AttributeName\":\"id\"}],\"BillingMode\":\"PAY_PER_REQUEST\",\"PointInTimeRecoverySpecification\":{\"PointInTimeRecoveryEnabled\":\"false\"},\"KeySchema\":[{\"KeyType\":\"HASH\",\"AttributeName\":\"id\"}],\"TableClass\":\"STANDARD\",\"DeletionProtectionEnabled\":\"true\",\"Tags\":[{\"Value\":\"ddb-visitor-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"VisitorCounter\",\"Key\":\"Workload\"},{\"Value\":\"Storage\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]}",
+              "ClientRequestToken": "scrum21-20261020-0028-execute"
+            },
+            {
+              "EventId": "ae29405f-061f-4a5d-99fb-0b9d951dd3bd",
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "OperationId": "8cec882d-d016-4ee6-98b1-08644e21c3ac",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "VisitorCounterTable",
+              "PhysicalResourceId": "ddb-visitor-team07",
+              "ResourceType": "AWS::DynamoDB::Table",
+              "Timestamp": "2026-10-20T00:29:54.081000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ResourceProperties": "{\"TableName\":\"ddb-visitor-team07\",\"SSESpecification\":{\"SSEEnabled\":\"false\"},\"AttributeDefinitions\":[{\"AttributeType\":\"S\",\"AttributeName\":\"id\"}],\"BillingMode\":\"PAY_PER_REQUEST\",\"PointInTimeRecoverySpecification\":{\"PointInTimeRecoveryEnabled\":\"false\"},\"KeySchema\":[{\"KeyType\":\"HASH\",\"AttributeName\":\"id\"}],\"TableClass\":\"STANDARD\",\"DeletionProtectionEnabled\":\"true\",\"Tags\":[{\"Value\":\"ddb-visitor-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"VisitorCounter\",\"Key\":\"Workload\"},{\"Value\":\"Storage\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]}",
+              "ClientRequestToken": "scrum21-20261020-0028-execute"
+            },
+            {
+              "EventId": "93846719-c483-4e9b-8e34-a421aa7ab4f2",
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "OperationId": "8cec882d-d016-4ee6-98b1-08644e21c3ac",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "VisitorCounterTable",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::DynamoDB::Table",
+              "Timestamp": "2026-10-20T00:29:53.047000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceProperties": "{\"TableName\":\"ddb-visitor-team07\",\"SSESpecification\":{\"SSEEnabled\":\"false\"},\"AttributeDefinitions\":[{\"AttributeType\":\"S\",\"AttributeName\":\"id\"}],\"BillingMode\":\"PAY_PER_REQUEST\",\"PointInTimeRecoverySpecification\":{\"PointInTimeRecoveryEnabled\":\"false\"},\"KeySchema\":[{\"KeyType\":\"HASH\",\"AttributeName\":\"id\"}],\"TableClass\":\"STANDARD\",\"DeletionProtectionEnabled\":\"true\",\"Tags\":[{\"Value\":\"ddb-visitor-team07\",\"Key\":\"Name\"},{\"Value\":\"Team7\",\"Key\":\"Project\"},{\"Value\":\"Team7\",\"Key\":\"Team\"},{\"Value\":\"Dev\",\"Key\":\"Environment\"},{\"Value\":\"VisitorCounter\",\"Key\":\"Workload\"},{\"Value\":\"Storage\",\"Key\":\"Component\"},{\"Value\":\"Team7\",\"Key\":\"Owner\"},{\"Value\":\"Team7\",\"Key\":\"ManagedBy\"},{\"Value\":\"Team7\",\"Key\":\"Repository\"},{\"Value\":\"SCRUM\",\"Key\":\"JiraProject\"}]}",
+              "ClientRequestToken": "scrum21-20261020-0028-execute"
+            },
+            {
+              "EventId": "de5d80c4-f62c-4f80-8f88-35cf6a728277",
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "OperationId": "8cec882d-d016-4ee6-98b1-08644e21c3ac",
+              "EventType": "PROGRESS",
+              "LogicalResourceId": "cfn-visitor-data-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-20T00:29:51.352000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "User Initiated",
+              "ClientRequestToken": "scrum21-20261020-0028-execute"
+            },
+            {
+              "EventId": "64611d7a-184e-4fda-8cab-b8a38d295d20",
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-data-team07/40415f60-cc1d-11f1-960c-0255f6e6d449",
+              "OperationId": "8cec882d-d016-4ee6-98b1-08644e21c3ac",
+              "OperationType": "CREATE_STACK",
+              "OperationStatus": "IN_PROGRESS",
+              "EventType": "STACK_EVENT",
+              "Timestamp": "2026-10-20T00:29:51.343000+00:00",
+              "StartTime": "2026-10-20T00:29:51.343000+00:00"
+            }
+          ]
+        }
+      },
+      "api_calls": [
+        {
+          "service": "sts",
+          "operation": "GetCallerIdentity",
+          "status": "success"
+        },
+        {
+          "service": "cloudformation",
+          "operation": "DescribeStackResource",
+          "status": "success"
+        },
+        {
+          "service": "cloudformation",
+          "operation": "GetTemplate",
+          "status": "success",
+          "n_items": {
+            "StagesAvailable": 2
+          }
+        },
+        {
+          "service": "dynamodb",
+          "operation": "DescribeTable",
+          "status": "success"
+        },
+        {
+          "service": "dynamodb",
+          "operation": "DescribeContinuousBackups",
+          "status": "success"
+        },
+        {
+          "service": "dynamodb",
+          "operation": "GetItem",
+          "status": "success"
+        },
+        {
+          "service": "cloudformation",
+          "operation": "DescribeEvents",
+          "status": "success",
+          "n_items": {
+            "OperationEvents": 7
+          }
+        },
+        {
+          "service": "dynamodb",
+          "operation": "ListTagsOfResource",
+          "status": "success",
+          "n_items": {
+            "Tags": 10
+          }
+        }
+      ]
+    },
+    "seed_operation": {
+      "status": "success",
+      "stdout": "",
+      "return_value": {
+        "region": "us-east-2",
+        "table": "ddb-visitor-team07",
+        "account_matches": true,
+        "pre_seed_item": {},
+        "execution_method": "AWS connector API with the reviewed script account/ownership/schema/conditional-write safeguards",
+        "put_result": {
+          "ConsumedCapacity": {
+            "TableName": "ddb-visitor-team07",
+            "CapacityUnits": 1
+          }
+        },
+        "status": "seeded_pending_verification",
+        "recorded_at_utc": "2026-10-20T00:31:48.197860+00:00"
+      },
+      "api_calls": [
+        {
+          "service": "sts",
+          "operation": "GetCallerIdentity",
+          "status": "success"
+        },
+        {
+          "service": "cloudformation",
+          "operation": "DescribeStackResource",
+          "status": "success"
+        },
+        {
+          "service": "dynamodb",
+          "operation": "DescribeTable",
+          "status": "success"
+        },
+        {
+          "service": "dynamodb",
+          "operation": "GetItem",
+          "status": "success"
+        },
+        {
+          "service": "dynamodb",
+          "operation": "PutItem",
+          "status": "success"
+        }
+      ]
+    },
+    "final_verification": {
+      "status": "success",
+      "stdout": "",
+      "return_value": {
+        "verified_at_utc": "2026-10-20T00:32:26.557829+00:00",
+        "region": "us-east-2",
+        "table": "ddb-visitor-team07",
+        "consistent_read": true,
+        "seed_verified": true,
+        "item": {
+          "Item": {
+            "id": {
+              "S": "site"
+            },
+            "count": {
+              "N": "0"
+            }
+          },
+          "ConsumedCapacity": {
+            "TableName": "ddb-visitor-team07",
+            "CapacityUnits": 1
+          }
+        },
+        "stack_resources": {
+          "StackResourceSummaries": [
+            {
+              "LogicalResourceId": "VisitorCounterTable",
+              "PhysicalResourceId": "ddb-visitor-team07",
+              "ResourceType": "AWS::DynamoDB::Table",
+              "LastUpdatedTimestamp": "2026-10-20T00:30:06.835000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "DriftInformation": {
+                "StackResourceDriftStatus": "NOT_CHECKED"
+              }
+            }
+          ]
+        }
+      },
+      "api_calls": [
+        {
+          "service": "dynamodb",
+          "operation": "GetItem",
+          "status": "success"
+        },
+        {
+          "service": "cloudformation",
+          "operation": "ListStackResources",
+          "status": "success",
+          "n_items": {
+            "StackResourceSummaries": 1
+          }
+        }
+      ]
+    }
+  }
+}

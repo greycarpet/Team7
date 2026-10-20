@@ -1,0 +1,63 @@
+{
+  "prepared_at_utc": "2026-10-20",
+  "base_commit": "cfb76d9f9dcab0ef8e070bc1820595b1de50c8ac",
+  "checks": [
+    {
+      "name": "cfn-lint",
+      "version": "1.57.2",
+      "result": "PASS"
+    },
+    {
+      "name": "CloudFormation Guard",
+      "version": "3.2.1",
+      "rules": "scripts/validation/scrum-21.guard",
+      "result": "PASS",
+      "binary_archive_sha256": "09c2b8cfd81d513374a8da89d4805dc55006a3da52bbf598e272022d4d198e94"
+    },
+    {
+      "name": "offline seed safety unittest",
+      "count": 9,
+      "result": "PASS"
+    },
+    {
+      "name": "AWS CloudFormation ValidateTemplate",
+      "result": {
+        "status": "success",
+        "stdout": "",
+        "return_value": {
+          "region": "us-east-2",
+          "validation": {
+            "Parameters": [
+              {
+                "ParameterKey": "VisitorTableName",
+                "DefaultValue": "ddb-visitor-team07",
+                "NoEcho": false,
+                "Description": "Approved Team7 DynamoDB name."
+              }
+            ],
+            "Description": "SCRUM-21 - Team7 visitor counter data store (us-east-2)."
+          },
+          "mutations_performed": []
+        },
+        "api_calls": [
+          {
+            "service": "cloudformation",
+            "operation": "ValidateTemplate",
+            "status": "success",
+            "n_items": {
+              "Parameters": 1
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "not_performed": [
+    "CreateChangeSet",
+    "ExecuteChangeSet",
+    "CreateStack",
+    "PutItem",
+    "live post-deployment acceptance checks"
+  ],
+  "deployment_authorized": false
+}

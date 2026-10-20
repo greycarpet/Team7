@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SCRUM-21 - Team7 visitor counter data store (us-east-2).'
+Parameters:
+  VisitorTableName:
+    Type: String
+    Default: ddb-visitor-team07
+    AllowedValues: [ddb-visitor-team07]
+    Description: Approved Team7 DynamoDB name.
+Resources:
+  VisitorCounterTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName: !Ref VisitorTableName
+      BillingMode: PAY_PER_REQUEST
+      TableClass: STANDARD
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      DeletionProtectionEnabled: true
+      # False selects encryption with an AWS-owned key; encryption stays on.
+      SSESpecification:
+        SSEEnabled: false
+      # Lab counter only: no paid PITR. Retention is not a backup.
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: false
+      Tags:
+        - Key: Name
+          Value: !Ref VisitorTableName
+        - Key: Project
+          Value: Team7
+        - Key: Team
+          Value: Team7
+        - Key: Environment
+          Value: Dev
+        - Key: Workload
+          Value: VisitorCounter
+        - Key: Component
+          Value: Storage
+        - Key: Owner
+          Value: Team7
+        - Key: ManagedBy
+          Value: Team7
+        - Key: Repository
+          Value: Team7
+        - Key: JiraProject
+          Value: SCRUM
+Outputs:
+  VisitorTableName:
+    Description: DynamoDB table for the Lambda configuration.
+    Value: !Ref VisitorCounterTable
+  VisitorTableArn:
+    Description: Scope the later Lambda IAM policy to this ARN.
+    Value: !GetAtt VisitorCounterTable.Arn
+  PartitionKey:
+    Description: String partition key; no sort key.
+    Value: id
+  CounterItemId:
+    Description: Seed item key; count is a Number attribute, not a key.
+    Value: site

@@ -1,0 +1,22 @@
+# SCRUM-21 project-specific checks; this is not a general compliance certification.
+rule visitor_counter_scope {
+  Resources.*.Type == 'AWS::DynamoDB::Table'
+  Resources.VisitorCounterTable {
+    DeletionPolicy == 'Retain'
+    UpdateReplacePolicy == 'Retain'
+    Properties {
+      BillingMode == 'PAY_PER_REQUEST'
+      TableClass == 'STANDARD'
+      DeletionProtectionEnabled == true
+      SSESpecification.SSEEnabled == false
+      PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled == false
+      AttributeDefinitions == [{ 'AttributeName': 'id', 'AttributeType': 'S' }]
+      KeySchema == [{ 'AttributeName': 'id', 'KeyType': 'HASH' }]
+      GlobalSecondaryIndexes !exists
+      LocalSecondaryIndexes !exists
+      StreamSpecification !exists
+    }
+  }
+  Parameters.VisitorTableName.Default == 'ddb-visitor-team07'
+  Parameters.VisitorTableName.AllowedValues == ['ddb-visitor-team07']
+}

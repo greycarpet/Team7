@@ -1,107 +1,117 @@
-# SCRUM-24: Application API specification
+# SCRUM-24: Application and API design specification
 
-**Status:** Draft; DynamoDB deployment is reported in Jira, while Lambda/API deployment and live testing remain unverified.  
-**Branch:** `feature/SCRUM-24-application-api-spec`  
-**Ticket:** [SCRUM-24](https://joshescobarx.atlassian.net/browse/SCRUM-24) (ticket page was not accessible during this review).  
-**Last reviewed:** October 19, 2026.
+**Status:** Working draft for review. Data, API and website deployment are verified in the October 19 records. The foreign-origin browser check, end-of-week screenshots, final course-form review and PDF remain pending.
 
-## Status summary
+**Owner:** Alyssa. **Architect / application / security reviewer:** Josh Escobar.
 
-This table separates Jira-reported deployed data storage from the API implementation details in Josh's source branch. The source and template describe the planned API behavior; they do not prove that Lambda or API Gateway is deployed or live.
+**Ticket:** [SCRUM-24](https://joshescobarx.atlassian.net/browse/SCRUM-24). **Updated:** October 20, 2026.
 
-| Work item | Current status | Evidence boundary |
+This revision builds on Alyssa's draft at commit `a8b2ee66d35c216301afcf6312011379b1bf7f6c`. It replaces preparation-only status with the recorded deployment results in PRs [#8](https://github.com/greycarpet/Team7/pull/8) and [#9](https://github.com/greycarpet/Team7/pull/9). Jira was checked directly through the plugin on October 20. This draft does not claim a fresh AWS test, official form edit, final PDF export, reviewer approval or course submission.
+
+## Purpose and status
+
+The Team7 website displays a page-view counter. Each accepted POST causes one atomic increment of a fixed DynamoDB item and returns the new numeric count. Reloads and test traffic are included; this is not a unique-visitor measure.
+
+| Work item | Verified progress | Remaining acceptance |
 | --- | --- | --- |
-| SCRUM-21 DynamoDB data store | Jira reports deployed in `us-east-2` as `ddb-visitor-team07`, in stack `cfn-visitor-data-team07`. | Jira-reported deployed resource. This is separate from Josh's proposed API stack. |
-| DynamoDB key and seed data | Jira reports partition key `id` (String) and initial item `{ "id": "site", "count": 0 }`. | Jira-reported table configuration and seed item. |
-| SCRUM-47 and SCRUM-48 | Jira reports both tickets Done. | Ticket status reported by the user from Jira; not independently checked in Jira. |
-| SCRUM-22 Lambda/API implementation | Source is present on `origin/feature/SCRUM-22-visitor-api` at commit `e7e283d` and is associated with draft PR #9. | Source describes a planned HTTP API and Lambda. The deployment plan and validation record say not deployed; no live route or endpoint URL is verified. |
-| SCRUM-24 API integration | Source proposes `POST /visits`, `$default` stage, and a visitor-counter website integration. | Contract and website behavior can be documented from source; deployed endpoint and live behavior remain unverified. |
+| SCRUM-21 / 47 / 48 | DynamoDB deployed; initial zero conditionally seeded and verified; subtasks Done | Parent In Review for course evidence and datastore review |
+| SCRUM-22 / 49 / 50 | Lambda, API and website deployed; live counter tests passed; subtasks Done | Parent In Review for course evidence and specification review |
+| SCRUM-23 / 51 | Exact-origin CORS, allowed-origin browser and HTTP negative tests verified | Foreign-origin browser rejection pending; In Progress |
+| SCRUM-52 | Browser code and deployed role/environment checks complete; Done | Include recorded result in final evidence |
+| SCRUM-20 / 46 | Architect-owned flow populated below and detailed handoff prepared | Josh's review and final course evidence |
+| SCRUM-24 | Shared working draft assembled; Jira In Progress under Alyssa | Official form completeness, screenshots, review, PDF and separate submission record |
 
-## Purpose and scope
+## Deployed components
 
-This document is the working specification record for the application API. It separates the Jira-reported deployed DynamoDB resource from implementation details in Josh's source branch. Those source details document the intended behavior; they are not live deployment results.
-
-The source defines `POST /visits` and its request/response behavior. The actual API endpoint URL is not in the source and must be recorded from the deployed stack output after deployment. No endpoint URL is guessed here.
-
-## Verified architecture today
-
-The current website is static content in a private S3 bucket, delivered to visitors over HTTPS by CloudFront. The deployed website and its recorded verification are documented in [the SCRUM-17 handoff](../week2/SCRUM-17-handoff.md) and [its evidence index](../week2/evidence/SCRUM-17/README.md).
-
-| Component | Verified information | What it means for this API |
-| --- | --- | --- |
-| CloudFront | The deployed distribution is `cf-site-team07` (`E1PBX75YJOS2B9`); the HTTPS site is `https://d3jg1ev4a532iw.cloudfront.net/`. CloudFront serves the static site from a private S3 REST origin using OAC. | The website origin is known. It is not evidence that an API origin or CloudFront API behavior exists. |
-| API Gateway | Josh's source defines an HTTP API named `api-visitor-team07`, route `POST /visits`, and `$default` stage with auto-deploy. | Planned in source; not verified live. The deployed API ID and endpoint URL remain unknown. |
-| Lambda | Josh's source defines `lambda-visitor-team07`, Python 3.13 on arm64, 256 MB memory, five-second timeout, and environment variables for table name and allowed origin. | Planned in source; not verified live. The function has not been shown to run against the live API or table. |
-| DynamoDB | Jira reports table `ddb-visitor-team07` deployed in `us-east-2` by stack `cfn-visitor-data-team07`; partition key `id` (String); initial item `id=site`, `count=0`. | Jira-reported deployed table. Josh's API template references this existing table by name and does not create or reconfigure it. |
-
-The API and Lambda names above appear in Josh's proposed CloudFormation source; their presence there is not proof those resources have been deployed. The DynamoDB name and configuration are separately reported deployed in Jira.
-
-Josh's website source adds a visitor-count display and external JavaScript. The unrendered source leaves its API URL blank and sets Content Security Policy `connect-src 'none'`. A local release builder is designed to insert a verified endpoint and allow that exact API origin. This is planned website integration; the updated files have not been proven live in the deployed CloudFront site.
-
-## Proposed API contract — deployment details pending
-
-The following contract is documented from Josh's source code and handoff on `origin/feature/SCRUM-22-visitor-api` (commit `e7e283d`). It describes planned behavior, not live API test results. The route is not verified live, and the API base URL must be recorded only after deployment from the `VisitEndpoint` stack output.
-
-| Contract item | Decision |
+| Component | Actual configuration and responsibility |
 | --- | --- |
-| API type, route, stage | HTTP API; `POST /visits`; `$default` stage with auto-deploy. |
-| Base URL | TBD — obtain the actual `VisitEndpoint` CloudFormation output after deployment; no endpoint URL is invented here. |
-| Request | `Content-Type: application/json`; body must be the empty JSON object `{}`. The handler rejects any caller-supplied key or count. |
-| Successful response | HTTP 200; JSON body `{"count":number}` containing the incremented positive integer. Response has `Cache-Control: no-store`. |
-| Error responses | HTTP 400 `{"error":"invalid_request"}` for invalid content/body; HTTP 403 `{"error":"origin_not_allowed"}` for missing or non-allowed Origin; HTTP 503 `{"error":"counter_unavailable"}` for a missing/invalid counter or datastore/access failure. |
-| Other route/method behavior | API Gateway handles unmatched public routes (404) and OPTIONS preflight. The Lambda has defensive guards returning 404 for a wrong path and 405 for a wrong method if invoked directly. Gateway throttling/platform responses may be 429 or 5xx. |
-| Authentication | No API authentication is configured in source (`AuthorizationType: NONE`); it is a public demo endpoint. CORS and Origin checking are not authentication. |
-| CORS | Allow only `https://d3jg1ev4a532iw.cloudfront.net`; methods POST and OPTIONS; header `content-type`; credentials disabled; preflight max age 300 seconds. |
-| DynamoDB table and item | `ddb-visitor-team07`; fixed key `{ "id": "site" }`, matching Jira-reported String partition key and seed item. |
-| Update behavior | Atomic `UpdateItem`: `SET #count = #count + :one`, returning `UPDATED_NEW`. A condition requires the item to exist and count to be numeric, non-negative, and below JavaScript's maximum safe integer. Lambda never seeds or resets the item. |
-| Lambda permissions | Planned role `role-lambda-team07` can call `dynamodb:UpdateItem` on only the named table, limited by `dynamodb:LeadingKeys` to `site`, and can write to its own Lambda log group. It has no GetItem, PutItem, or DeleteItem permission in this policy. |
-| Throttling | `$default` stage is configured for 2 requests per second with burst limit 5; this is best-effort throttling, not a hard spending cap. |
-| Retry behavior | Browser and SDK do not automatically retry. A response may be lost after an increment succeeded, so a later page reload counts as another visit; exactly-once counting is not guaranteed. |
-| Logging | Planned API access logs include request ID, route, status, integration status, and response length. Lambda logs an error category and request ID. Both log groups are configured for seven-day retention. |
+| Website | https://d3jg1ev4a532iw.cloudfront.net/; HTTPS static page with external counter script |
+| CloudFront / S3 | cf-site-team07, distribution E1PBX75YJOS2B9; private S3 REST origin s3-site-team07-a7f391 with OAC; static delivery |
+| HTTP API | api-visitor-team07, ID 24prug4iuj; POST /visits; $default stage with auto-deploy; Lambda integration |
+| Lambda | lambda-visitor-team07; Python 3.13, arm64, 256 MB, 5-second timeout |
+| Execution role | role-lambda-team07, inline policy policy-visitor-ddb-team07; exact-table UpdateItem restricted to site and own log writes; no attached managed policies |
+| DynamoDB | ddb-visitor-team07; id String partition key, no sort key/indexes; item id=site with numeric count |
+| CloudFormation | cfn-visitor-data-team07 owns the table; cfn-visitor-api-team07 references that existing table |
+| Workload region | us-east-2 |
 
-## Request flow — partly reported deployed, API path still proposed
+The API stack reached CREATE_COMPLETE at **October 19, 2026, 20:04:51.881 CDT**. Deployed code: `e7e283dd5ba6494588254ef8853239d10e8072df`. Evidence commit: `14e6c7104e15001b975de4a5cef7543fa82dbc5c`. PRs #8 and #9 remain draft/unmerged at this review; deployment and Git merge are separate states.
 
-The Week 2 CloudFront-to-private-S3 website path is verified in the repository. Jira separately reports the DynamoDB table deployed. The following API and website integration flow is described by Josh's source code and is not verified as live deployment behavior.
+## Architect-owned request flow
 
-```mermaid
-flowchart LR
-  Browser[Visitor browser] -->|HTTPS static site| CF[CloudFront]
-  CF -->|OAC signed request| S3[Private S3 website origin]
-  Browser -. "POST /visits, body {}" .-> API[HTTP API: planned]
-  API -. "Lambda proxy 2.0" .-> Lambda[Lambda: planned]
-  Lambda -. "atomic UpdateItem" .-> DDB[DynamoDB: Jira reports deployed]
-```
+The visitor loads `https://d3jg1ev4a532iw.cloudfront.net/`. CloudFront delivers HTML, CSS and JavaScript from cache or the private S3 origin `s3-site-team07-a7f391` using OAC. The browser calls `POST https://24prug4iuj.execute-api.us-east-2.amazonaws.com/visits` directly with Content-Type application/json, body `{}` and credentials omitted. API Gateway handles browser preflight and allows the exact CloudFront origin. Its $default stage routes POST /visits through a Lambda proxy integration with payload 2.0 to `lambda-visitor-team07`. Lambda validates the request and uses `role-lambda-team07` for one conditional atomic UpdateItem on `ddb-visitor-team07`, key id=site, adding 1 to count and requesting UPDATED_NEW. The function returns HTTP 200 and `{"count":N}` through API Gateway. The website validates and displays the integer using textContent.
 
-The dotted links are implementation plans from Josh's source, not verified live connections. The browser is planned to call the API endpoint directly; no CloudFront API behavior is defined. The website script sends one POST per page load, displays the returned number using `textContent`, and shows “Temporarily unavailable” on failure. The endpoint remains blank in source until a release build receives the real deployed URL; the builder is designed to set CSP `connect-src` to that exact API origin.
+CloudFront delivers static files; the browser connects directly to the API. The release builder fills the source HTML's blank endpoint and allows the exact API host in CSP. The deployed files and browser result were verified. See [SCRUM-20 request flow](SCRUM-20-request-flow.md) for the diagram, failure paths, resource mapping and evidence.
 
-## Security and deployment notes
+## Infrastructure-owned datastore fields
 
-- Keep the static S3 origin private and continue using CloudFront OAC, as verified for SCRUM-17.
-- Do not place secrets in browser code, site files, Lambda environment variables committed to Git, or this specification.
-- Josh's source plans a narrowly scoped Lambda policy: `UpdateItem` for the exact visitor table and partition key `site`, plus writes to its own logs. This is template intent until deployment and role inspection verify the effective policy.
-- Josh's source plans direct browser calls to the API endpoint, with exact-origin CORS and a generated CSP connection rule. Browser CORS/CSP behavior still needs a real browser test after deployment and site publication.
-- The API deployment plan names a proposed stack `cfn-visitor-api-team07` and specifies the table as an existing resource; it does not authorize deployment or modify the DynamoDB stack/table.
-- All AWS changes remain subject to the repository's read-only-by-default policy. This document authorizes no deployment or resource change.
+| Field | Recorded deployed value |
+| --- | --- |
+| Table / stack | ddb-visitor-team07 / cfn-visitor-data-team07 |
+| Partition key | id, String (S) |
+| Sort key / indexes | None |
+| Capacity / class | PAY_PER_REQUEST / STANDARD |
+| Item | id=site (String); count (Number) |
+| Initial seed | count=0; strong GetItem on October 19, 2026 at 19:32:26 CDT, before API tests |
+| Subsequent observation | count=5 after four HTTP tests and one browser load; historical value, not the current count |
+| Encryption | AWS-owned key; SSEEnabled=false selects this mode and does not mean unencrypted |
+| Protection | Deletion protection; CloudFormation Retain on deletion/replacement; PITR disabled |
+| Table ARN | arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07; use the actual full ARN recorded privately in Jira or stack output VisitorTableArn for the course form |
 
-## Work still waiting on Josh
+Initial seeding required an absent item. Lambda never seeds or resets the counter. Preserve the original zero evidence and the true current value for end-of-week screenshots.
 
-- [ ] Deploy only after the required explicit AWS authorization and the deployment plan's resource/security/cost review; no deployment is claimed here.
-- [ ] Record the actual `VisitEndpoint` output and verify the deployed HTTP API route and `$default` stage.
-- [ ] Run live success/error tests and verify the atomic counter change against the existing `id=site` row without resetting it.
-- [ ] Inspect the deployed Lambda role and confirm its effective least-privilege permissions.
-- [ ] Test CORS preflight and foreign/missing Origin behavior in a real browser; CORS settings in source are not proof of browser behavior.
-- [ ] Build and publish the website with the real endpoint, then verify CSP, browser request, displayed counter, and live CloudFront release.
-- [ ] Add deployment/test evidence and final screenshots after actual verification.
+## Application-owned endpoint specification
 
-## Evidence reviewed
+| Field | Contract |
+| --- | --- |
+| API base URL | https://24prug4iuj.execute-api.us-east-2.amazonaws.com |
+| Method / path / stage | POST /visits; $default; no URL stage prefix |
+| Full endpoint | https://24prug4iuj.execute-api.us-east-2.amazonaws.com/visits |
+| Request | Content-Type application/json; empty JSON object {}; exact website Origin; no caller-supplied key/count/table |
+| Success | HTTP 200; JSON {"count":N}, positive safe integer; Content-Type application/json; Cache-Control no-store |
+| Invalid request | HTTP 400 / invalid_request for invalid content/body |
+| Origin rejection | HTTP 403 / origin_not_allowed for missing/foreign Origin; browser CORS may hide the body |
+| Counter failure | HTTP 503 / counter_unavailable for failed condition, datastore/access error or invalid returned count |
+| Other route/method | Public unmatched route returns API Gateway 404; defensive direct-Lambda method guard returns 405 |
+| Preflight | API Gateway handles OPTIONS without a counter write |
+| Throttling / platform errors | 2 requests/sec, burst 5; best effort; 429 or gateway-dependent 5xx may occur |
+| Retry / display | No automatic browser/SDK retry; 8-second browser timeout; failure displays Temporarily unavailable |
 
-- [Week 2 SCRUM-17 handoff](../week2/SCRUM-17-handoff.md): deployed CloudFront/S3 values and live-site verification; at the time of that Week 2 handoff, no API or visitor-counter integration was implemented.
-- [Week 2 SCRUM-17 deployment plan](../week2/SCRUM-17-deployment-plan.md): origin protection and CSP notes for future JavaScript/API work.
-- [ADR-001](../adr/ADR-001.md): accepted static-site architecture and limits of the existing decision.
-- [Team7 naming standard](../week1/Design_Standards_Cloud_Architect/01_Cloud_Foundation_and_Naming_Standard.md): resource naming examples only.
-- Josh's source branch `origin/feature/SCRUM-22-visitor-api`, commit `e7e283d`: `application/lambda/visitor_counter.py`, `infrastructure/cloudformation/week3/visitor-api.yaml`, `site/assets/visitor-counter-v1.js`, `site/index.html`, and `scripts/build_visitor_site.py` define the proposed API, counter behavior, CORS/IAM/throttling plan, and website integration.
-- Josh's branch records: `docs/week3/SCRUM-22-how-to.md` describes the request/response contract; `docs/week3/SCRUM-22-deployment-plan.md` says the implementation is prepared but not deployed; `docs/week3/evidence/SCRUM-22/local-validation.json` records offline checks; `docs/week3/evidence/SCRUM-22/aws-validation.json` records preflight checks, not live API testing.
-- Jira information supplied for this update: SCRUM-21 reports the DynamoDB deployment and table configuration; SCRUM-47 and SCRUM-48 are reported Done; SCRUM-22 reports Josh's Lambda/API work in draft PR #9; SCRUM-24 proposes `POST /visits` and requires post-deployment endpoint verification. These Jira facts were supplied by the user and were not independently checked in Jira during this review.
-- Jira [SCRUM-24](https://joshescobarx.atlassian.net/browse/SCRUM-24): linked for traceability; ticket page was inaccessible during this review.
-- Josh's deployment plan and validation records explicitly state that the API/Lambda were not deployed and that no live increment was performed at the time of those records.
+The update condition requires an existing item with a numeric, nonnegative count below JavaScript's maximum safe integer. The returned integer is checked. Atomic increments prevent lost updates, but a response may be lost after a successful write; exactly-once delivery is not guaranteed. Throttling and the $5 budget alert are not hard spending caps.
 
+## Security-owned CORS and credential validation
+
+| Control | Recorded result |
+| --- | --- |
+| Allowed origin | Exactly https://d3jg1ev4a532iw.cloudfront.net; POST/OPTIONS; content-type; credentials false; max age 300 seconds |
+| Allowed browser | Live CloudFront page displayed count 5 with correct endpoint/CSP and no site CSP/CORS errors |
+| HTTP negative checks | Foreign OPTIONS: 204 without matching allow-origin; foreign/missing-Origin POST: 403 without incrementing |
+| Foreign-origin browser | **Pending.** Cloud browser policy blocked the local data: test page before navigation; this does not prove browser CORS rejection |
+| Browser credentials | Delivered HTML/JS matched reviewed files; inspection and credential-pattern checks passed |
+| Lambda credentials | Execution-role temporary credentials; environment contains only TABLE_NAME and ALLOWED_ORIGIN |
+| Invocation / data access | API-to-Lambda permission scoped to API/account/stage/route; Lambda UpdateItem scoped to exact table and site key |
+| Logs | API request ID, route, status, integration status and response length; Lambda error categories/request ID; both log groups retain seven days |
+
+This is a public demo API with AuthorizationType NONE. CORS and Origin checking are not authentication; external clients can spoof Origin. Pattern scanning is supporting evidence, not a universal guarantee. The separate API Gateway service-linked role and resource-scoped CloudWatch delivery policy are documented in the deployment evidence.
+
+## Recorded verification and evidence
+
+| Evidence | Result and boundary |
+| --- | --- |
+| [Datastore handoff](https://github.com/greycarpet/Team7/blob/54825ef4c11b5dc8133f71feff33a001e8b8de7c/docs/week3/SCRUM-21-deployment-handoff.md) | Table ACTIVE; schema/settings and initial-zero strong read |
+| [API deployment handoff](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/SCRUM-22-deployment-handoff.md) | Nine resources completed; deployed template/configuration matched; website release and manual CORS procedure |
+| [HTTP test record](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_aws_w3-api-tests.json) | One sequential and three concurrent increments returned distinct counts 1–4; strong read confirmed total; negative requests did not increment |
+| [Browser record](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_browser_w3-counter-verification.json) | Allowed-origin count displayed; foreign-origin browser check pending |
+| [Website verification](https://github.com/greycarpet/Team7/blob/14e6c7104e15001b975de4a5cef7543fa82dbc5c/docs/week3/evidence/SCRUM-22/20261019_Team7_aws_w3-site-verification.json) | HTML/JS hashes matched; private S3 index returned 403; credential-pattern check passed |
+
+These are deployment/test records, not screenshots. The prior draft used preparation commit e7e283d; the later evidence commit supplies the actual endpoint and live results. Do not repeat deployment or seeding because the earlier draft marked them pending.
+
+## Remaining work and final review
+
+- [ ] Josh: complete SCRUM-51's foreign-origin browser check using the deployment handoff procedure. Record actual foreign origin, preflight headers and browser CORS error; distinguish it from CSP/network failure.
+- [ ] Josh and Alyssa: collect genuine console/browser screenshots at the end of Week 3, using the course filename convention and actual capture date. Preserve the counter's true current value.
+- [ ] Alyssa: map these sections to every official Application & API Design Specification field, including the full table ARN from private Jira/stack output. This repository draft does not establish official form completion.
+- [ ] Josh: review the flow, contract, evidence and security result. Alyssa: review datastore values and final assembly.
+- [ ] Check Completeness, Correctness, Authenticity and Consistency; include required evidence and component descriptions.
+- [ ] Generate and review the final course PDF after the remaining inputs are complete. Record submission separately from PDF readiness.
+
+All AWS changes remain subject to AGENTS.md. This documentation revision changes no AWS resource, website object, counter value or deployment approval scope.

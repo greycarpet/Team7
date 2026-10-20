@@ -1,6 +1,6 @@
 # SCRUM-22 implementation and endpoint handoff
 
-Owner: Josh Escobar. Status: prepared; deployment authorization and live acceptance pending. Read [the deployment plan](SCRUM-22-deployment-plan.md) before any AWS mutation. Screenshots are due at the end of Week 3; preserve textual API evidence now and never reset the counter to recreate a zero screenshot.
+Owner: Josh Escobar. Status: deployed and technically verified on October 19, 2026. See [the deployment handoff](SCRUM-22-deployment-handoff.md) for evidence, actual values and the pending foreign-origin browser test under SCRUM-23. Read [the deployment plan](SCRUM-22-deployment-plan.md) before any further AWS mutation. Screenshots are due at the end of Week 3; preserve textual API evidence and never reset the counter to recreate a zero screenshot.
 
 ## Request flow
 
@@ -8,7 +8,7 @@ The existing CloudFront site serves index.html and an external script from priva
 
 ## Endpoint contract
 
-The actual endpoint is not yet assigned. After deployment, read the stack output **VisitEndpoint**; do not invent an API ID.
+The deployed **VisitEndpoint** is `https://24prug4iuj.execute-api.us-east-2.amazonaws.com/visits`. It accepts POST; opening it as a browser GET returns 404 by design.
 
 | Field | Contract |
 |---|---|
@@ -57,8 +57,8 @@ This rejects foreign-region URLs, queries, fragments and HTML injection. It bind
 
 ## Live acceptance and handoff
 
-SCRUM-49 requires the deployed function/role, verified atomic increment, no seed/reset behavior and actual logging. SCRUM-50 requires the deployed route, documented actual endpoint, API tests and a website displaying the returned count. Offline tests alone do not complete either ticket.
+SCRUM-49's deployed function/role, atomic increment and actual logging are verified. SCRUM-50's route, actual endpoint, API tests and live website count are verified. The deployment handoff records four successful HTTP increments and the fifth page view in a real browser.
 
-SCRUM-23/51/52 require actual allowed/foreign-origin browser behavior, a credential scan of browser-delivered code, and deployed role/environment inspection. The Lambda role obtains temporary service credentials automatically; the public API endpoint is configuration, not a secret. No browser test has been represented as complete during preparation.
+SCRUM-23/51 still require the foreign-origin browser test. Allowed-origin browser behavior and HTTP-level negative tests passed. SCRUM-52's browser-delivered code scan and deployed role/environment inspection passed. The Lambda role obtains temporary service credentials automatically; the public API endpoint is configuration, not a secret. The blocked foreign-origin browser check is explicitly pending in the deployment handoff.
 
 Hand off the actual endpoint, method/path, response/status contract, table schema, identity permissions, CORS origin and test evidence to SCRUM-20 (request flow) and SCRUM-24 (Alyssa's final Application & API Design Specification). Capture console/browser screenshots at the end of Week 3 showing the true current state, including nonzero counts. The initial zero is already recorded in SCRUM-21's timestamped evidence in [PR #8](https://github.com/greycarpet/Team7/pull/8).

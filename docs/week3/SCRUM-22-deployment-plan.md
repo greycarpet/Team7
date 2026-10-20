@@ -1,6 +1,6 @@
 # SCRUM-22 deployment review
 
-Status: implementation prepared and validated; **not deployed**. Owner: Josh Escobar. Related tasks: SCRUM-49, SCRUM-50; security acceptance: SCRUM-23/51/52. Screenshots are scheduled for the end of Week 3.
+Status: **DEPLOYED** after Josh's authorization on October 19, 2026 at 20:02:02 CDT. See [the deployment handoff](SCRUM-22-deployment-handoff.md) for verified results and the remaining foreign-origin browser check. The plan below is retained as the approved scope. Owner: Josh Escobar. Related tasks: SCRUM-49, SCRUM-50; security acceptance: SCRUM-23/51/52. Screenshots are scheduled for the end of Week 3.
 
 ## Approval scope
 

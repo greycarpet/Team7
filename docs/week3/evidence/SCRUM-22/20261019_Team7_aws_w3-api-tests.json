@@ -1,0 +1,179 @@
+{
+  "captured_at_utc": "2026-10-20T01:07:05.967923+00:00",
+  "endpoint": "https://24prug4iuj.execute-api.us-east-2.amazonaws.com/visits",
+  "checks": {
+    "allowed_preflight": {
+      "method": "OPTIONS",
+      "origin": "https://d3jg1ev4a532iw.cloudfront.net",
+      "status": 204,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:06:31 GMT",
+        "access-control-allow-origin": "https://d3jg1ev4a532iw.cloudfront.net",
+        "access-control-allow-methods": "OPTIONS,POST",
+        "access-control-allow-headers": "content-type",
+        "access-control-max-age": "300",
+        "apigw-requestid": "FhK3yglzCYcEMlw=",
+        "x-envoy-upstream-service-time": "85",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": ""
+    },
+    "foreign_preflight": {
+      "method": "OPTIONS",
+      "origin": "https://example.org",
+      "status": 204,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:06:36 GMT",
+        "apigw-requestid": "FhK4liRwCYcEMpA=",
+        "x-envoy-upstream-service-time": "28",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": ""
+    },
+    "foreign_post": {
+      "method": "POST",
+      "origin": "https://example.org",
+      "status": 403,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:06:41 GMT",
+        "content-type": "application/json",
+        "content-length": "30",
+        "cache-control": "no-store",
+        "apigw-requestid": "FhK5TiShCYcEMFQ=",
+        "x-envoy-upstream-service-time": "577",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": "{\"error\":\"origin_not_allowed\"}"
+    },
+    "missing_origin": {
+      "method": "POST",
+      "origin": null,
+      "status": 403,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:06:46 GMT",
+        "content-type": "application/json",
+        "content-length": "30",
+        "cache-control": "no-store",
+        "apigw-requestid": "FhK6BiGyiYcEM4Q=",
+        "x-envoy-upstream-service-time": "38",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": "{\"error\":\"origin_not_allowed\"}"
+    },
+    "malformed_json": {
+      "method": "POST",
+      "origin": "https://d3jg1ev4a532iw.cloudfront.net",
+      "status": 400,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:06:49 GMT",
+        "content-type": "application/json",
+        "content-length": "27",
+        "cache-control": "no-store",
+        "access-control-allow-origin": "https://d3jg1ev4a532iw.cloudfront.net",
+        "apigw-requestid": "FhK6nhhbiYcEMow=",
+        "x-envoy-upstream-service-time": "56",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": "{\"error\":\"invalid_request\"}"
+    },
+    "wrong_method": {
+      "method": "GET",
+      "origin": "https://d3jg1ev4a532iw.cloudfront.net",
+      "status": 404,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:06:53 GMT",
+        "content-type": "application/json",
+        "content-length": "23",
+        "apigw-requestid": "FhK7Pi6DiYcEMFQ=",
+        "x-envoy-upstream-service-time": "22",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": "{\"message\":\"Not Found\"}"
+    },
+    "success": {
+      "method": "POST",
+      "origin": "https://d3jg1ev4a532iw.cloudfront.net",
+      "status": 200,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:06:58 GMT",
+        "content-type": "application/json",
+        "content-length": "11",
+        "cache-control": "no-store",
+        "access-control-allow-origin": "https://d3jg1ev4a532iw.cloudfront.net",
+        "apigw-requestid": "FhK8AhkQCYcEJcw=",
+        "x-envoy-upstream-service-time": "249",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": "{\"count\":1}"
+    }
+  },
+  "parallel": [
+    {
+      "method": "POST",
+      "origin": "https://d3jg1ev4a532iw.cloudfront.net",
+      "status": 200,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:07:05 GMT",
+        "content-type": "application/json",
+        "content-length": "11",
+        "cache-control": "no-store",
+        "access-control-allow-origin": "https://d3jg1ev4a532iw.cloudfront.net",
+        "apigw-requestid": "FhK9Hj4-iYcEJ9g=",
+        "x-envoy-upstream-service-time": "111",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": "{\"count\":4}"
+    },
+    {
+      "method": "POST",
+      "origin": "https://d3jg1ev4a532iw.cloudfront.net",
+      "status": 200,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:07:05 GMT",
+        "content-type": "application/json",
+        "content-length": "11",
+        "cache-control": "no-store",
+        "access-control-allow-origin": "https://d3jg1ev4a532iw.cloudfront.net",
+        "apigw-requestid": "FhK9Hh1uiYcEMBQ=",
+        "x-envoy-upstream-service-time": "46",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": "{\"count\":2}"
+    },
+    {
+      "method": "POST",
+      "origin": "https://d3jg1ev4a532iw.cloudfront.net",
+      "status": 200,
+      "headers": {
+        "date": "Tue, 20 Oct 2026 01:07:05 GMT",
+        "content-type": "application/json",
+        "content-length": "11",
+        "cache-control": "no-store",
+        "access-control-allow-origin": "https://d3jg1ev4a532iw.cloudfront.net",
+        "apigw-requestid": "FhK9HgBLiYcEJUg=",
+        "x-envoy-upstream-service-time": "71",
+        "server": "envoy",
+        "connection": "close"
+      },
+      "body": "{\"count\":3}"
+    }
+  ],
+  "deliberate_valid_posts": 4,
+  "retries": 0,
+  "counts": [
+    1,
+    4,
+    2,
+    3
+  ],
+  "failures": []
+}

@@ -1,0 +1,22 @@
+{
+  "navigation_console_timestamp_utc": "2026-10-20T01:09:23.297Z",
+  "url": "https://d3jg1ev4a532iw.cloudfront.net/",
+  "browser": "Cloud Chrome",
+  "displayed_count": "5",
+  "release_marker": "Team7 Week 3 - Visitor Counter",
+  "api_endpoint": "https://24prug4iuj.execute-api.us-east-2.amazonaws.com/visits",
+  "csp": "default-src 'none'; style-src 'self'; img-src 'self'; script-src 'self'; connect-src https://24prug4iuj.execute-api.us-east-2.amazonaws.com; base-uri 'none'; form-action 'none'",
+  "site_csp_or_cors_console_errors": [],
+  "other_console_message": {
+    "level": "error",
+    "message": "Error sending browser metadata to extension: Object",
+    "source": "chrome-extension://kcdongibgcplmaagnmgpjhpjgmmaaaaa/content-script.bundle.js",
+    "classification": "Browser extension message, not a site CSP/CORS failure"
+  },
+  "foreign_origin_browser_test": {
+    "status": "PENDING",
+    "reason": "Cloud browser URL policy rejected the local data: test document before navigation; only http: and https: protocols are allowed. No workaround attempted.",
+    "http_negative_tests": "PASS: example.org preflight lacked allow-origin; foreign/missing-Origin POST returned 403."
+  },
+  "screenshots": "Deferred to end of Week 3 per user instruction; none captured."
+}

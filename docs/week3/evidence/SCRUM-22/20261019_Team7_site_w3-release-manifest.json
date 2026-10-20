@@ -1,0 +1,8 @@
+{
+  "endpoint": "https://24prug4iuj.execute-api.us-east-2.amazonaws.com/visits",
+  "files": {
+    "assets/styles.css": "7a8f6b00967a4750736668725dafbe39e4ef2fcb623820dc1df867f68ab01e56",
+    "assets/visitor-counter-v1.js": "8b87821065a8c72cf6fdf82896937245721ea32d1a906a8dbcce95bfe80aebce",
+    "index.html": "613764435327339eeea4a7d266d495be5f04958e48c25a54e38c713b681099df"
+  }
+}

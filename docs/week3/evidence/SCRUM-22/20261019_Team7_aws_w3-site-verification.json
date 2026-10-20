@@ -1,0 +1,28 @@
+{
+  "captured_at_utc": "2026-10-20T01:11:17.202533+00:00",
+  "results": {
+    "website": {
+      "url": "https://d3jg1ev4a532iw.cloudfront.net/",
+      "status": 200,
+      "sha256": "613764435327339eeea4a7d266d495be5f04958e48c25a54e38c713b681099df",
+      "content_type": "text/html; charset=utf-8",
+      "version_id": "y_Qz.QfW.cnlzOce7hZOlsYHzJsMsCQi",
+      "credential_pattern_hits": false
+    },
+    "script": {
+      "url": "https://d3jg1ev4a532iw.cloudfront.net/assets/visitor-counter-v1.js",
+      "status": 200,
+      "sha256": "8b87821065a8c72cf6fdf82896937245721ea32d1a906a8dbcce95bfe80aebce",
+      "content_type": "text/javascript; charset=utf-8",
+      "version_id": "di15_4GyxszN9lgR.Mh7rT.Urjc680h_",
+      "credential_pattern_hits": false
+    },
+    "private_origin": {
+      "url": "https://s3-site-team07-a7f391.s3.us-east-2.amazonaws.com/index.html",
+      "status": 403,
+      "sha256": "8d992b255daa67c6a4c9f4e78a8a9e143808e64081f6762d6a6bf781ce6c13c2",
+      "content_type": "application/xml",
+      "version_id": null
+    }
+  }
+}

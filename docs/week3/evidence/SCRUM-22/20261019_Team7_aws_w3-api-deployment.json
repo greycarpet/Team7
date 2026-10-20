@@ -1,0 +1,2121 @@
+{
+  "authorization": {
+    "text": "DEPLOYMENT AUTHORIZED",
+    "user_local_time": "2026-10-19T20:02:02-05:00",
+    "jira": "SCRUM-22",
+    "approved_commit": "e7e283dd5ba6494588254ef8853239d10e8072df",
+    "region": "us-east-2"
+  },
+  "redactions": "AWS account ID and caller session identity redacted in public evidence.",
+  "preflight": {
+    "status": "success",
+    "stdout": "",
+    "stderr": "Error calling function call_boto3 with arguments {'service_name': 'cloudformation', 'operation_name': 'DescribeStacks', 'region_name': 'us-east-2', 'params': {'StackName': 'cfn-visitor-api-team07'}}: An error occurred (ValidationError) when calling the DescribeStacks operation: Stack with id cfn-visitor-api-team07 does not exist\nError calling function call_boto3 with arguments {'service_name': 'lambda', 'operation_name': 'GetFunctionConfiguration', 'region_name': 'us-east-2', 'params': {'FunctionName': 'lambda-visitor-team07'}}: An error occurred (ResourceNotFoundException) when calling the GetFunctionConfiguration operation: Function not found: arn:aws:lambda:us-east-2:ACCOUNT_ID:function:lambda-visitor-team07\nError calling function call_boto3 with arguments {'service_name': 'iam', 'operation_name': 'GetRole', 'region_name': 'us-east-2', 'params': {'RoleName': 'role-lambda-team07'}}: An error occurred (NoSuchEntity) when calling the GetRole operation: The role with name role-lambda-team07 cannot be found.\nError calling function call_boto3 with arguments {'service_name': 's3', 'operation_name': 'HeadObject', 'region_name': 'us-east-2', 'params': {'Bucket': 's3-site-team07-a7f391', 'Key': 'assets/visitor-counter-v1.js'}}: An error occurred (404) when calling the HeadObject operation: Not Found\n",
+    "return_value": {
+      "captured_at_utc": "2026-10-20T01:02:50.756800+00:00",
+      "region": "us-east-2",
+      "checks": {
+        "0:sts.GetCallerIdentity": {
+          "UserId": "REDACTED",
+          "Account": "ACCOUNT_ID",
+          "Arn": "arn:aws:sts::ACCOUNT_ID:assumed-role/AccountFullAccessRole/SESSION_REDACTED"
+        },
+        "1:cloudformation.DescribeStacks": {
+          "error": "An error occurred (ValidationError) when calling the DescribeStacks operation: Stack with id cfn-visitor-api-team07 does not exist"
+        },
+        "2:dynamodb.DescribeTable": {
+          "Table": {
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "id",
+                "AttributeType": "S"
+              }
+            ],
+            "TableName": "ddb-visitor-team07",
+            "KeySchema": [
+              {
+                "AttributeName": "id",
+                "KeyType": "HASH"
+              }
+            ],
+            "TableStatus": "ACTIVE",
+            "CreationDateTime": "2026-10-20T00:29:55.441000+00:00",
+            "ProvisionedThroughput": {
+              "NumberOfDecreasesToday": 0,
+              "ReadCapacityUnits": 0,
+              "WriteCapacityUnits": 0
+            },
+            "TableSizeBytes": 0,
+            "ItemCount": 0,
+            "TableArn": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+            "TableId": "bb380c71-bb68-4e27-8434-85a778aee60e",
+            "BillingModeSummary": {
+              "BillingMode": "PAY_PER_REQUEST",
+              "LastUpdateToPayPerRequestDateTime": "2026-10-20T00:29:55.441000+00:00"
+            },
+            "TableClassSummary": {
+              "TableClass": "STANDARD"
+            },
+            "DeletionProtectionEnabled": true,
+            "WarmThroughput": {
+              "ReadUnitsPerSecond": 12000,
+              "WriteUnitsPerSecond": 4000,
+              "Status": "ACTIVE"
+            }
+          }
+        },
+        "3:dynamodb.GetItem": {
+          "Item": {
+            "id": {
+              "S": "site"
+            },
+            "count": {
+              "N": "0"
+            }
+          }
+        },
+        "4:lambda.GetFunctionConfiguration": {
+          "error": "An error occurred (ResourceNotFoundException) when calling the GetFunctionConfiguration operation: Function not found: arn:aws:lambda:us-east-2:ACCOUNT_ID:function:lambda-visitor-team07"
+        },
+        "5:apigatewayv2.GetApis": {
+          "Items": []
+        },
+        "6:iam.GetRole": {
+          "error": "An error occurred (NoSuchEntity) when calling the GetRole operation: The role with name role-lambda-team07 cannot be found."
+        },
+        "7:logs.DescribeLogGroups": {
+          "logGroups": []
+        },
+        "8:logs.DescribeLogGroups": {
+          "logGroups": []
+        },
+        "9:s3.GetBucketVersioning": {
+          "Status": "Enabled"
+        },
+        "10:s3.HeadObject": {
+          "AcceptRanges": "bytes",
+          "LastModified": "2026-10-14T00:02:56+00:00",
+          "ContentLength": 3781,
+          "ETag": "\"1dc1ffbad16ed9f9588339678a50428a\"",
+          "VersionId": "gU6a2x9eXr.nDxPOxb0MgTmPiGw_pAoQ",
+          "CacheControl": "public,max-age=60",
+          "ContentType": "text/html; charset=utf-8",
+          "ServerSideEncryption": "AES256",
+          "Metadata": {}
+        },
+        "11:s3.HeadObject": {
+          "error": "An error occurred (404) when calling the HeadObject operation: Not Found"
+        },
+        "12:cloudfront.GetDistribution": {
+          "ETag": "E23ZP02F085DFQ",
+          "Distribution": {
+            "Id": "E1PBX75YJOS2B9",
+            "ARN": "arn:aws:cloudfront::ACCOUNT_ID:distribution/E1PBX75YJOS2B9",
+            "Status": "Deployed",
+            "LastModifiedTime": "2026-10-13T23:42:41.787000+00:00",
+            "InProgressInvalidationBatches": 0,
+            "DomainName": "d3jg1ev4a532iw.cloudfront.net",
+            "ActiveTrustedSigners": {
+              "Enabled": false,
+              "Quantity": 0
+            },
+            "ActiveTrustedKeyGroups": {
+              "Enabled": false,
+              "Quantity": 0
+            },
+            "DistributionConfig": {
+              "CallerReference": "92335e10-5cf5-e302-155a-b1f8a73dea08",
+              "Aliases": {
+                "Quantity": 0
+              },
+              "DefaultRootObject": "index.html",
+              "Origins": {
+                "Quantity": 1,
+                "Items": [
+                  {
+                    "Id": "SiteS3Origin",
+                    "DomainName": "s3-site-team07-a7f391.s3.us-east-2.amazonaws.com",
+                    "OriginPath": "",
+                    "CustomHeaders": {
+                      "Quantity": 0
+                    },
+                    "S3OriginConfig": {
+                      "OriginAccessIdentity": "",
+                      "OriginReadTimeout": 30
+                    },
+                    "ConnectionAttempts": 3,
+                    "ConnectionTimeout": 10,
+                    "OriginShield": {
+                      "Enabled": false
+                    },
+                    "OriginAccessControlId": "E2X7EYYCOARJ7I"
+                  }
+                ]
+              },
+              "OriginGroups": {
+                "Quantity": 0
+              },
+              "DefaultCacheBehavior": {
+                "TargetOriginId": "SiteS3Origin",
+                "TrustedSigners": {
+                  "Enabled": false,
+                  "Quantity": 0
+                },
+                "TrustedKeyGroups": {
+                  "Enabled": false,
+                  "Quantity": 0
+                },
+                "ViewerProtocolPolicy": "redirect-to-https",
+                "AllowedMethods": {
+                  "Quantity": 2,
+                  "Items": [
+                    "HEAD",
+                    "GET"
+                  ],
+                  "CachedMethods": {
+                    "Quantity": 2,
+                    "Items": [
+                      "HEAD",
+                      "GET"
+                    ]
+                  }
+                },
+                "SmoothStreaming": false,
+                "Compress": true,
+                "LambdaFunctionAssociations": {
+                  "Quantity": 0
+                },
+                "FunctionAssociations": {
+                  "Quantity": 0
+                },
+                "FieldLevelEncryptionId": "",
+                "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+                "ResponseHeadersPolicyId": "67f7725c-6f97-4210-82d7-5512b31e9d03",
+                "GrpcConfig": {
+                  "Enabled": false
+                }
+              },
+              "CacheBehaviors": {
+                "Quantity": 0
+              },
+              "CustomErrorResponses": {
+                "Quantity": 0
+              },
+              "Comment": "cf-site-team07",
+              "Logging": {
+                "Enabled": false,
+                "IncludeCookies": false,
+                "Bucket": "",
+                "Prefix": ""
+              },
+              "PriceClass": "PriceClass_100",
+              "Enabled": true,
+              "ViewerCertificate": {
+                "CloudFrontDefaultCertificate": true,
+                "SSLSupportMethod": "vip",
+                "MinimumProtocolVersion": "TLSv1",
+                "CertificateSource": "cloudfront"
+              },
+              "Restrictions": {
+                "GeoRestriction": {
+                  "RestrictionType": "none",
+                  "Quantity": 0
+                }
+              },
+              "WebACLId": "",
+              "HttpVersion": "http2and3",
+              "IsIPV6Enabled": true,
+              "ContinuousDeploymentPolicyId": "",
+              "Staging": false
+            }
+          }
+        }
+      }
+    },
+    "api_calls": [
+      {
+        "service": "sts",
+        "operation": "GetCallerIdentity",
+        "status": "success"
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeStacks",
+        "status": "error",
+        "error": "ClientError: An error occurred (ValidationError) when calling the DescribeStacks operation: Stack with id cfn-visitor-api-team07 does not exist"
+      },
+      {
+        "service": "dynamodb",
+        "operation": "DescribeTable",
+        "status": "success"
+      },
+      {
+        "service": "dynamodb",
+        "operation": "GetItem",
+        "status": "success"
+      },
+      {
+        "service": "lambda",
+        "operation": "GetFunctionConfiguration",
+        "status": "error",
+        "error": "ResourceNotFoundException: An error occurred (ResourceNotFoundException) when calling the GetFunctionConfiguration operation: Function not found: arn:aws:lambda:us-east-2:ACCOUNT_ID:function:lambda-visitor-team07"
+      },
+      {
+        "service": "apigatewayv2",
+        "operation": "GetApis",
+        "status": "success",
+        "n_items": {
+          "Items": 0
+        }
+      },
+      {
+        "service": "iam",
+        "operation": "GetRole",
+        "status": "error",
+        "error": "NoSuchEntityException: An error occurred (NoSuchEntity) when calling the GetRole operation: The role with name role-lambda-team07 cannot be found."
+      },
+      {
+        "service": "logs",
+        "operation": "DescribeLogGroups",
+        "status": "success",
+        "n_items": {
+          "logGroups": 0
+        }
+      },
+      {
+        "service": "logs",
+        "operation": "DescribeLogGroups",
+        "status": "success",
+        "n_items": {
+          "logGroups": 0
+        }
+      },
+      {
+        "service": "s3",
+        "operation": "GetBucketVersioning",
+        "status": "success"
+      },
+      {
+        "service": "s3",
+        "operation": "HeadObject",
+        "status": "success"
+      },
+      {
+        "service": "s3",
+        "operation": "HeadObject",
+        "status": "error",
+        "error": "ClientError: An error occurred (404) when calling the HeadObject operation: Not Found"
+      },
+      {
+        "service": "cloudfront",
+        "operation": "GetDistribution",
+        "status": "success"
+      }
+    ]
+  },
+  "created_change_set": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "Id": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:changeSet/scrum22-create-20261020-0103/cb05a32a-9049-4aa6-8682-676833d42123",
+      "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71"
+    },
+    "api_calls": [
+      {
+        "service": "cloudformation",
+        "operation": "CreateChangeSet",
+        "status": "success"
+      }
+    ]
+  },
+  "change_set_review": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "DescribeChangeSet": {
+        "ChangeSetName": "scrum22-create-20261020-0103",
+        "ChangeSetId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:changeSet/scrum22-create-20261020-0103/cb05a32a-9049-4aa6-8682-676833d42123",
+        "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+        "StackName": "cfn-visitor-api-team07",
+        "Description": "SCRUM-22 commit e7e283dd5ba6494588254ef8853239d10e8072df. User authorized 2026-10-19 20:02:02 CDT; reviewed nine-resource API deployment.",
+        "Parameters": [
+          {
+            "ParameterKey": "VisitorTableName",
+            "ParameterValue": "ddb-visitor-team07"
+          },
+          {
+            "ParameterKey": "AllowedOrigin",
+            "ParameterValue": "https://d3jg1ev4a532iw.cloudfront.net"
+          }
+        ],
+        "CreationTime": "2026-10-20T01:03:22.976000+00:00",
+        "ExecutionStatus": "AVAILABLE",
+        "Status": "CREATE_COMPLETE",
+        "NotificationARNs": [],
+        "RollbackConfiguration": {},
+        "Capabilities": [
+          "CAPABILITY_NAMED_IAM"
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "Team7"
+          },
+          {
+            "Key": "Owner",
+            "Value": "Team7"
+          },
+          {
+            "Key": "Repository",
+            "Value": "Team7"
+          },
+          {
+            "Key": "ManagedBy",
+            "Value": "Team7"
+          },
+          {
+            "Key": "JiraProject",
+            "Value": "SCRUM"
+          },
+          {
+            "Key": "Environment",
+            "Value": "Dev"
+          },
+          {
+            "Key": "Team",
+            "Value": "Team7"
+          },
+          {
+            "Key": "Component",
+            "Value": "API"
+          },
+          {
+            "Key": "Name",
+            "Value": "cfn-visitor-api-team07"
+          },
+          {
+            "Key": "Workload",
+            "Value": "VisitorCounter"
+          }
+        ],
+        "Changes": [
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "ApiAccessLogGroup",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Scope": [],
+              "Details": []
+            }
+          },
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "ApiInvokePermission",
+              "ResourceType": "AWS::Lambda::Permission",
+              "Scope": [],
+              "Details": []
+            }
+          },
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "LambdaExecutionRole",
+              "ResourceType": "AWS::IAM::Role",
+              "Scope": [],
+              "Details": []
+            }
+          },
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "LambdaLogGroup",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Scope": [],
+              "Details": []
+            }
+          },
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "VisitorApi",
+              "ResourceType": "AWS::ApiGatewayV2::Api",
+              "Scope": [],
+              "Details": []
+            }
+          },
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "VisitorFunction",
+              "ResourceType": "AWS::Lambda::Function",
+              "Scope": [],
+              "Details": []
+            }
+          },
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "VisitorIntegration",
+              "ResourceType": "AWS::ApiGatewayV2::Integration",
+              "Scope": [],
+              "Details": []
+            }
+          },
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "VisitorRoute",
+              "ResourceType": "AWS::ApiGatewayV2::Route",
+              "Scope": [],
+              "Details": []
+            }
+          },
+          {
+            "Type": "Resource",
+            "ResourceChange": {
+              "Action": "Add",
+              "LogicalResourceId": "VisitorStage",
+              "ResourceType": "AWS::ApiGatewayV2::Stage",
+              "Scope": [],
+              "Details": []
+            }
+          }
+        ],
+        "IncludeNestedStacks": false,
+        "DeploymentConfig": {
+          "Mode": "STANDARD",
+          "DisableRollback": false
+        }
+      },
+      "DescribeEvents": {
+        "OperationEvents": [
+          {
+            "EventId": "0f74f5f7-eb75-4ac9-aa2a-bec2a27df45e",
+            "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+            "OperationId": "cb05a32a-9049-4aa6-8682-676833d42123",
+            "OperationType": "CREATE_CHANGESET",
+            "OperationStatus": "SUCCEEDED",
+            "EventType": "STACK_EVENT",
+            "Timestamp": "2026-10-20T01:03:26.272000+00:00",
+            "StartTime": "2026-10-20T01:03:23.035000+00:00",
+            "EndTime": "2026-10-20T01:03:26.272000+00:00"
+          },
+          {
+            "EventId": "0053ec10-b61c-4c22-a26b-33c867ff621a",
+            "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+            "OperationId": "cb05a32a-9049-4aa6-8682-676833d42123",
+            "OperationType": "CREATE_CHANGESET",
+            "OperationStatus": "IN_PROGRESS",
+            "EventType": "STACK_EVENT",
+            "Timestamp": "2026-10-20T01:03:23.035000+00:00",
+            "StartTime": "2026-10-20T01:03:23.035000+00:00"
+          }
+        ]
+      }
+    },
+    "api_calls": [
+      {
+        "service": "cloudformation",
+        "operation": "DescribeChangeSet",
+        "status": "success",
+        "n_items": {
+          "Parameters": 2,
+          "NotificationARNs": 0,
+          "Capabilities": 1,
+          "Tags": 10,
+          "Changes": 9
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeEvents",
+        "status": "success",
+        "n_items": {
+          "OperationEvents": 2
+        }
+      }
+    ]
+  },
+  "execution": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {},
+    "api_calls": [
+      {
+        "service": "cloudformation",
+        "operation": "ExecuteChangeSet",
+        "status": "success"
+      }
+    ]
+  },
+  "stack": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "DescribeStacks": {
+        "Stacks": [
+          {
+            "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+            "StackName": "cfn-visitor-api-team07",
+            "ChangeSetId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:changeSet/scrum22-create-20261020-0103/cb05a32a-9049-4aa6-8682-676833d42123",
+            "Description": "Team7 SCRUM-22 - HTTP API and atomic visitor counter (existing DynamoDB table).",
+            "Parameters": [
+              {
+                "ParameterKey": "VisitorTableName",
+                "ParameterValue": "ddb-visitor-team07"
+              },
+              {
+                "ParameterKey": "AllowedOrigin",
+                "ParameterValue": "https://d3jg1ev4a532iw.cloudfront.net"
+              }
+            ],
+            "CreationTime": "2026-10-20T01:03:22.976000+00:00",
+            "LastUpdatedTime": "2026-10-20T01:04:04.759000+00:00",
+            "RollbackConfiguration": {},
+            "StackStatus": "CREATE_COMPLETE",
+            "DisableRollback": false,
+            "DeploymentConfig": {
+              "Mode": "STANDARD",
+              "DisableRollback": false
+            },
+            "NotificationARNs": [],
+            "Capabilities": [
+              "CAPABILITY_NAMED_IAM"
+            ],
+            "Outputs": [
+              {
+                "OutputKey": "VisitEndpoint",
+                "OutputValue": "https://24prug4iuj.execute-api.us-east-2.amazonaws.com/visits",
+                "Description": "Public POST endpoint; use only after deployment and verification."
+              },
+              {
+                "OutputKey": "AllowedWebsiteOrigin",
+                "OutputValue": "https://d3jg1ev4a532iw.cloudfront.net"
+              },
+              {
+                "OutputKey": "LambdaRoleArn",
+                "OutputValue": "arn:aws:iam::ACCOUNT_ID:role/role-lambda-team07"
+              },
+              {
+                "OutputKey": "LambdaName",
+                "OutputValue": "lambda-visitor-team07"
+              },
+              {
+                "OutputKey": "ApiId",
+                "OutputValue": "24prug4iuj"
+              }
+            ],
+            "Tags": [
+              {
+                "Key": "Project",
+                "Value": "Team7"
+              },
+              {
+                "Key": "Owner",
+                "Value": "Team7"
+              },
+              {
+                "Key": "Repository",
+                "Value": "Team7"
+              },
+              {
+                "Key": "ManagedBy",
+                "Value": "Team7"
+              },
+              {
+                "Key": "JiraProject",
+                "Value": "SCRUM"
+              },
+              {
+                "Key": "Environment",
+                "Value": "Dev"
+              },
+              {
+                "Key": "Team",
+                "Value": "Team7"
+              },
+              {
+                "Key": "Component",
+                "Value": "API"
+              },
+              {
+                "Key": "Name",
+                "Value": "cfn-visitor-api-team07"
+              },
+              {
+                "Key": "Workload",
+                "Value": "VisitorCounter"
+              }
+            ],
+            "EnableTerminationProtection": false,
+            "DriftInformation": {
+              "StackDriftStatus": "NOT_CHECKED"
+            },
+            "LastOperations": [
+              {
+                "OperationType": "CREATE_STACK",
+                "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46"
+              }
+            ]
+          }
+        ]
+      },
+      "ListStackResources": {
+        "StackResourceSummaries": [
+          {
+            "LogicalResourceId": "ApiAccessLogGroup",
+            "PhysicalResourceId": "/aws/apigateway/api-visitor-team07",
+            "ResourceType": "AWS::Logs::LogGroup",
+            "LastUpdatedTimestamp": "2026-10-20T01:04:16.277000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          },
+          {
+            "LogicalResourceId": "ApiInvokePermission",
+            "PhysicalResourceId": "cfn-visitor-api-team07-ApiInvokePermission-anHjSgqcfQUF",
+            "ResourceType": "AWS::Lambda::Permission",
+            "LastUpdatedTimestamp": "2026-10-20T01:04:46.712000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          },
+          {
+            "LogicalResourceId": "LambdaExecutionRole",
+            "PhysicalResourceId": "role-lambda-team07",
+            "ResourceType": "AWS::IAM::Role",
+            "LastUpdatedTimestamp": "2026-10-20T01:04:35.244000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          },
+          {
+            "LogicalResourceId": "LambdaLogGroup",
+            "PhysicalResourceId": "/aws/lambda/lambda-visitor-team07",
+            "ResourceType": "AWS::Logs::LogGroup",
+            "LastUpdatedTimestamp": "2026-10-20T01:04:16.235000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          },
+          {
+            "LogicalResourceId": "VisitorApi",
+            "PhysicalResourceId": "24prug4iuj",
+            "ResourceType": "AWS::ApiGatewayV2::Api",
+            "LastUpdatedTimestamp": "2026-10-20T01:04:08.252000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          },
+          {
+            "LogicalResourceId": "VisitorFunction",
+            "PhysicalResourceId": "lambda-visitor-team07",
+            "ResourceType": "AWS::Lambda::Function",
+            "LastUpdatedTimestamp": "2026-10-20T01:04:45.125000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          },
+          {
+            "LogicalResourceId": "VisitorIntegration",
+            "PhysicalResourceId": "ack7qg8",
+            "ResourceType": "AWS::ApiGatewayV2::Integration",
+            "LastUpdatedTimestamp": "2026-10-20T01:04:46.799000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          },
+          {
+            "LogicalResourceId": "VisitorRoute",
+            "PhysicalResourceId": "ho9l4vg",
+            "ResourceType": "AWS::ApiGatewayV2::Route",
+            "LastUpdatedTimestamp": "2026-10-20T01:04:48.476000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          },
+          {
+            "LogicalResourceId": "VisitorStage",
+            "PhysicalResourceId": "$default",
+            "ResourceType": "AWS::ApiGatewayV2::Stage",
+            "LastUpdatedTimestamp": "2026-10-20T01:04:50.587000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+              "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+          }
+        ]
+      }
+    },
+    "api_calls": [
+      {
+        "service": "cloudformation",
+        "operation": "DescribeStacks",
+        "status": "success",
+        "n_items": {
+          "Stacks": 1
+        }
+      },
+      {
+        "service": "cloudformation",
+        "operation": "ListStackResources",
+        "status": "success",
+        "n_items": {
+          "StackResourceSummaries": 9
+        }
+      }
+    ]
+  },
+  "configuration": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "captured_at_utc": "2026-10-20T01:06:09.987032+00:00",
+      "checks": {
+        "0:cloudformation.GetTemplate": {
+          "StagesAvailable": [
+            "Original",
+            "Processed"
+          ],
+          "exact_match_to_approved_template": true
+        },
+        "1:lambda.GetFunctionConfiguration": {
+          "FunctionName": "lambda-visitor-team07",
+          "FunctionArn": "arn:aws:lambda:us-east-2:ACCOUNT_ID:function:lambda-visitor-team07",
+          "Runtime": "python3.13",
+          "Role": "arn:aws:iam::ACCOUNT_ID:role/role-lambda-team07",
+          "Handler": "index.handler",
+          "CodeSize": 1547,
+          "Description": "SCRUM-22 atomic page-view counter; never seeds or resets data.",
+          "Timeout": 5,
+          "MemorySize": 256,
+          "LastModified": "2026-10-20T01:04:38.533+0000",
+          "CodeSha256": "uXzMtzp7zj15v2Sm9vBEO8BW6Rk8mv92KWkZ3zHJwqk=",
+          "Version": "$LATEST",
+          "Environment": {
+            "Variables": {
+              "TABLE_NAME": "ddb-visitor-team07",
+              "ALLOWED_ORIGIN": "https://d3jg1ev4a532iw.cloudfront.net"
+            }
+          },
+          "TracingConfig": {
+            "Mode": "PassThrough"
+          },
+          "RevisionId": "0b7c2317-74a8-443e-be54-9206d95b7da7",
+          "State": "Active",
+          "LastUpdateStatus": "Successful",
+          "PackageType": "Zip",
+          "Architectures": [
+            "arm64"
+          ],
+          "EphemeralStorage": {
+            "Size": 512
+          },
+          "SnapStart": {
+            "ApplyOn": "None",
+            "OptimizationStatus": "Off"
+          },
+          "RuntimeVersionConfig": {
+            "RuntimeVersionArn": "arn:aws:lambda:us-east-2::runtime:0aacb188d2c5b3aad9e30760eeca867126ff27643ac0b027e44a1f156beaf2d8"
+          },
+          "LoggingConfig": {
+            "LogFormat": "Text",
+            "LogGroup": "/aws/lambda/lambda-visitor-team07"
+          }
+        },
+        "2:lambda.GetPolicy": {
+          "Policy": "{\"Version\":\"2012-10-17\",\"Id\":\"default\",\"Statement\":[{\"Sid\":\"cfn-visitor-api-team07-ApiInvokePermission-anHjSgqcfQUF\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"apigateway.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:us-east-2:ACCOUNT_ID:function:lambda-visitor-team07\",\"Condition\":{\"StringEquals\":{\"AWS:SourceAccount\":\"ACCOUNT_ID\"},\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:execute-api:us-east-2:ACCOUNT_ID:24prug4iuj/$default/POST/visits\"}}}]}",
+          "RevisionId": "e049eb29-db91-4f4f-8372-8637957f27eb"
+        },
+        "3:lambda.ListTags": {
+          "Tags": {
+            "Component": "Compute",
+            "Environment": "Dev",
+            "JiraProject": "SCRUM",
+            "ManagedBy": "Team7",
+            "Name": "lambda-visitor-team07",
+            "Owner": "Team7",
+            "Project": "Team7",
+            "Repository": "Team7",
+            "Team": "Team7",
+            "Workload": "VisitorCounter",
+            "aws:cloudformation:logical-id": "VisitorFunction",
+            "aws:cloudformation:stack-id": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+            "aws:cloudformation:stack-name": "cfn-visitor-api-team07"
+          }
+        },
+        "4:iam.GetRole": {
+          "Role": {
+            "Path": "/",
+            "RoleName": "role-lambda-team07",
+            "RoleId": "AROARZKPBDHUXULLUJMFE",
+            "Arn": "arn:aws:iam::ACCOUNT_ID:role/role-lambda-team07",
+            "CreateDate": "2026-10-20T01:04:18+00:00",
+            "AssumeRolePolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": "lambda.amazonaws.com"
+                  },
+                  "Action": "sts:AssumeRole"
+                }
+              ]
+            },
+            "Description": "",
+            "MaxSessionDuration": 3600,
+            "Tags": [
+              {
+                "Key": "Project",
+                "Value": "Team7"
+              },
+              {
+                "Key": "Owner",
+                "Value": "Team7"
+              },
+              {
+                "Key": "Repository",
+                "Value": "Team7"
+              },
+              {
+                "Key": "ManagedBy",
+                "Value": "Team7"
+              },
+              {
+                "Key": "JiraProject",
+                "Value": "SCRUM"
+              },
+              {
+                "Key": "Environment",
+                "Value": "Dev"
+              },
+              {
+                "Key": "Team",
+                "Value": "Team7"
+              },
+              {
+                "Key": "Component",
+                "Value": "Security"
+              },
+              {
+                "Key": "Name",
+                "Value": "role-lambda-team07"
+              },
+              {
+                "Key": "Workload",
+                "Value": "VisitorCounter"
+              }
+            ],
+            "RoleLastUsed": {}
+          }
+        },
+        "5:iam.GetRolePolicy": {
+          "RoleName": "role-lambda-team07",
+          "PolicyName": "policy-visitor-ddb-team07",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Condition": {
+                  "Null": {
+                    "dynamodb:LeadingKeys": "false"
+                  },
+                  "ForAllValues:StringEquals": {
+                    "dynamodb:LeadingKeys": [
+                      "site"
+                    ]
+                  }
+                },
+                "Action": "dynamodb:UpdateItem",
+                "Resource": "arn:aws:dynamodb:us-east-2:ACCOUNT_ID:table/ddb-visitor-team07",
+                "Effect": "Allow",
+                "Sid": "IncrementSiteCounter"
+              },
+              {
+                "Action": [
+                  "logs:CreateLogStream",
+                  "logs:PutLogEvents"
+                ],
+                "Resource": "arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/lambda/lambda-visitor-team07:*",
+                "Effect": "Allow",
+                "Sid": "WriteFunctionLogs"
+              }
+            ]
+          }
+        },
+        "6:iam.ListAttachedRolePolicies": {
+          "AttachedPolicies": []
+        },
+        "7:iam.ListRolePolicies": {
+          "PolicyNames": [
+            "policy-visitor-ddb-team07"
+          ]
+        },
+        "8:iam.GetRole": {
+          "Role": {
+            "Path": "/aws-service-role/ops.apigateway.amazonaws.com/",
+            "RoleName": "AWSServiceRoleForAPIGateway",
+            "RoleId": "AROARZKPBDHUW6ZPE6MG2",
+            "Arn": "arn:aws:iam::ACCOUNT_ID:role/aws-service-role/ops.apigateway.amazonaws.com/AWSServiceRoleForAPIGateway",
+            "CreateDate": "2026-10-20T01:04:07+00:00",
+            "AssumeRolePolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": "ops.apigateway.amazonaws.com"
+                  },
+                  "Action": "sts:AssumeRole"
+                }
+              ]
+            },
+            "Description": "The Service Linked Role is used by Amazon API Gateway.",
+            "MaxSessionDuration": 3600,
+            "RoleLastUsed": {}
+          }
+        },
+        "9:apigatewayv2.GetApi": {
+          "ApiEndpoint": "https://24prug4iuj.execute-api.us-east-2.amazonaws.com",
+          "ApiId": "24prug4iuj",
+          "ApiKeySelectionExpression": "$request.header.x-api-key",
+          "CorsConfiguration": {
+            "AllowCredentials": false,
+            "AllowHeaders": [
+              "content-type"
+            ],
+            "AllowMethods": [
+              "POST",
+              "OPTIONS"
+            ],
+            "AllowOrigins": [
+              "https://d3jg1ev4a532iw.cloudfront.net"
+            ],
+            "MaxAge": 300
+          },
+          "CreatedDate": "2026-10-20T01:04:07+00:00",
+          "Description": "Team7 public page-view counter; CORS is not authentication.",
+          "DisableExecuteApiEndpoint": false,
+          "IpAddressType": "ipv4",
+          "Name": "api-visitor-team07",
+          "ProtocolType": "HTTP",
+          "RouteSelectionExpression": "$request.method $request.path",
+          "Tags": {
+            "aws:cloudformation:stack-name": "cfn-visitor-api-team07",
+            "Owner": "Team7",
+            "ManagedBy": "Team7",
+            "JiraProject": "SCRUM",
+            "aws:cloudformation:stack-id": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+            "Name": "api-visitor-team07",
+            "Workload": "VisitorCounter",
+            "Project": "Team7",
+            "Repository": "Team7",
+            "Environment": "Dev",
+            "aws:cloudformation:logical-id": "VisitorApi",
+            "Team": "Team7",
+            "Component": "API"
+          }
+        },
+        "10:apigatewayv2.GetRoutes": {
+          "Items": [
+            {
+              "ApiKeyRequired": false,
+              "AuthorizationScopes": [],
+              "AuthorizationType": "NONE",
+              "RequestModels": {},
+              "RouteId": "ho9l4vg",
+              "RouteKey": "POST /visits",
+              "Target": "integrations/ack7qg8"
+            }
+          ]
+        },
+        "11:apigatewayv2.GetIntegrations": {
+          "Items": [
+            {
+              "ConnectionType": "INTERNET",
+              "IntegrationId": "ack7qg8",
+              "IntegrationMethod": "POST",
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": "arn:aws:lambda:us-east-2:ACCOUNT_ID:function:lambda-visitor-team07",
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 6000
+            }
+          ]
+        },
+        "12:apigatewayv2.GetStages": {
+          "Items": [
+            {
+              "AccessLogSettings": {
+                "DestinationArn": "arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/apigateway/api-visitor-team07",
+                "Format": "{\"requestId\":\"$context.requestId\",\"routeKey\":\"$context.routeKey\",\"status\":\"$context.status\",\"integrationStatus\":\"$context.integration.status\",\"responseLength\":\"$context.responseLength\"}"
+              },
+              "AutoDeploy": true,
+              "CreatedDate": "2026-10-20T01:04:49+00:00",
+              "DefaultRouteSettings": {
+                "DetailedMetricsEnabled": false,
+                "ThrottlingBurstLimit": 5,
+                "ThrottlingRateLimit": 2
+              },
+              "DeploymentId": "53godh",
+              "LastDeploymentStatusMessage": "Successfully deployed stage with deployment ID '53godh'",
+              "LastUpdatedDate": "2026-10-20T01:04:51+00:00",
+              "RouteSettings": {},
+              "StageName": "$default",
+              "StageVariables": {},
+              "Tags": {
+                "aws:cloudformation:stack-name": "cfn-visitor-api-team07",
+                "Owner": "Team7",
+                "ManagedBy": "Team7",
+                "JiraProject": "SCRUM",
+                "aws:cloudformation:stack-id": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+                "Name": "api-visitor-team07-default",
+                "Workload": "VisitorCounter",
+                "Project": "Team7",
+                "Repository": "Team7",
+                "Environment": "Dev",
+                "aws:cloudformation:logical-id": "VisitorStage",
+                "Team": "Team7",
+                "Component": "API"
+              }
+            }
+          ]
+        },
+        "13:logs.DescribeLogGroups": {
+          "logGroups": [
+            {
+              "logGroupName": "/aws/lambda/lambda-visitor-team07",
+              "creationTime": 1792458248525,
+              "retentionInDays": 7,
+              "metricFilterCount": 0,
+              "arn": "arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/lambda/lambda-visitor-team07:*",
+              "storedBytes": 0,
+              "logGroupClass": "STANDARD",
+              "logGroupArn": "arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/lambda/lambda-visitor-team07",
+              "deletionProtectionEnabled": false,
+              "bearerTokenAuthenticationEnabled": false
+            }
+          ]
+        },
+        "14:logs.DescribeLogGroups": {
+          "logGroups": [
+            {
+              "logGroupName": "/aws/apigateway/api-visitor-team07",
+              "creationTime": 1792458248569,
+              "retentionInDays": 7,
+              "metricFilterCount": 0,
+              "arn": "arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/apigateway/api-visitor-team07:*",
+              "storedBytes": 0,
+              "logGroupClass": "STANDARD",
+              "logGroupArn": "arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/apigateway/api-visitor-team07",
+              "deletionProtectionEnabled": false,
+              "bearerTokenAuthenticationEnabled": false
+            }
+          ]
+        },
+        "15:logs.DescribeResourcePolicies": {
+          "resourcePolicies": []
+        },
+        "16:dynamodb.GetItem": {
+          "Item": {
+            "id": {
+              "S": "site"
+            },
+            "count": {
+              "N": "0"
+            }
+          }
+        }
+      }
+    },
+    "api_calls": [
+      {
+        "service": "cloudformation",
+        "operation": "GetTemplate",
+        "status": "success",
+        "n_items": {
+          "StagesAvailable": 2
+        }
+      },
+      {
+        "service": "lambda",
+        "operation": "GetFunctionConfiguration",
+        "status": "success",
+        "n_items": {
+          "Architectures": 1
+        }
+      },
+      {
+        "service": "lambda",
+        "operation": "GetPolicy",
+        "status": "success"
+      },
+      {
+        "service": "lambda",
+        "operation": "ListTags",
+        "status": "success"
+      },
+      {
+        "service": "iam",
+        "operation": "GetRole",
+        "status": "success"
+      },
+      {
+        "service": "iam",
+        "operation": "GetRolePolicy",
+        "status": "success"
+      },
+      {
+        "service": "iam",
+        "operation": "ListAttachedRolePolicies",
+        "status": "success",
+        "n_items": {
+          "AttachedPolicies": 0
+        }
+      },
+      {
+        "service": "iam",
+        "operation": "ListRolePolicies",
+        "status": "success",
+        "n_items": {
+          "PolicyNames": 1
+        }
+      },
+      {
+        "service": "iam",
+        "operation": "GetRole",
+        "status": "success"
+      },
+      {
+        "service": "apigatewayv2",
+        "operation": "GetApi",
+        "status": "success"
+      },
+      {
+        "service": "apigatewayv2",
+        "operation": "GetRoutes",
+        "status": "success",
+        "n_items": {
+          "Items": 1
+        }
+      },
+      {
+        "service": "apigatewayv2",
+        "operation": "GetIntegrations",
+        "status": "success",
+        "n_items": {
+          "Items": 1
+        }
+      },
+      {
+        "service": "apigatewayv2",
+        "operation": "GetStages",
+        "status": "success",
+        "n_items": {
+          "Items": 1
+        }
+      },
+      {
+        "service": "logs",
+        "operation": "DescribeLogGroups",
+        "status": "success",
+        "n_items": {
+          "logGroups": 1
+        }
+      },
+      {
+        "service": "logs",
+        "operation": "DescribeLogGroups",
+        "status": "success",
+        "n_items": {
+          "logGroups": 1
+        }
+      },
+      {
+        "service": "logs",
+        "operation": "DescribeResourcePolicies",
+        "status": "success",
+        "n_items": {
+          "resourcePolicies": 0
+        }
+      },
+      {
+        "service": "dynamodb",
+        "operation": "GetItem",
+        "status": "success"
+      }
+    ]
+  },
+  "initial_http_counter_and_logs": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "0:dynamodb.GetItem": {
+        "Item": {
+          "count": {
+            "N": "4"
+          },
+          "id": {
+            "S": "site"
+          }
+        }
+      },
+      "1:logs.FilterLogEvents": {
+        "events": [
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458401555,
+            "message": "INIT_START Runtime Version: python:3.13.mainlinev2.v43\tRuntime Version ARN: arn:aws:lambda:us-east-2::runtime:0aacb188d2c5b3aad9e30760eeca867126ff27643ac0b027e44a1f156beaf2d8\n",
+            "ingestionTime": 1792458402196,
+            "eventId": "39973158092043541893162155345930614987737744513762721792"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458401957,
+            "message": "START RequestId: c639fdbd-f3df-40c0-8c08-c024a20d86da Version: $LATEST\n",
+            "ingestionTime": 1792458402196,
+            "eventId": "39973158101008441462971465848827973733342385839166849025"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458401960,
+            "message": "END RequestId: c639fdbd-f3df-40c0-8c08-c024a20d86da\n",
+            "ingestionTime": 1792458402196,
+            "eventId": "39973158101075343698567057718252580888160330923684790274"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458401960,
+            "message": "REPORT RequestId: c639fdbd-f3df-40c0-8c08-c024a20d86da\tDuration: 2.27 ms\tBilled Duration: 402 ms\tMemory Size: 256 MB\tMax Memory Used: 94 MB\tInit Duration: 399.21 ms\t\n",
+            "ingestionTime": 1792458402196,
+            "eventId": "39973158101075343698567057718252580888160330923684790275"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458406034,
+            "message": "START RequestId: 53e7b009-2d37-466d-bdbf-876b126ed3d1 Version: $LATEST\n",
+            "ingestionTime": 1792458415053,
+            "eventId": "39973158191928579637380816412411805158941421179034533888"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458406036,
+            "message": "END RequestId: 53e7b009-2d37-466d-bdbf-876b126ed3d1\n",
+            "ingestionTime": 1792458415053,
+            "eventId": "39973158191973181127777877658694876595486717902046494721"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458406036,
+            "message": "REPORT RequestId: 53e7b009-2d37-466d-bdbf-876b126ed3d1\tDuration: 1.59 ms\tBilled Duration: 2 ms\tMemory Size: 256 MB\tMax Memory Used: 94 MB\t\n",
+            "ingestionTime": 1792458415053,
+            "eventId": "39973158191973181127777877658694876595486717902046494722"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458409904,
+            "message": "START RequestId: 2c2e13c1-a610-49dd-b8dd-bce076232675 Version: $LATEST\n",
+            "ingestionTime": 1792458415053,
+            "eventId": "39973158278232463555694327970155034874090580207178743811"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458409906,
+            "message": "END RequestId: 2c2e13c1-a610-49dd-b8dd-bce076232675\n",
+            "ingestionTime": 1792458415053,
+            "eventId": "39973158278277065046091389216438106310635876930190704644"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458409906,
+            "message": "REPORT RequestId: 2c2e13c1-a610-49dd-b8dd-bce076232675\tDuration: 1.50 ms\tBilled Duration: 2 ms\tMemory Size: 256 MB\tMax Memory Used: 94 MB\t\n",
+            "ingestionTime": 1792458415053,
+            "eventId": "39973158278277065046091389216438106310635876930190704645"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458418755,
+            "message": "START RequestId: ae65d370-e23f-4a60-9732-2f35ed484c57 Version: $LATEST\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158475616359307888873411268027504607856159966625792"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458418894,
+            "message": "END RequestId: ae65d370-e23f-4a60-9732-2f35ed484c57\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158478716162890484630027941492344505978409297903617"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458418894,
+            "message": "REPORT RequestId: ae65d370-e23f-4a60-9732-2f35ed484c57\tDuration: 137.71 ms\tBilled Duration: 138 ms\tMemory Size: 256 MB\tMax Memory Used: 96 MB\t\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158478716162890484630027941492344505978409297903618"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458425883,
+            "message": "START RequestId: 4ee606e9-61de-44cf-bfbd-9b17411dfc0e Version: $LATEST\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158634576071083015155164134627352045376974595031043"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458425894,
+            "message": "END RequestId: 4ee606e9-61de-44cf-bfbd-9b17411dfc0e\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158634821379280198992018691520253044508951160815620"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458425894,
+            "message": "REPORT RequestId: 4ee606e9-61de-44cf-bfbd-9b17411dfc0e\tDuration: 10.67 ms\tBilled Duration: 11 ms\tMemory Size: 256 MB\tMax Memory Used: 96 MB\t\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158634821379280198992018691520253044508951160815621"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458425899,
+            "message": "START RequestId: 80c87802-6553-4bf0-9796-a05c83ed03b1 Version: $LATEST\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158634932883006191645134399198844407750758690717702"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458425915,
+            "message": "END RequestId: 80c87802-6553-4bf0-9796-a05c83ed03b1\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158635289694929368135104663770336770124542786404359"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458425915,
+            "message": "REPORT RequestId: 80c87802-6553-4bf0-9796-a05c83ed03b1\tDuration: 15.79 ms\tBilled Duration: 16 ms\tMemory Size: 256 MB\tMax Memory Used: 96 MB\t\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158635289694929368135104663770336770124542786404360"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458425933,
+            "message": "START RequestId: 08dc82dd-b5ba-4fac-929e-d848de141e37 Version: $LATEST\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158635691108342941686321211413265677795049894051849"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458425954,
+            "message": "END RequestId: 08dc82dd-b5ba-4fac-929e-d848de141e37\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158636159423992110829407183663349403410641519640586"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]aab712dc32644846aefe140b9480f253",
+            "timestamp": 1792458425954,
+            "message": "REPORT RequestId: 08dc82dd-b5ba-4fac-929e-d848de141e37\tDuration: 20.29 ms\tBilled Duration: 21 ms\tMemory Size: 256 MB\tMax Memory Used: 96 MB\t\n",
+            "ingestionTime": 1792458427775,
+            "eventId": "39973158636159423992110829407183663349403410641519640587"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]310f1025a42445d0b2273aa209cf2272",
+            "timestamp": 1792458425982,
+            "message": "INIT_START Runtime Version: python:3.13.mainlinev2.v43\tRuntime Version ARN: arn:aws:lambda:us-east-2::runtime:0aacb188d2c5b3aad9e30760eeca867126ff27643ac0b027e44a1f156beaf2d8\n",
+            "ingestionTime": 1792458431550,
+            "eventId": "39973158636783844857669686859710223247521340312825495552"
+          },
+          {
+            "logStreamName": "2026/10/20/lambda-visitor-team07[$LATEST]9cca6073aed346d9a39baaaf6476a205",
+            "timestamp": 1792458425990,
+            "message": "INIT_START Runtime Version: python:3.13.mainlinev2.v43\tRuntime Version ARN: arn:aws:lambda:us-east-2::runtime:0aacb188d2c5b3aad9e30760eeca867126ff27643ac0b027e44a1f156beaf2d8\n",
+            "ingestionTime": 1792458427065,
+            "eventId": "39973158636962250819257931839420265264880377456549363712"
+          }
+        ],
+        "searchedLogStreams": []
+      },
+      "2:logs.FilterLogEvents": {
+        "events": [
+          {
+            "logStreamName": "24prug4iuj_.default-2026-10-20-01-06",
+            "timestamp": 1792458391741,
+            "message": "{\"requestId\":\"FhK3yglzCYcEMlw=\",\"routeKey\":\"-\",\"status\":\"204\",\"integrationStatus\":\"204\",\"responseLength\":\"0\"}",
+            "ingestionTime": 1792458428107,
+            "eventId": "39973157873184028514782619866223119809288319254393061376"
+          },
+          {
+            "logStreamName": "24prug4iuj_.default-2026-10-20-01-06",
+            "timestamp": 1792458396893,
+            "message": "{\"requestId\":\"FhK4liRwCYcEMpA=\",\"routeKey\":\"-\",\"status\":\"204\",\"integrationStatus\":\"204\",\"responseLength\":\"0\"}",
+            "ingestionTime": 1792458438511,
+            "eventId": "39973157988077467777612390303993163361925867872769474560"
+          },
+          {
+            "logStreamName": "24prug4iuj_.default-2026-10-20-01-06",
+            "timestamp": 1792458401402,
+            "message": "{\"requestId\":\"FhK5TiShCYcEMFQ=\",\"routeKey\":\"POST /visits\",\"status\":\"403\",\"integrationStatus\":\"403\",\"responseLength\":\"30\"}",
+            "ingestionTime": 1792458449693,
+            "eventId": "39973158088631527877786970062695420270329979636860649472"
+          },
+          {
+            "logStreamName": "24prug4iuj_.default-2026-10-20-01-06",
+            "timestamp": 1792458406015,
+            "message": "{\"requestId\":\"FhK6BiGyiYcEM4Q=\",\"routeKey\":\"POST /visits\",\"status\":\"403\",\"integrationStatus\":\"403\",\"responseLength\":\"30\"}",
+            "ingestionTime": 1792458440021,
+            "eventId": "39973158191504865478608734602907237122384485423926345728"
+          },
+          {
+            "logStreamName": "24prug4iuj_.default-2026-10-20-01-06",
+            "timestamp": 1792458409867,
+            "message": "{\"requestId\":\"FhK6nhhbiYcEMow=\",\"routeKey\":\"POST /visits\",\"status\":\"400\",\"integrationStatus\":\"400\",\"responseLength\":\"27\"}",
+            "ingestionTime": 1792458449283,
+            "eventId": "39973158277407335983348694955299613838761702804784021504"
+          },
+          {
+            "logStreamName": "24prug4iuj_.default-2026-10-20-01-06",
+            "timestamp": 1792458418717,
+            "message": "{\"requestId\":\"FhK8AhkQCYcEJcw=\",\"routeKey\":\"POST /visits\",\"status\":\"200\",\"integrationStatus\":\"200\",\"responseLength\":\"11\"}",
+            "ingestionTime": 1792458459141,
+            "eventId": "39973158474768930990344709769808679596598877911741759488"
+          },
+          {
+            "logStreamName": "24prug4iuj_.default-2026-10-20-01-07",
+            "timestamp": 1792458425861,
+            "message": "{\"requestId\":\"FhK9Hh1uiYcEMBQ=\",\"routeKey\":\"POST /visits\",\"status\":\"200\",\"integrationStatus\":\"200\",\"responseLength\":\"11\"}",
+            "ingestionTime": 1792458470348,
+            "eventId": "39973158634085454688647481506488011608473890115916201984"
+          },
+          {
+            "logStreamName": "24prug4iuj_.default-2026-10-20-01-07",
+            "timestamp": 1792458425862,
+            "message": "{\"requestId\":\"FhK9HgBLiYcEJUg=\",\"routeKey\":\"POST /visits\",\"status\":\"200\",\"integrationStatus\":\"200\",\"responseLength\":\"11\"}",
+            "ingestionTime": 1792458457898,
+            "eventId": "39973158634107755433846012114578628783588418088369324032"
+          },
+          {
+            "logStreamName": "24prug4iuj_.default-2026-10-20-01-07",
+            "timestamp": 1792458425862,
+            "message": "{\"requestId\":\"FhK9Hj4-iYcEJ9g=\",\"routeKey\":\"POST /visits\",\"status\":\"200\",\"integrationStatus\":\"200\",\"responseLength\":\"11\"}",
+            "ingestionTime": 1792458458765,
+            "eventId": "39973158634107755433846012115626715084228451133797957632"
+          }
+        ],
+        "searchedLogStreams": []
+      },
+      "3:logs.DescribeResourcePolicies": {
+        "resourcePolicies": [
+          {
+            "policyDocument": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"AWSLogDeliveryWrite1\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"delivery.logs.amazonaws.com\"},\"Action\":[\"logs:CreateLogStream\",\"logs:PutLogEvents\"],\"Resource\":\"arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/apigateway/api-visitor-team07:log-stream:*\",\"Condition\":{\"StringEquals\":{\"aws:SourceAccount\":\"ACCOUNT_ID\"},\"ArnLike\":{\"aws:SourceArn\":\"arn:aws:logs:us-east-2:ACCOUNT_ID:*\"}}}]}",
+            "lastUpdatedTime": 1792458289824,
+            "policyScope": "RESOURCE",
+            "resourceArn": "arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/apigateway/api-visitor-team07",
+            "revisionId": "1"
+          }
+        ]
+      }
+    },
+    "api_calls": [
+      {
+        "service": "dynamodb",
+        "operation": "GetItem",
+        "status": "success"
+      },
+      {
+        "service": "logs",
+        "operation": "FilterLogEvents",
+        "status": "success",
+        "n_items": {
+          "events": 24,
+          "searchedLogStreams": 0
+        }
+      },
+      {
+        "service": "logs",
+        "operation": "FilterLogEvents",
+        "status": "success",
+        "n_items": {
+          "events": 9,
+          "searchedLogStreams": 0
+        }
+      },
+      {
+        "service": "logs",
+        "operation": "DescribeResourcePolicies",
+        "status": "success",
+        "n_items": {
+          "resourcePolicies": 1
+        }
+      }
+    ]
+  },
+  "script_upload": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "ETag": "\"14d59af8e3018c02ec478d8d70d25336\"",
+      "ChecksumCRC32": "7U2gXQ==",
+      "ChecksumType": "FULL_OBJECT",
+      "ServerSideEncryption": "AES256",
+      "VersionId": "di15_4GyxszN9lgR.Mh7rT.Urjc680h_"
+    },
+    "api_calls": [
+      {
+        "service": "s3",
+        "operation": "PutObject",
+        "status": "success"
+      }
+    ]
+  },
+  "html_upload": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "ETag": "\"9afb547922052308417fbf994d27faa3\"",
+      "ChecksumCRC32": "L4o/uQ==",
+      "ChecksumType": "FULL_OBJECT",
+      "ServerSideEncryption": "AES256",
+      "VersionId": "y_Qz.QfW.cnlzOce7hZOlsYHzJsMsCQi"
+    },
+    "api_calls": [
+      {
+        "service": "s3",
+        "operation": "PutObject",
+        "status": "success"
+      }
+    ]
+  },
+  "invalidation": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "Location": "https://cloudfront.amazonaws.com/2020-05-31/distribution/E1PBX75YJOS2B9/invalidation/I53B07ZQ3S9OCO811JA64U3Z0O",
+      "Invalidation": {
+        "Id": "I53B07ZQ3S9OCO811JA64U3Z0O",
+        "Status": "InProgress",
+        "CreateTime": "2026-10-20T01:09:13.433000+00:00",
+        "InvalidationBatch": {
+          "Paths": {
+            "Quantity": 2,
+            "Items": [
+              "/index.html",
+              "/"
+            ]
+          },
+          "CallerReference": "scrum22-release-e7e283d-20261020"
+        }
+      }
+    },
+    "api_calls": [
+      {
+        "service": "cloudfront",
+        "operation": "CreateInvalidation",
+        "status": "success"
+      }
+    ]
+  },
+  "final_state": {
+    "status": "success",
+    "stdout": "",
+    "return_value": {
+      "captured_at_utc": "2026-10-20T01:11:22.125144+00:00",
+      "checks": {
+        "0:cloudfront.GetInvalidation": {
+          "Invalidation": {
+            "Id": "I53B07ZQ3S9OCO811JA64U3Z0O",
+            "Status": "Completed",
+            "CreateTime": "2026-10-20T01:09:13.433000+00:00",
+            "InvalidationBatch": {
+              "Paths": {
+                "Quantity": 2,
+                "Items": [
+                  "/index.html",
+                  "/"
+                ]
+              },
+              "CallerReference": "scrum22-release-e7e283d-20261020"
+            }
+          }
+        },
+        "1:s3.HeadObject": {
+          "AcceptRanges": "bytes",
+          "LastModified": "2026-10-20T01:09:01+00:00",
+          "ContentLength": 4204,
+          "ETag": "\"9afb547922052308417fbf994d27faa3\"",
+          "VersionId": "y_Qz.QfW.cnlzOce7hZOlsYHzJsMsCQi",
+          "CacheControl": "public,max-age=60",
+          "ContentType": "text/html; charset=utf-8",
+          "ServerSideEncryption": "AES256",
+          "Metadata": {}
+        },
+        "2:s3.HeadObject": {
+          "AcceptRanges": "bytes",
+          "LastModified": "2026-10-20T01:08:29+00:00",
+          "ContentLength": 1278,
+          "ETag": "\"14d59af8e3018c02ec478d8d70d25336\"",
+          "VersionId": "di15_4GyxszN9lgR.Mh7rT.Urjc680h_",
+          "CacheControl": "public,max-age=60",
+          "ContentType": "text/javascript; charset=utf-8",
+          "ServerSideEncryption": "AES256",
+          "Metadata": {}
+        },
+        "3:dynamodb.GetItem": {
+          "Item": {
+            "count": {
+              "N": "5"
+            },
+            "id": {
+              "S": "site"
+            }
+          }
+        },
+        "4:cloudformation.DescribeStackEvents": {
+          "StackEvents": [
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "4122f380-cc22-11f1-a3c9-06d71a703753",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "cfn-visitor-api-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-20T01:04:51.881000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorStage-CREATE_COMPLETE-2026-10-20T01:04:50.587Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorStage",
+              "PhysicalResourceId": "$default",
+              "ResourceType": "AWS::ApiGatewayV2::Stage",
+              "Timestamp": "2026-10-20T01:04:50.587000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorStage-CREATE_IN_PROGRESS-2026-10-20T01:04:50.063Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorStage",
+              "PhysicalResourceId": "$default",
+              "ResourceType": "AWS::ApiGatewayV2::Stage",
+              "Timestamp": "2026-10-20T01:04:50.063000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorStage-CREATE_IN_PROGRESS-2026-10-20T01:04:48.992Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorStage",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::ApiGatewayV2::Stage",
+              "Timestamp": "2026-10-20T01:04:48.992000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorRoute-CREATE_COMPLETE-2026-10-20T01:04:48.476Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorRoute",
+              "PhysicalResourceId": "ho9l4vg",
+              "ResourceType": "AWS::ApiGatewayV2::Route",
+              "Timestamp": "2026-10-20T01:04:48.476000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorRoute-CREATE_IN_PROGRESS-2026-10-20T01:04:47.926Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorRoute",
+              "PhysicalResourceId": "ho9l4vg",
+              "ResourceType": "AWS::ApiGatewayV2::Route",
+              "Timestamp": "2026-10-20T01:04:47.926000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorRoute-CREATE_IN_PROGRESS-2026-10-20T01:04:47.107Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorRoute",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::ApiGatewayV2::Route",
+              "Timestamp": "2026-10-20T01:04:47.107000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorIntegration-CREATE_COMPLETE-2026-10-20T01:04:46.799Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorIntegration",
+              "PhysicalResourceId": "ack7qg8",
+              "ResourceType": "AWS::ApiGatewayV2::Integration",
+              "Timestamp": "2026-10-20T01:04:46.799000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "ApiInvokePermission-CREATE_COMPLETE-2026-10-20T01:04:46.712Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "ApiInvokePermission",
+              "PhysicalResourceId": "cfn-visitor-api-team07-ApiInvokePermission-anHjSgqcfQUF",
+              "ResourceType": "AWS::Lambda::Permission",
+              "Timestamp": "2026-10-20T01:04:46.712000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorIntegration-CREATE_IN_PROGRESS-2026-10-20T01:04:46.283Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorIntegration",
+              "PhysicalResourceId": "ack7qg8",
+              "ResourceType": "AWS::ApiGatewayV2::Integration",
+              "Timestamp": "2026-10-20T01:04:46.283000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "ApiInvokePermission-CREATE_IN_PROGRESS-2026-10-20T01:04:46.237Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "ApiInvokePermission",
+              "PhysicalResourceId": "cfn-visitor-api-team07-ApiInvokePermission-anHjSgqcfQUF",
+              "ResourceType": "AWS::Lambda::Permission",
+              "Timestamp": "2026-10-20T01:04:46.237000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorIntegration-CREATE_IN_PROGRESS-2026-10-20T01:04:45.496Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorIntegration",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::ApiGatewayV2::Integration",
+              "Timestamp": "2026-10-20T01:04:45.496000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "ApiInvokePermission-CREATE_IN_PROGRESS-2026-10-20T01:04:45.459Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "ApiInvokePermission",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::Lambda::Permission",
+              "Timestamp": "2026-10-20T01:04:45.459000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorFunction-CREATE_COMPLETE-2026-10-20T01:04:45.125Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorFunction",
+              "PhysicalResourceId": "lambda-visitor-team07",
+              "ResourceType": "AWS::Lambda::Function",
+              "Timestamp": "2026-10-20T01:04:45.125000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorFunction-CREATE_IN_PROGRESS-2026-10-20T01:04:37.073Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorFunction",
+              "PhysicalResourceId": "lambda-visitor-team07",
+              "ResourceType": "AWS::Lambda::Function",
+              "Timestamp": "2026-10-20T01:04:37.073000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorFunction-CREATE_IN_PROGRESS-2026-10-20T01:04:35.945Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorFunction",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::Lambda::Function",
+              "Timestamp": "2026-10-20T01:04:35.945000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "LambdaExecutionRole-CREATE_COMPLETE-2026-10-20T01:04:35.244Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "LambdaExecutionRole",
+              "PhysicalResourceId": "role-lambda-team07",
+              "ResourceType": "AWS::IAM::Role",
+              "Timestamp": "2026-10-20T01:04:35.244000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "LambdaExecutionRole-CREATE_IN_PROGRESS-2026-10-20T01:04:17.604Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "LambdaExecutionRole",
+              "PhysicalResourceId": "role-lambda-team07",
+              "ResourceType": "AWS::IAM::Role",
+              "Timestamp": "2026-10-20T01:04:17.604000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "LambdaExecutionRole-CREATE_IN_PROGRESS-2026-10-20T01:04:16.737Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "LambdaExecutionRole",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::IAM::Role",
+              "Timestamp": "2026-10-20T01:04:16.737000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "ApiAccessLogGroup-CREATE_COMPLETE-2026-10-20T01:04:16.277Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "ApiAccessLogGroup",
+              "PhysicalResourceId": "/aws/apigateway/api-visitor-team07",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Timestamp": "2026-10-20T01:04:16.277000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "LambdaLogGroup-CREATE_COMPLETE-2026-10-20T01:04:16.235Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "LambdaLogGroup",
+              "PhysicalResourceId": "/aws/lambda/lambda-visitor-team07",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Timestamp": "2026-10-20T01:04:16.235000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "ApiAccessLogGroup-2f9c0a50-f570-454a-9419-c2b5b4642038",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "ApiAccessLogGroup",
+              "PhysicalResourceId": "/aws/apigateway/api-visitor-team07",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Timestamp": "2026-10-20T01:04:15.979000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Eventual consistency check initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104",
+              "DetailedStatus": "CONFIGURATION_COMPLETE"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "LambdaLogGroup-422bdf54-d2de-43c6-9012-c7e295dbf85a",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "LambdaLogGroup",
+              "PhysicalResourceId": "/aws/lambda/lambda-visitor-team07",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Timestamp": "2026-10-20T01:04:15.900000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Eventual consistency check initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104",
+              "DetailedStatus": "CONFIGURATION_COMPLETE"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorApi-CREATE_COMPLETE-2026-10-20T01:04:08.252Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorApi",
+              "PhysicalResourceId": "24prug4iuj",
+              "ResourceType": "AWS::ApiGatewayV2::Api",
+              "Timestamp": "2026-10-20T01:04:08.252000+00:00",
+              "ResourceStatus": "CREATE_COMPLETE",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorApi-CREATE_IN_PROGRESS-2026-10-20T01:04:07.722Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorApi",
+              "PhysicalResourceId": "24prug4iuj",
+              "ResourceType": "AWS::ApiGatewayV2::Api",
+              "Timestamp": "2026-10-20T01:04:07.722000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "ApiAccessLogGroup-CREATE_IN_PROGRESS-2026-10-20T01:04:07.342Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "ApiAccessLogGroup",
+              "PhysicalResourceId": "/aws/apigateway/api-visitor-team07",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Timestamp": "2026-10-20T01:04:07.342000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "LambdaLogGroup-CREATE_IN_PROGRESS-2026-10-20T01:04:07.285Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "LambdaLogGroup",
+              "PhysicalResourceId": "/aws/lambda/lambda-visitor-team07",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Timestamp": "2026-10-20T01:04:07.285000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "Resource creation Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "VisitorApi-CREATE_IN_PROGRESS-2026-10-20T01:04:06.596Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "VisitorApi",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::ApiGatewayV2::Api",
+              "Timestamp": "2026-10-20T01:04:06.596000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "ApiAccessLogGroup-CREATE_IN_PROGRESS-2026-10-20T01:04:06.591Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "ApiAccessLogGroup",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Timestamp": "2026-10-20T01:04:06.591000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "LambdaLogGroup-CREATE_IN_PROGRESS-2026-10-20T01:04:06.570Z",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "LambdaLogGroup",
+              "PhysicalResourceId": "",
+              "ResourceType": "AWS::Logs::LogGroup",
+              "Timestamp": "2026-10-20T01:04:06.570000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "250cdb70-cc22-11f1-acb2-0ac3dba92cc7",
+              "StackName": "cfn-visitor-api-team07",
+              "OperationId": "80f576e3-f2f2-419c-b865-95116c141d46",
+              "LogicalResourceId": "cfn-visitor-api-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-20T01:04:04.759000+00:00",
+              "ResourceStatus": "CREATE_IN_PROGRESS",
+              "ResourceStatusReason": "User Initiated",
+              "ClientRequestToken": "scrum22-authorized-20261020-0104"
+            },
+            {
+              "StackId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "EventId": "0c17d980-cc22-11f1-95b3-0a3b2ea8bc71",
+              "StackName": "cfn-visitor-api-team07",
+              "LogicalResourceId": "cfn-visitor-api-team07",
+              "PhysicalResourceId": "arn:aws:cloudformation:us-east-2:ACCOUNT_ID:stack/cfn-visitor-api-team07/0c184eb0-cc22-11f1-95b3-0a3b2ea8bc71",
+              "ResourceType": "AWS::CloudFormation::Stack",
+              "Timestamp": "2026-10-20T01:03:22.976000+00:00",
+              "ResourceStatus": "REVIEW_IN_PROGRESS",
+              "ResourceStatusReason": "User Initiated"
+            }
+          ]
+        }
+      }
+    },
+    "api_calls": [
+      {
+        "service": "cloudfront",
+        "operation": "GetInvalidation",
+        "status": "success"
+      },
+      {
+        "service": "s3",
+        "operation": "HeadObject",
+        "status": "success"
+      },
+      {
+        "service": "s3",
+        "operation": "HeadObject",
+        "status": "success"
+      },
+      {
+        "service": "dynamodb",
+        "operation": "GetItem",
+        "status": "success"
+      },
+      {
+        "service": "cloudformation",
+        "operation": "DescribeStackEvents",
+        "status": "success",
+        "n_items": {
+          "StackEvents": 32
+        }
+      }
+    ]
+  }
+}

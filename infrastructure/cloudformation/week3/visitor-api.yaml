@@ -1,0 +1,298 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Team7 SCRUM-22 - HTTP API and atomic visitor counter (existing DynamoDB table).
+
+Parameters:
+  VisitorTableName:
+    Type: String
+    Default: ddb-visitor-team07
+    AllowedValues: [ddb-visitor-team07]
+  AllowedOrigin:
+    Type: String
+    Default: https://d3jg1ev4a532iw.cloudfront.net
+    AllowedValues: [https://d3jg1ev4a532iw.cloudfront.net]
+
+Rules:
+  OhioOnly:
+    Assertions:
+      - Assert: !Equals [!Ref 'AWS::Region', us-east-2]
+        AssertDescription: Deploy Team7 workloads only in us-east-2.
+
+Resources:
+  LambdaLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      LogGroupName: /aws/lambda/lambda-visitor-team07
+      RetentionInDays: 7
+      Tags:
+        - {Key: Name, Value: /aws/lambda/lambda-visitor-team07}
+        - {Key: Project, Value: Team7}
+        - {Key: Team, Value: Team7}
+        - {Key: Environment, Value: Dev}
+        - {Key: Workload, Value: VisitorCounter}
+        - {Key: Component, Value: Logging}
+        - {Key: Owner, Value: Team7}
+        - {Key: ManagedBy, Value: Team7}
+        - {Key: Repository, Value: Team7}
+        - {Key: JiraProject, Value: SCRUM}
+
+  ApiAccessLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      LogGroupName: /aws/apigateway/api-visitor-team07
+      RetentionInDays: 7
+      Tags:
+        - {Key: Name, Value: /aws/apigateway/api-visitor-team07}
+        - {Key: Project, Value: Team7}
+        - {Key: Team, Value: Team7}
+        - {Key: Environment, Value: Dev}
+        - {Key: Workload, Value: VisitorCounter}
+        - {Key: Component, Value: Logging}
+        - {Key: Owner, Value: Team7}
+        - {Key: ManagedBy, Value: Team7}
+        - {Key: Repository, Value: Team7}
+        - {Key: JiraProject, Value: SCRUM}
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: role-lambda-team07
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: {Service: lambda.amazonaws.com}
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: policy-visitor-ddb-team07
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: IncrementSiteCounter
+                Effect: Allow
+                Action: dynamodb:UpdateItem
+                Resource: !Sub 'arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${VisitorTableName}'
+                Condition:
+                  ForAllValues:StringEquals:
+                    dynamodb:LeadingKeys: [site]
+                  'Null':
+                    dynamodb:LeadingKeys: 'false'
+              - Sid: WriteFunctionLogs
+                Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents]
+                Resource: !GetAtt LambdaLogGroup.Arn
+      Tags:
+        - {Key: Name, Value: role-lambda-team07}
+        - {Key: Project, Value: Team7}
+        - {Key: Team, Value: Team7}
+        - {Key: Environment, Value: Dev}
+        - {Key: Workload, Value: VisitorCounter}
+        - {Key: Component, Value: Security}
+        - {Key: Owner, Value: Team7}
+        - {Key: ManagedBy, Value: Team7}
+        - {Key: Repository, Value: Team7}
+        - {Key: JiraProject, Value: SCRUM}
+
+  VisitorFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: lambda-visitor-team07
+      Description: SCRUM-22 atomic page-view counter; never seeds or resets data.
+      Runtime: python3.13
+      Architectures: [arm64]
+      Handler: index.handler
+      MemorySize: 256
+      Timeout: 5
+      Role: !GetAtt LambdaExecutionRole.Arn
+      LoggingConfig:
+        LogGroup: !Ref LambdaLogGroup
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref VisitorTableName
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+      Code:
+        # BEGIN GENERATED HANDLER
+        ZipFile: |
+          """SCRUM-22: one atomic increment per accepted HTTP API request."""
+          import json
+          import logging
+          import os
+
+          import boto3
+          from boto3.dynamodb.conditions import Attr
+          from botocore.config import Config
+          from botocore.exceptions import BotoCoreError, ClientError
+
+
+          LOGGER = logging.getLogger(__name__)
+          LOGGER.setLevel(logging.INFO)
+          MAX_COUNT = 9007199254740991  # Largest integer a browser can represent exactly.
+          ALLOWED_ORIGIN = os.environ["ALLOWED_ORIGIN"]
+          TABLE = boto3.resource(
+              "dynamodb",
+              config=Config(
+                  connect_timeout=1,
+                  read_timeout=2,
+                  retries={"mode": "standard", "total_max_attempts": 1},
+              ),
+          ).Table(os.environ["TABLE_NAME"])
+
+
+          def response(status, payload):
+              # HTTP API owns CORS; do not add a second CORS implementation here.
+              return {
+                  "statusCode": status,
+                  "headers": {"content-type": "application/json", "cache-control": "no-store"},
+                  "isBase64Encoded": False,
+                  "body": json.dumps(payload, separators=(",", ":")),
+              }
+
+
+          def handler(event, context):
+              if event.get("requestContext", {}).get("http", {}).get("method") != "POST":
+                  return response(405, {"error": "method_not_allowed"})
+              if event.get("rawPath") != "/visits":
+                  return response(404, {"error": "not_found"})
+              headers = {key.lower(): value for key, value in (event.get("headers") or {}).items()}
+              # Reject foreign simple requests too. Origin is spoofable outside browsers;
+              # this is defense in depth, not authentication or an anti-bot guarantee.
+              if headers.get("origin") != ALLOWED_ORIGIN:
+                  return response(403, {"error": "origin_not_allowed"})
+              body = event.get("body") or ""
+              if (headers.get("content-type", "").split(";", 1)[0].strip().lower()
+                      != "application/json" or event.get("isBase64Encoded")
+                      or not isinstance(body, str) or len(body) > 64):
+                  return response(400, {"error": "invalid_request"})
+              try:
+                  payload = json.loads(body)
+              except (ValueError, TypeError):
+                  return response(400, {"error": "invalid_request"})
+              if payload != {}:
+                  return response(400, {"error": "invalid_request"})
+
+              try:
+                  updated = TABLE.update_item(
+                      Key={"id": "site"},
+                      UpdateExpression="SET #count = #count + :one",
+                      ExpressionAttributeNames={"#count": "count"},
+                      ExpressionAttributeValues={":one": 1},
+                      ConditionExpression=(Attr("id").exists() & Attr("count").attribute_type("N")
+                                           & Attr("count").gte(0) & Attr("count").lt(MAX_COUNT)),
+                      ReturnValues="UPDATED_NEW",
+                  )
+                  count = updated["Attributes"]["count"]
+                  if count != int(count) or not 1 <= count <= MAX_COUNT:
+                      raise ValueError("invalid stored count")
+                  return response(200, {"count": int(count)})
+              except TABLE.meta.client.exceptions.ConditionalCheckFailedException:
+                  LOGGER.error("counter_condition_failed request_id=%s", context.aws_request_id)
+              except (ClientError, BotoCoreError, ValueError, KeyError, TypeError) as error:
+                  LOGGER.error("counter_unavailable kind=%s request_id=%s",
+                               type(error).__name__, context.aws_request_id)
+              # Never seed/reset here. A timed-out update may have succeeded; do not retry.
+              return response(503, {"error": "counter_unavailable"})
+        # END GENERATED HANDLER
+      Tags:
+        - {Key: Name, Value: lambda-visitor-team07}
+        - {Key: Project, Value: Team7}
+        - {Key: Team, Value: Team7}
+        - {Key: Environment, Value: Dev}
+        - {Key: Workload, Value: VisitorCounter}
+        - {Key: Component, Value: Compute}
+        - {Key: Owner, Value: Team7}
+        - {Key: ManagedBy, Value: Team7}
+        - {Key: Repository, Value: Team7}
+        - {Key: JiraProject, Value: SCRUM}
+
+  VisitorApi:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Name: api-visitor-team07
+      Description: Team7 public page-view counter; CORS is not authentication.
+      ProtocolType: HTTP
+      CorsConfiguration:
+        AllowOrigins: [!Ref AllowedOrigin]
+        AllowMethods: [POST, OPTIONS]
+        AllowHeaders: [content-type]
+        AllowCredentials: false
+        MaxAge: 300
+      Tags:
+        Name: api-visitor-team07
+        Project: Team7
+        Team: Team7
+        Environment: Dev
+        Workload: VisitorCounter
+        Component: API
+        Owner: Team7
+        ManagedBy: Team7
+        Repository: Team7
+        JiraProject: SCRUM
+
+  VisitorIntegration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: !Ref VisitorApi
+      IntegrationType: AWS_PROXY
+      IntegrationMethod: POST
+      IntegrationUri: !GetAtt VisitorFunction.Arn
+      PayloadFormatVersion: '2.0'
+      TimeoutInMillis: 6000
+
+  VisitorRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref VisitorApi
+      RouteKey: POST /visits
+      AuthorizationType: NONE
+      Target: !Join ['/', [integrations, !Ref VisitorIntegration]]
+
+  VisitorStage:
+    Type: AWS::ApiGatewayV2::Stage
+    DependsOn: [VisitorRoute, ApiInvokePermission]
+    Properties:
+      ApiId: !Ref VisitorApi
+      StageName: $default
+      AutoDeploy: true
+      DefaultRouteSettings:
+        ThrottlingRateLimit: 2
+        ThrottlingBurstLimit: 5
+        DetailedMetricsEnabled: false
+      AccessLogSettings:
+        DestinationArn: !GetAtt ApiAccessLogGroup.Arn
+        Format: '{"requestId":"$context.requestId","routeKey":"$context.routeKey","status":"$context.status","integrationStatus":"$context.integration.status","responseLength":"$context.responseLength"}'
+      Tags:
+        Name: api-visitor-team07-default
+        Project: Team7
+        Team: Team7
+        Environment: Dev
+        Workload: VisitorCounter
+        Component: API
+        Owner: Team7
+        ManagedBy: Team7
+        Repository: Team7
+        JiraProject: SCRUM
+
+  ApiInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref VisitorFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+      SourceArn: !Sub 'arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${VisitorApi}/$default/POST/visits'
+
+Outputs:
+  VisitEndpoint:
+    Description: Public POST endpoint; use only after deployment and verification.
+    Value: !Sub '${VisitorApi.ApiEndpoint}/visits'
+  ApiId:
+    Value: !Ref VisitorApi
+  LambdaName:
+    Value: !Ref VisitorFunction
+  LambdaRoleArn:
+    Value: !GetAtt LambdaExecutionRole.Arn
+  AllowedWebsiteOrigin:
+    Value: !Ref AllowedOrigin
